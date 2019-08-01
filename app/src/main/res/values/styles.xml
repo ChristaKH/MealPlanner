@@ -8,4 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="toolbarTheme" parent="Theme.AppCompat.Light">
+        <item name="android:fontFamily">@font/fira_sans</item>
+    </style>
 </resources>
