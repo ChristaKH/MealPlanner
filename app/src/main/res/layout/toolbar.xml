@@ -5,10 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_centerHorizontal="true"
     android:layout_gravity="top"
-    android:background="#FFFFFF"
-    android:elevation="4dp"
     android:paddingLeft="140dp"
-    android:paddingRight="0"
     android:textAlignment="center"
     android:theme="@style/toolbarTheme"
     app:title="@string/app_name">
