@@ -9,32 +9,20 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar"/>
-    <!-- Commenting out code for the tabs for now
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/coordinatorLayout"
+
+    <LinearLayout
+        android:id="@+id/rootLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="56dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toTopOf="@+id/mainBottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/mainAppBarLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/toolbarTheme">
+    </LinearLayout>
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/mainTabPayout"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:theme="@style/toolbarTheme"
-                app:tabTextColor="#000000"></com.google.android.material.tabs.TabLayout>
-        </com.google.android.material.appbar.AppBarLayout>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-        end of code for the tabs-->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/mainBottomNavigationView"
         android:layout_width="match_parent"
