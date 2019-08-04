@@ -4,11 +4,16 @@
         android:id="@+id/todayMenuItem"
         android:icon="@drawable/today_black_24dp"
         android:title="@string/todayMenuItemTitle"/>
+
+    <!-- calendar icon made by Freepik from flaticon.com -->
     <item
         android:id="@+id/calendarMenuItem"
         android:icon="@drawable/calendar_black_24dp"
         android:title="@string/calendarMenuItemTitle"/>
+
+    <!-- recipe icon made by Creative Commons from flaticon.com -->
     <item
         android:id="@+id/recipesMenuItem"
+        android:icon="@drawable/recipes_black_24dp"
         android:title="@string/recipesMenuItemTitle"/>
 </menu>
