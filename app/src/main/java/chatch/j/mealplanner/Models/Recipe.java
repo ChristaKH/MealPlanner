@@ -146,46 +146,117 @@ public class Recipe {
         mTitle = title;
     }
 
+    /**
+     * This method returns the list of ingredients for current recipe
+     * @return  List of recipe ingredients
+     */
     public ArrayList<String> getIngredients() {
-        return mIngredients;
+        ArrayList<String> tempIngredients = new ArrayList<String>();
+        for(int i = 0; i < mIngredients.size(); i++){
+            tempIngredients.add(mIngredients.get(i));
+        }
+        return tempIngredients;
     }
 
+    /**
+     * Method that sets the list of ingredients for the recipe
+     * @param ingredients   New list of ingredients for the recipe
+     */
     public void setIngredients(ArrayList<String> ingredients) {
-        mIngredients = ingredients;
+        String ingredient;
+        mIngredients.clear();
+        for(int i = 0; i < ingredients.size(); i++){
+            ingredient = fixTitle(ingredients.get(i));
+            mIngredients.add(ingredient);
+        }
     }
 
+    /**
+     * Method that returns a list of recipe directions
+     * @return  Recipe directions in an ArrayList of type String
+     */
     public ArrayList<String> getDirections() {
-        return mDirections;
+        ArrayList<String> newDirec = new ArrayList<String>();
+        for(int i = 0; i < mDirections.size(); i++){
+            newDirec.add(mDirections.get(i));
+        }
+        return newDirec;
     }
 
+    /**
+     * Method that sets the list of directions for the recipe
+     * @param directions    List of recipe directions
+     */
     public void setDirections(ArrayList<String> directions) {
-        mDirections = directions;
+        mDirections.clear();
+        String direction;
+        for(int i = 0; i < directions.size(); i++){
+            direction = fixSentence(directions.get(i));
+            mDirections.add(direction);
+        }
     }
 
+    /**
+     * Method that returns the name of the creator of the current recipe
+     * @return  Creator name
+     */
     public String getCreator() {
         return mCreator;
     }
 
+    /**
+     * Method that takes in the name of the recipe creator, fixes
+     * all capitalization issues, and sets it to the creator of the recipe
+     * @param creator   Name of recipe creator being entered
+     */
     public void setCreator(String creator) {
-        mCreator = creator;
+        mCreator = fixTitle(creator);
     }
 
+    /**
+     * Method that returns the level of difficulty for the current recipe
+     * @return  enum representing recipe difficulty
+     */
     public Difficulty getDifficulty() {
         return mDifficulty;
     }
 
+    /**
+     * Method that sets the difficulty of the recipe
+     * @param difficulty    Entered difficulty of recipe
+     */
     public void setDifficulty(Difficulty difficulty) {
         mDifficulty = difficulty;
     }
 
+    /**
+     * Method that returns the time it takes to complete the
+     * recipe in minutes
+     * @return  Recipe cook time
+     */
     public int getCookTime() {
         return mCookTime;
     }
 
+    /**
+     * Method that sets the time it takes to make current recipe
+     * If new cook time is a negative number then set cook time to 0
+     * @param cookTime  New cook time in minutes
+     */
     public void setCookTime(int cookTime) {
+        if(cookTime < 0){
+            cookTime = 0;
+        }
         mCookTime = cookTime;
     }
 
+    /**
+     * Method that receives a String and fixes the capitalization
+     * of the String to be that of a sentence where the first letter
+     * of every sentence is capitalized
+     * @param sentence  Initial sentence
+     * @return  Cleaned up sentence
+     */
     private String fixSentence(String sentence){
         Scanner scan = new Scanner(sentence);
 
