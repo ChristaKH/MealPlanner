@@ -18,5 +18,4 @@
             android:theme="@style/toolbarTheme"></com.google.android.material.tabs.TabLayout>
     </com.google.android.material.appbar.AppBarLayout>
     -->
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

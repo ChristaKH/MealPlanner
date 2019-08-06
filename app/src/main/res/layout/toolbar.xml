@@ -5,9 +5,13 @@
     android:layout_height="wrap_content"
     android:layout_centerHorizontal="true"
     android:layout_gravity="top"
+    android:background="@drawable/toolbar_gradient"
+    android:elevation="8dp"
+    android:foreground="@drawable/toolbar_gradient"
     android:paddingLeft="140dp"
     android:textAlignment="center"
     android:theme="@style/toolbarTheme"
-    app:title="@string/app_name">
+    app:title="@string/app_name"
+    app:titleTextColor="@color/white">
 
 </androidx.appcompat.widget.Toolbar>
