@@ -259,7 +259,7 @@ public class Recipe {
      */
     private String fixSentence(String sentence){
         // Start off with all letters lowercase
-        sentence = sentence.toLowerCase();
+        sentence = sentence.toLowerCase().trim();
 
         // Put sentence into character array to prevent constant
         // recreation of a String
@@ -267,7 +267,9 @@ public class Recipe {
 
         // The first letter should always be capital
         // For now, we are ignoring the possibility of quotations
-        newSentence[0] = Character.toUpperCase(newSentence[0]);
+        if(newSentence.length > 0) {
+            newSentence[0] = Character.toUpperCase(newSentence[0]);
+        }
 
         // Go through the entire sentence/character array
         for(int i = 0; i < newSentence.length - 1; i++){
@@ -281,10 +283,33 @@ public class Recipe {
         }
 
         // Return fixed sentence
-        return newSentence.toString().trim();
+        return newSentence.toString();
     }
 
+    /**
+     * This method is meant to correct any String where
+     * we desire each new word to be capitalised
+     * @param title
+     * @return
+     */
     private String fixTitle(String title){
-        return title;
+        // Trim spaces off of title
+        // Put title into a char array to save memory
+        char[] tempTitle = title.trim().toCharArray();
+
+        // Capitalize at index 0 if there is at least 1 character
+        if(tempTitle.length > 0){
+            tempTitle[0] = Character.toUpperCase(tempTitle[0]);
+        }
+
+        // Traverse array of characters
+        for(int i = 0; i < tempTitle.length - 1; i++){
+            // if we reach a space, capitalize the next character
+            if(tempTitle[i] == ' '){
+                tempTitle[i+1] = Character.toUpperCase(tempTitle[i+1]);
+            }
+        }
+
+        return tempTitle.toString();
     }
 }
