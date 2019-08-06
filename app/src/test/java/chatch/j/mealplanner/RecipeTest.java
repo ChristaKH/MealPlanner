@@ -80,4 +80,16 @@ public class RecipeTest {
             assertEquals(expectedIngredients[i], tempIngredients.get(i));
         }
     }
+
+    /**
+     * Method for testing the setIngredients() method
+     */
+    @Test
+    public void testSetIngredients(){
+        testRecipe.setIngredients(tIngredients);
+        ArrayList<String> tempIngredients = testRecipe.getIngredients();
+        for(int i = 0; i < tempIngredients.size(); i++){
+            assertEquals(expectedIngredients[i], tempIngredients.get(i));
+        }
+    }
 }
