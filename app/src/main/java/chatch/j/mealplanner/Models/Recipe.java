@@ -27,7 +27,7 @@ public class Recipe {
     private int mCookTime;
 
     // enum to represent recipe difficulty
-    private enum Difficulty {NONE, EASY, MEDIUM, HARD}
+    public enum Difficulty {NONE, EASY, MEDIUM, HARD}
 
     /**
      * Empty construtor that exists mainly for testing purposes
@@ -281,7 +281,7 @@ public class Recipe {
         }
 
         // Return fixed sentence
-        return newSentence.toString();
+        return newSentence.toString().trim();
     }
 
     private String fixTitle(String title){
