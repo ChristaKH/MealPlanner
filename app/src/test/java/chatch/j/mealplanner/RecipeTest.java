@@ -153,4 +153,15 @@ public class RecipeTest {
             assertEquals(expectedCreator[i], testRecipe.getCreator());
         }
     }
+
+    /**
+     * Method for testing the getCookTime() method of the Recipe class
+     */
+    @Test
+    public void testGetCookTime(){
+        for(int i = 0; i < expectedCookTimes.length; i++){
+            testRecipe.setCookTime(expectedCookTimes[i]);
+            assertEquals(expectedCookTimes[i], testRecipe.getCookTime());
+        }
+    }
 }
