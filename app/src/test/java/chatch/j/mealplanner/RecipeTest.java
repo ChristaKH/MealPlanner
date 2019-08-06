@@ -17,6 +17,8 @@ public class RecipeTest {
     private Recipe testRecipe, expectedRecipe;
     public static String[] testTitles = {" ", "garlic bread", "cHiCkEn PoT pIe"};
     public static String[] expectedTitles = {"", "Garlic Bread", "Chicken Pot Pie"};
+    public static ArrayList<String> tIngredients = new ArrayList<String>();
+    public static ArrayList<String> eIngredients = new ArrayList<String>();
     public static String[] testIngredients = {" CHICKEN ", " OnIoNs", "pie crust"};
     public static String[] expectedIngredients = {"Chicken", "Onions", "Pie Crust"};
     public static String[] testDirections = {"          ", " this is test. number! One. ", "THIS IS. TEST? NUMBER TWO..." };
@@ -38,6 +40,11 @@ public class RecipeTest {
     public void createRecipe(){
         testRecipe = new Recipe();
         expectedRecipe = new Recipe();
+
+        for(int i = 0; i < expectedIngredients.length; i++){
+            tIngredients.add(testIngredients[i]);
+            eIngredients.add(expectedIngredients[i]);
+        }
     }
 
     /**
@@ -45,7 +52,10 @@ public class RecipeTest {
      */
     @Test
     public void testGetTitle(){
-        assertEquals("", "");
+        for(int i = 0; i < expectedTitles.length; i++){
+            testRecipe.setTitle(expectedTitles[i]);
+            assertEquals(expectedTitles[i], testRecipe.getTitle());
+        }
     }
 
     /**
@@ -56,6 +66,18 @@ public class RecipeTest {
         for(int i = 0; i < testTitles.length; i++){
             testRecipe.setTitle(testTitles[i]);
             assertEquals(expectedTitles[i], testRecipe.getTitle());
+        }
+    }
+
+    /**
+     * Method for testing the getIngredients() method
+     */
+    @Test
+    public void testGetIngredients(){
+        testRecipe.setIngredients(eIngredients);
+        ArrayList<String> tempIngredients = testRecipe.getIngredients();
+        for(int i = 0; i < tempIngredients.size(); i++){
+            assertEquals(expectedIngredients[i], tempIngredients.get(i));
         }
     }
 }
