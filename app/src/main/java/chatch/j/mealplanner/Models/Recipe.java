@@ -258,9 +258,30 @@ public class Recipe {
      * @return  Cleaned up sentence
      */
     private String fixSentence(String sentence){
-        Scanner scan = new Scanner(sentence);
+        // Start off with all letters lowercase
+        sentence = sentence.toLowerCase();
 
-        return sentence;
+        // Put sentence into character array to prevent constant
+        // recreation of a String
+        char[] newSentence = sentence.toCharArray();
+
+        // The first letter should always be capital
+        // For now, we are ignoring the possibility of quotations
+        newSentence[0] = Character.toUpperCase(newSentence[0]);
+
+        // Go through the entire sentence/character array
+        for(int i = 0; i < newSentence.length - 1; i++){
+            // If the current character is a '.', '?', or '!'
+            if(newSentence[i] == '.'|| newSentence[i] == '?' || newSentence[i] == '!'){
+                // Then make the next character an uppercase letter because it is the start
+                // of a new sentence
+                // Again, ignoring the possibility of quotations for now
+                newSentence[i+1] = Character.toUpperCase(newSentence[i+1]);
+            }
+        }
+
+        // Return fixed sentence
+        return newSentence.toString();
     }
 
     private String fixTitle(String title){
