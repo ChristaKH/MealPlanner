@@ -1,5 +1,7 @@
 package chatch.j.mealplanner.Models;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -142,8 +144,7 @@ public class Recipe {
      * @param title new title for recipe
      */
     public void setTitle(String title) {
-        title = fixTitle(title);
-        mTitle = title;
+        mTitle = fixTitle(title);
     }
 
     /**
@@ -289,13 +290,15 @@ public class Recipe {
     /**
      * This method is meant to correct any String where
      * we desire each new word to be capitalised
-     * @param title
-     * @return
+     * @param title String where we want each new word to start with
+     *              a capital letter
+     * @return  String that follows capitalization rule above
      */
     private String fixTitle(String title){
         // Trim spaces off of title
         // Put title into a char array to save memory
-        char[] tempTitle = title.trim().toCharArray();
+        // Make all characters lowercase
+        char[] tempTitle = title.trim().toLowerCase().toCharArray();
 
         // Capitalize at index 0 if there is at least 1 character
         if(tempTitle.length > 0){
@@ -310,6 +313,6 @@ public class Recipe {
             }
         }
 
-        return tempTitle.toString();
+        return String.valueOf(tempTitle);
     }
 }
