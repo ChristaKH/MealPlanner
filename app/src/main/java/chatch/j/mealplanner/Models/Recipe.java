@@ -279,12 +279,16 @@ public class Recipe {
                 // Then make the next character an uppercase letter because it is the start
                 // of a new sentence
                 // Again, ignoring the possibility of quotations for now
-                newSentence[i+1] = Character.toUpperCase(newSentence[i+1]);
+                if(newSentence[i+1] == ' '){
+                    newSentence[i+2] = Character.toUpperCase(newSentence[i+2]);
+                } else {
+                    newSentence[i + 1] = Character.toUpperCase(newSentence[i + 1]);
+                }
             }
         }
 
         // Return fixed sentence
-        return newSentence.toString();
+        return String.valueOf(newSentence);
     }
 
     /**
