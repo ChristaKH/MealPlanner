@@ -34,7 +34,6 @@ public class RecipeTest {
     public static int[] testCookTimes = {-1, 0, 100};
     public static int[] expectedCookTimes = {0, 0, 100};
 
-
     /**
      * Before testing each method, create a completely blank Recipe object
      * initialize and fill the ingredient array lists
@@ -161,6 +160,17 @@ public class RecipeTest {
     public void testGetCookTime(){
         for(int i = 0; i < expectedCookTimes.length; i++){
             testRecipe.setCookTime(expectedCookTimes[i]);
+            assertEquals(expectedCookTimes[i], testRecipe.getCookTime());
+        }
+    }
+
+    /**
+     * Method for testing the setCookTime() method of the Recipe class
+     */
+    @Test
+    public void testSetCookTime(){
+        for(int i = 0; i < expectedCookTimes.length; i++){
+            testRecipe.setCookTime(testCookTimes[i]);
             assertEquals(expectedCookTimes[i], testRecipe.getCookTime());
         }
     }
