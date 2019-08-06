@@ -11,4 +11,18 @@
     <color name="middlePurple">#D282A6</color>
     <color name="deepTuscanRed">#6E4555</color>
     <color name= "jet">#3A3238</color>
+
+    <!--Color group 2-->
+    <color name="darkImperialBlue">#08415C</color>
+    <color name="tealBlue">#388697</color>
+    <color name="desertSand">#DBCFB0</color>
+    <color name="desire">#F23E53</color>
+    <color name="mediumCandyAppleRed">#D90429</color>
+    
+    <!--Color group 3-->
+    <!--darkImperialBlue-->
+    <color name="verdigris">#419BAF</color>
+    <color name="electricBlue">#54F2F2</color>
+    <color name="buff">#F3DE8A</color>
+    <color name="darkSalmon">#EB9486</color>
 </resources>

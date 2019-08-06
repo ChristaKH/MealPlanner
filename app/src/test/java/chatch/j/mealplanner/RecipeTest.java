@@ -142,4 +142,15 @@ public class RecipeTest {
             assertEquals(expectedCreator[i], testRecipe.getCreator());
         }
     }
+
+    /**
+     * Method for testing the setCreator() method of the recipe class
+     */
+    @Test
+    public void testGetCreator(){
+        for(int i = 0; i < expectedCreator.length; i++){
+            testRecipe.setCreator(testCreator[i]);
+            assertEquals(expectedCreator[i], testRecipe.getCreator());
+        }
+    }
 }

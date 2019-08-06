@@ -3,9 +3,8 @@
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="0dp"
-    android:background="@color/spanishPink">
-
+    android:layout_marginTop="0dp">
+<!--
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/mainAppBarLayout"
         android:layout_width="match_parent"
@@ -18,5 +17,6 @@
             android:layout_height="?attr/actionBarSize"
             android:theme="@style/toolbarTheme"></com.google.android.material.tabs.TabLayout>
     </com.google.android.material.appbar.AppBarLayout>
+    -->
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
