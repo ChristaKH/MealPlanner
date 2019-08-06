@@ -128,6 +128,7 @@ public class RecipeTest {
         ArrayList<String> tempDirections = testRecipe.getDirections();
         for(int i = 0; i < tempDirections.size(); i++){
             assertEquals(expectedDirections[i], tempDirections.get(i));
+
         }
     }
 }
