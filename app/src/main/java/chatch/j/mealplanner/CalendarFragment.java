@@ -10,8 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
-
+/**
+ * The CalendarFragment class is the class of a fragment that will
+ * be shown in the root layout when the "Calendar" button
+ * on the bottom navigation view is pressed.
+ */
 public class CalendarFragment extends Fragment {
     /*
     // TODO: Rename parameter arguments, choose names that match

@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- This is the layout for the individual sections in the
+    recipe fragment (breakfast, lunch, dinner, dessert, other).
+    Each section has a text view of the section title at the top
+    and a recycler view below which will display the recipes in the
+    current section horizontally -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
