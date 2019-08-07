@@ -25,4 +25,12 @@
     <color name="electricBlue">#54F2F2</color>
     <color name="buff">#F3DE8A</color>
     <color name="darkSalmon">#EB9486</color>
+    
+    <!--Color group 4-->
+    <color name="pinkOrange">#FE9E68</color>
+    <color name="frenchRaspberry">#CC2F48</color>
+    <color name="sizzlingRed">#F63859</color>
+    <color name="eggshell">#EEEBD0</color>
+    <color name="paleChestnut">#EBB3A9</color>
+    <color name="black">#000000</color>
 </resources>
