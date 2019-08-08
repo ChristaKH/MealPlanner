@@ -1,6 +1,10 @@
 package chatch.j.mealplanner.Adapters;
 
 import android.content.Context;
+import android.content.res.AssetManager;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +14,8 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import chatch.j.mealplanner.Models.Recipe;
@@ -95,10 +101,6 @@ public class RecipeSectionRecyclerViewAdapter extends
     }
 
     public class RecipeSectionViewHolder extends RecyclerView.ViewHolder {
-        //@Bind(R.id.restaurantImageView) ImageView mRestaurantImageView;
-        //@Bind(R.id.restaurantNameTextView) TextView mNameTextView;
-        //@Bind(R.id.categoryTextView) TextView mCategoryTextView;
-        //@Bind(R.id.ratingTextView) TextView mRatingTextView;
 
         private Context mContext;
         private ImageView recipeImageView;
@@ -110,7 +112,25 @@ public class RecipeSectionRecyclerViewAdapter extends
         }
 
         public void bindRecipe(Recipe recipe){
+            String recipeImageName = recipe.getImageName();
+            // If there is no image file use a color instead (for now)
+            if(recipeImageName.length() == 0){
+                ColorDrawable desire = new ColorDrawable(mContext.getResources().getColor(R.color.desire));
+                recipeImageView.setImageDrawable(desire);
+            } else{
+                // Otherwise, set the image view to the proper recipe image
+                // Getting images from assets for now
+                AssetManager am = mContext.getAssets();
 
+                try {
+                    InputStream stream = am.open(recipe.getImageName());
+                    Drawable image = Drawable.createFromStream(stream, recipe.getTitle());
+                    recipeImageView.setImageDrawable(image);
+
+                } catch (IOException e) {
+                    Log.e("Meal Planner", e.getMessage());
+                }
+            }
         }
 
     }
