@@ -27,7 +27,7 @@ import chatch.j.mealplanner.R;
  * of recipes represented in recipe_section_images_layout.xml
  */
 public class RecipeSectionRecyclerViewAdapter extends
-                RecyclerView.Adapter<RecipeSectionRecyclerViewAdapter.RecipeSectionViewHolder>{
+                RecyclerView.Adapter<RecipeSectionRecyclerViewAdapter.RecipeImageViewHolder>{
 
     private ArrayList<Recipe> mRecipes = new ArrayList<Recipe>();
     private Context mContext;
@@ -57,10 +57,10 @@ public class RecipeSectionRecyclerViewAdapter extends
      */
     @NonNull
     @Override
-    public RecipeSectionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecipeImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // Inflate the layout for the individual item in the recycler view
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recipe_section_images_layout, parent, false);
-        RecipeSectionViewHolder viewHolder = new RecipeSectionViewHolder(view);
+        RecipeImageViewHolder viewHolder = new RecipeImageViewHolder(view);
         return viewHolder;
     }
 
@@ -85,7 +85,7 @@ public class RecipeSectionRecyclerViewAdapter extends
      * @param position The position of the item within the adapter's data set.
      */
     @Override
-    public void onBindViewHolder(@NonNull RecipeSectionViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecipeImageViewHolder holder, int position) {
         Recipe recipe = mRecipes.get(position);
         holder.bindRecipe(recipe);
     }
@@ -107,12 +107,12 @@ public class RecipeSectionRecyclerViewAdapter extends
      * This class will help to populate the recycler view with images associated with
      * a given recipe
      */
-    public class RecipeSectionViewHolder extends RecyclerView.ViewHolder {
+    public class RecipeImageViewHolder extends RecyclerView.ViewHolder {
 
         private Context mContext;
         private ImageView recipeImageView;
 
-        public RecipeSectionViewHolder(View itemView) {
+        public RecipeImageViewHolder(View itemView) {
             super(itemView);
             mContext = itemView.getContext();
             recipeImageView = itemView.findViewById(R.id.recipeImageView);

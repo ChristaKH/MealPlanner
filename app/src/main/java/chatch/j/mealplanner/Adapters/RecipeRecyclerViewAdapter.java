@@ -1,6 +1,7 @@
 package chatch.j.mealplanner.Adapters;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -25,9 +26,9 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
     private Context mContext;
     private ArrayList<ArrayList<Recipe>> mRecipeSections;
 
-    public RecipeRecyclerViewAdapter(Context context, ArrayList<ArrayList<Recipe>> recipes) {
+    public RecipeRecyclerViewAdapter(Context context, ArrayList<ArrayList<Recipe>> recipeSections) {
         mContext = context;
-        mRecipeSections = recipes;
+        mRecipeSections = recipeSections;
     }
 
     /**
@@ -51,7 +52,9 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
     @NonNull
     @Override
     public RecipeSectionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recipe_section_layout, parent, false);
+        RecipeSectionViewHolder viewHolder = new RecipeSectionViewHolder(view);
+        return viewHolder;
     }
 
     /**
@@ -76,17 +79,43 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
      */
     @Override
     public void onBindViewHolder(@NonNull RecipeSectionViewHolder holder, int position) {
+        // Order for categories to index is (0)Breakfast, (1)Lunch, (2)Dinner, (3)Dessert, (4)Other
+        // I don't like that this relies on assumed positions
+        // @TODO change how we determine categories so they aren't assumed
+        Recipe.Category category;
 
+        switch(position){
+            case 0:
+                category = Recipe.Category.BREAKFAST;
+                break;
+            case 1:
+                category = Recipe.Category.LUNCH;
+                break;
+            case 2:
+                category = Recipe.Category.DINNER;
+                break;
+            case 3:
+                category = Recipe.Category.DESSERT;
+                break;
+            case 4:
+                category = Recipe.Category.OTHER;
+                break;
+            default:
+                category = Recipe.Category.OTHER;
+                break;
+        }
+
+        holder.bindSections(category, mRecipeSections.get(position));
     }
 
     /**
-     * Returns the total number of items in the data set held by the adapter.
+     * Returns the total number of sections in the data set held by the adapter.
      *
-     * @return The total number of items in this adapter.
+     * @return The total number of sections in this adapter.
      */
     @Override
     public int getItemCount() {
-        return 0;
+        return mRecipeSections.size();
     }
 
     /**
