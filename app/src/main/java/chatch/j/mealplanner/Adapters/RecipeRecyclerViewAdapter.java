@@ -1,18 +1,34 @@
 package chatch.j.mealplanner.Adapters;
 
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
+import chatch.j.mealplanner.Models.Recipe;
+import chatch.j.mealplanner.R;
+
 /**
  * This class is the adapter for the RecyclerView that is used
  * in the recipe fragment. This will populate the section titles
- * and the recycler views of recipe pictures.
+ * and the recycler views of recipe pictures. This class assumes that
+ * the Recipes entered are already sorted by category
  */
 public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecyclerViewAdapter.RecipeSectionViewHolder> {
+
+    private Context mContext;
+    private ArrayList<ArrayList<Recipe>> mRecipeSections;
+
+    public RecipeRecyclerViewAdapter(Context context, ArrayList<ArrayList<Recipe>> recipes) {
+        mContext = context;
+        mRecipeSections = recipes;
+    }
 
     /**
      * Called when RecyclerView needs a new {@link RecyclerView.ViewHolder} of the given type to represent
@@ -73,10 +89,51 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
         return 0;
     }
 
+    /**
+     * This is the custom ViewHolder class used for the RecyclerView in the recipe
+     * fragment. This ViewHolder will connect to the TextView and inner RecyclerView
+     * in the recipe RecyclerView and allow us an easier route to populating them
+     * with the proper recipe info
+     */
     public class RecipeSectionViewHolder extends RecyclerView.ViewHolder{
+
+        private Context mContext;
+        private TextView sectionTitleTextView;
+        private RecyclerView recipeImageRecyclerView;
 
         public RecipeSectionViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            // Connect components to their counterparts in the xml
+            mContext = itemView.getContext();
+            sectionTitleTextView = itemView.findViewById(R.id.sectionTitleTextView);
+            recipeImageRecyclerView = itemView.findViewById(R.id.recipeImageRecyclerView);
+        }
+
+        /**
+         * This method populates the text view and the inner recycler view
+         * based on the section that is entered
+         */
+        public void bindSections(Recipe.Category category, ArrayList<Recipe> recipeSection){
+
+             // @TODO Revisit later to address when a section has no recipes
+            // Set the title based on the section category
+            switch(category){
+                case BREAKFAST:
+                    sectionTitleTextView.setText(R.string.breakfastTitle);
+                    break;
+                case LUNCH:
+                    sectionTitleTextView.setText(R.string.lunchTitle);
+                    break;
+                case DINNER:
+                    sectionTitleTextView.setText(R.string.dinnerTitle);
+                    break;
+                case DESSERT:
+                    sectionTitleTextView.setText(R.string.dessertTitle);
+                    break;
+                case OTHER:
+                    sectionTitleTextView.setText(R.string.otherTitle);
+            }
         }
     }
 }

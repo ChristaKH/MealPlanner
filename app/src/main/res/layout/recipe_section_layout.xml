@@ -21,7 +21,7 @@
         android:textSize="30sp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/selectionRecyclerView"
+        android:id="@+id/recipeImageRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"/>

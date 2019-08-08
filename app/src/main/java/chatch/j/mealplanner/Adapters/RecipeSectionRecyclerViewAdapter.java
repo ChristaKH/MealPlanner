@@ -100,6 +100,13 @@ public class RecipeSectionRecyclerViewAdapter extends
         return mRecipes.size();
     }
 
+
+    /**
+     * This is the custom ViewHolder class for the RecipeSecionRecyclerViewAdapter class
+     * (boy that's a mouthfull)
+     * This class will help to populate the recycler view with images associated with
+     * a given recipe
+     */
     public class RecipeSectionViewHolder extends RecyclerView.ViewHolder {
 
         private Context mContext;
@@ -111,6 +118,11 @@ public class RecipeSectionRecyclerViewAdapter extends
             recipeImageView = itemView.findViewById(R.id.recipeImageView);
         }
 
+        /**
+         * Method that gets an image that corresponds to a given recipe and
+         * uses it for the image view
+         * @param recipe    Given recipe whose image we will show
+         */
         public void bindRecipe(Recipe recipe){
             String recipeImageName = recipe.getImageName();
             // If there is no image file use a color instead (for now)
@@ -118,6 +130,7 @@ public class RecipeSectionRecyclerViewAdapter extends
                 ColorDrawable desire = new ColorDrawable(mContext.getResources().getColor(R.color.desire));
                 recipeImageView.setImageDrawable(desire);
             } else{
+                // @TODO change so that we can get the images from a differen storage than assets
                 // Otherwise, set the image view to the proper recipe image
                 // Getting images from assets for now
                 AssetManager am = mContext.getAssets();
