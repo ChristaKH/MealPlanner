@@ -17,6 +17,7 @@ import java.util.Scanner;
  *  - Cook Time
  *  - Difficulty
  *  - Recipe Image Name
+ *  - Category
  */
 public class Recipe {
     // Required components to a recipe
@@ -29,9 +30,13 @@ public class Recipe {
     private Difficulty mDifficulty;
     private int mCookTime;
     private String mImageName;
+    private Category mCategory;
 
     // enum to represent recipe difficulty
     public enum Difficulty {NONE, EASY, MEDIUM, HARD}
+
+    // enum to represent recipe category
+    public enum Category {OTHER, BREAKFAST, LUNCH, DINNER, DESSERT}
 
     /**
      * Empty construtor that exists mainly for testing purposes
@@ -45,6 +50,7 @@ public class Recipe {
         mDifficulty = Difficulty.NONE;
         mCookTime = 0;
         mImageName = "";
+        mCategory = Category.OTHER;
     }
 
     /**
@@ -60,6 +66,8 @@ public class Recipe {
         mCreator = "";
         mDifficulty = Difficulty.NONE;
         mCookTime = 0;
+        mImageName = "";
+        mCategory = Category.OTHER;
     }
 
     /**
@@ -77,6 +85,8 @@ public class Recipe {
         this.setCreator(creator);
         mDifficulty = Difficulty.NONE;
         mCookTime = 0;
+        mImageName = "";
+        mCategory = Category.OTHER;
     }
 
     /**
@@ -94,6 +104,8 @@ public class Recipe {
         this.setDifficulty(difficulty);
         mCreator = "";
         mCookTime = 0;
+        mImageName = "";
+        mCategory = Category.OTHER;
     }
 
     /**
@@ -111,6 +123,8 @@ public class Recipe {
         this.setCookTime(cookTime);
         mCreator = "";
         mDifficulty = Difficulty.NONE;
+        mImageName = "";
+        mCategory = Category.OTHER;
     }
 
     /**
@@ -123,9 +137,10 @@ public class Recipe {
      * @param difficulty    Level of difficulty for current recipe
      * @param cookTime  Time it takes to make the recipe in minutes
      * @param imageName Name of the image file for the recipe
+     * @param category  Category of the recipe
      */
     public Recipe(String title, ArrayList<String> ingredients, ArrayList<String> directions,
-                  String creator, Difficulty difficulty, int cookTime, String imageName) {
+                  String creator, Difficulty difficulty, int cookTime, String imageName, Category category) {
         this.setTitle(title);
         this.setIngredients(ingredients);
         this.setDirections(directions);
@@ -133,6 +148,7 @@ public class Recipe {
         this.setCreator(creator);
         this.setDifficulty(difficulty);
         this.setImageName(imageName);
+        this.setCategory(category);
     }
 
     /**
@@ -270,6 +286,23 @@ public class Recipe {
      */
     public void setImageName(String newImageName){
         mImageName = newImageName;
+    }
+
+    /**
+     * Method that returns the category of the recipe
+     * @return  mCategory
+     */
+    public Category getCategory(){
+        return mCategory;
+    }
+
+
+    /**
+     * Method that changes the category of the current recipe
+     * @param newCategory   New category of the recipe
+     */
+    public void setCategory(Category newCategory){
+        mCategory = newCategory;
     }
 
     /**
