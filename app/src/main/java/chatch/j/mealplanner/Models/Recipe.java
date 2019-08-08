@@ -16,6 +16,7 @@ import java.util.Scanner;
  *  - Recipe Creator
  *  - Cook Time
  *  - Difficulty
+ *  - Recipe Image Name
  */
 public class Recipe {
     // Required components to a recipe
@@ -27,6 +28,7 @@ public class Recipe {
     private String mCreator;
     private Difficulty mDifficulty;
     private int mCookTime;
+    private String mImageName;
 
     // enum to represent recipe difficulty
     public enum Difficulty {NONE, EASY, MEDIUM, HARD}
@@ -42,6 +44,7 @@ public class Recipe {
         mCreator = "";
         mDifficulty = Difficulty.NONE;
         mCookTime = 0;
+        mImageName = "";
     }
 
     /**
@@ -119,15 +122,17 @@ public class Recipe {
      * @param creator   Name of creator of current recipe
      * @param difficulty    Level of difficulty for current recipe
      * @param cookTime  Time it takes to make the recipe in minutes
+     * @param imageName Name of the image file for the recipe
      */
     public Recipe(String title, ArrayList<String> ingredients, ArrayList<String> directions,
-                  String creator, Difficulty difficulty, int cookTime) {
+                  String creator, Difficulty difficulty, int cookTime, String imageName) {
         this.setTitle(title);
         this.setIngredients(ingredients);
         this.setDirections(directions);
         this.setCookTime(cookTime);
         this.setCreator(creator);
         this.setDifficulty(difficulty);
+        this.setImageName(imageName);
     }
 
     /**
@@ -249,6 +254,22 @@ public class Recipe {
             cookTime = 0;
         }
         mCookTime = cookTime;
+    }
+
+    /**
+     * Method that returns the value of mImageName
+     * @return  Name of the image file for the recipe
+     */
+    public String getImageName(){
+        return mImageName;
+    }
+
+    /**
+     * Method that sets the name of the image file of the recipe
+     * @param newImageName  New name of the image file
+     */
+    public void setImageName(String newImageName){
+        mImageName = newImageName;
     }
 
     /**
