@@ -134,6 +134,9 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
                 case OTHER:
                     sectionTitleTextView.setText(R.string.otherTitle);
             }
+
+            // @TODO fill the inner recycler view
+            // Fill the inner recycler view
         }
     }
 }
