@@ -18,6 +18,7 @@
         android:paddingRight="@dimen/titlePadding"
         android:paddingBottom="@dimen/titlePadding"
         android:text="Section Title"
+        android:textColor="@color/black"
         android:textSize="30sp" />
 
     <androidx.recyclerview.widget.RecyclerView

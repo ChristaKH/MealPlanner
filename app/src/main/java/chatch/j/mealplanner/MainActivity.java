@@ -3,6 +3,8 @@ package chatch.j.mealplanner;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -25,53 +27,11 @@ public class MainActivity extends AppCompatActivity {
     // @TODO Use an array list of Recipes instead of an array list of array lists (here and in adapters)
     private Toolbar toolbar;
     private BottomNavigationView mainBottomNavigationView;
-    private ArrayList<Recipe> breakfastRecipes;
-    private ArrayList<Recipe> lunchRecipes;
-    private ArrayList<Recipe> dinnerRecipes;
-    private ArrayList<Recipe> dessertRecipes;
-    private ArrayList<Recipe> otherRecipes;
-    private ArrayList<ArrayList<Recipe>> allRecipes;
-    private RecipeRecyclerViewAdapter mRecipeRecyclerViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // Initialize all recipe array lists
-        breakfastRecipes = new ArrayList<Recipe>();
-        lunchRecipes = new ArrayList<Recipe>();
-        dinnerRecipes = new ArrayList<Recipe>();
-        dessertRecipes = new ArrayList<Recipe>();
-        otherRecipes = new ArrayList<Recipe>();
-        allRecipes = new ArrayList<ArrayList<Recipe>>();
-
-        // Fill recipe array lists with dummy values for now
-        // @TODO fill array lists with appropriate values based on actual recipes
-        Recipe tempRecipe = new Recipe();
-        for(int i = 0; i < 10; i++){
-            tempRecipe.setCategory(Recipe.Category.BREAKFAST);
-            breakfastRecipes.add(tempRecipe);
-
-            tempRecipe.setCategory(Recipe.Category.LUNCH);
-            lunchRecipes.add(tempRecipe);
-
-            tempRecipe.setCategory(Recipe.Category.DINNER);
-            dinnerRecipes.add(tempRecipe);
-
-            tempRecipe.setCategory(Recipe.Category.OTHER);
-            otherRecipes.add(tempRecipe);
-        }
-
-        // Fill allRecipes with the recipes based on category
-        allRecipes.add(breakfastRecipes);
-        allRecipes.add(lunchRecipes);
-        allRecipes.add(dinnerRecipes);
-        allRecipes.add(dessertRecipes);
-        allRecipes.add(otherRecipes);
-
-        // initialize the recycler view adapter for the vertical (outer) recycler view
-        mRecipeRecyclerViewAdapter = new RecipeRecyclerViewAdapter(this, allRecipes);
 
         // Connect the components of the xml to the main activity
         toolbar = findViewById(R.id.toolbar);
