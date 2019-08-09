@@ -3,8 +3,6 @@ package chatch.j.mealplanner;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -14,11 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.ArrayList;
-
-import chatch.j.mealplanner.Adapters.RecipeRecyclerViewAdapter;
-import chatch.j.mealplanner.Models.Recipe;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -4,15 +4,15 @@
     many sections (breakfast, lunch, dinner, dessert, other) than
     can be viewed at one time so we allow the user to see all sections
     by scrolling vertically -->
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RecipesFragment" >
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recipesRecyclerView"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/recipeViewPager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" />
-</FrameLayout>
+        android:layout_height="match_parent" />
+</LinearLayout>

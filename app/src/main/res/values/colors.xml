@@ -5,6 +5,8 @@
     <color name="colorAccent">#D81B60</color>
     <color name="white">#FFFFFF</color>
 
+    <color name="backgroundColor">#FCFCF9</color>
+
     <!--Color group 1-->
     <color name="mistyRose">#F5E3E0</color>
     <color name="spanishPink">#E8B4BC</color>

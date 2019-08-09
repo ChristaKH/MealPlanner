@@ -1,8 +1,6 @@
 package chatch.j.mealplanner;
 
 import android.app.Fragment;
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 
@@ -15,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import chatch.j.mealplanner.Adapters.RecipeRecyclerViewAdapter;
 import chatch.j.mealplanner.Models.Recipe;
 
 /**
@@ -25,6 +22,7 @@ import chatch.j.mealplanner.Models.Recipe;
  */
 public class RecipesFragment extends Fragment {
 
+    /*
     private RecyclerView recipesRecyclerView;
     private LinearLayoutManager recipeLayoutManager;
 
@@ -33,20 +31,16 @@ public class RecipesFragment extends Fragment {
     private ArrayList<Recipe> dinnerRecipes;
     private ArrayList<Recipe> dessertRecipes;
     private ArrayList<Recipe> otherRecipes;
-    private ArrayList<ArrayList<Recipe>> allRecipes;
-    private RecipeRecyclerViewAdapter mRecipeRecyclerViewAdapter;
+    private ArrayList<ArrayList<Recipe>> allRecipes;*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recipes, container, false);
 
+        /*
         // Connect recycler view to the xml
         recipesRecyclerView = view.findViewById(R.id.recipesRecyclerView);
-        recipeLayoutManager = new LinearLayoutManager(this.getActivity());
-
-        // Attach Layout Manager
-        recipesRecyclerView.setLayoutManager(recipeLayoutManager);
 
         // Initialize all recipe array lists
         breakfastRecipes = new ArrayList<Recipe>();
@@ -69,6 +63,9 @@ public class RecipesFragment extends Fragment {
             tempRecipe.setCategory(Recipe.Category.DINNER);
             dinnerRecipes.add(tempRecipe);
 
+            tempRecipe.setCategory(Recipe.Category.DESSERT);
+            dessertRecipes.add(tempRecipe);
+
             tempRecipe.setCategory(Recipe.Category.OTHER);
             otherRecipes.add(tempRecipe);
         }
@@ -90,7 +87,7 @@ public class RecipesFragment extends Fragment {
         recipesRecyclerView.setHasFixedSize(true);
         recipesRecyclerView.setLayoutManager(recipeLayoutManager);
         recipesRecyclerView.setAdapter(mRecipeRecyclerViewAdapter);
-
+        */
         // Inflate the layout for this fragment
         return view;
     }
