@@ -15,6 +15,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
+import chatch.j.mealplanner.Adapters.RecipeRecyclerViewAdapter;
 import chatch.j.mealplanner.Models.Recipe;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Recipe> dessertRecipes;
     private ArrayList<Recipe> otherRecipes;
     private ArrayList<ArrayList<Recipe>> allRecipes;
+    private RecipeRecyclerViewAdapter mRecipeRecyclerViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,34 @@ public class MainActivity extends AppCompatActivity {
         dinnerRecipes = new ArrayList<Recipe>();
         dessertRecipes = new ArrayList<Recipe>();
         otherRecipes = new ArrayList<Recipe>();
+        allRecipes = new ArrayList<ArrayList<Recipe>>();
+
+        // Fill recipe array lists with dummy values for now
+        // @TODO fill array lists with appropriate values based on actual recipes
+        Recipe tempRecipe = new Recipe();
+        for(int i = 0; i < 10; i++){
+            tempRecipe.setCategory(Recipe.Category.BREAKFAST);
+            breakfastRecipes.add(tempRecipe);
+
+            tempRecipe.setCategory(Recipe.Category.LUNCH);
+            lunchRecipes.add(tempRecipe);
+
+            tempRecipe.setCategory(Recipe.Category.DINNER);
+            dinnerRecipes.add(tempRecipe);
+
+            tempRecipe.setCategory(Recipe.Category.OTHER);
+            otherRecipes.add(tempRecipe);
+        }
+
+        // Fill allRecipes with the recipes based on category
+        allRecipes.add(breakfastRecipes);
+        allRecipes.add(lunchRecipes);
+        allRecipes.add(dinnerRecipes);
+        allRecipes.add(dessertRecipes);
+        allRecipes.add(otherRecipes);
+
+        // initialize the recycler view adapter for the vertical (outer) recycler view
+        mRecipeRecyclerViewAdapter = new RecipeRecyclerViewAdapter(this, allRecipes);
 
         // Connect the components of the xml to the main activity
         toolbar = findViewById(R.id.toolbar);
