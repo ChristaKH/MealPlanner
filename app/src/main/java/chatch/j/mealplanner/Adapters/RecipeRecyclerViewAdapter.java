@@ -25,7 +25,7 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
 
     private Context mContext;
     private ArrayList<ArrayList<Recipe>> mRecipeSections;
-
+    private RecipeSectionRecyclerViewAdapter horizontalAdapter;
     public RecipeRecyclerViewAdapter(Context context, ArrayList<ArrayList<Recipe>> recipeSections) {
         mContext = context;
         mRecipeSections = recipeSections;
@@ -52,8 +52,11 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
     @NonNull
     @Override
     public RecipeSectionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // the custom layout for the horizontal recycler view is inflated here
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recipe_section_layout, parent, false);
         RecipeSectionViewHolder viewHolder = new RecipeSectionViewHolder(view);
+
+        // Return the viewHolder with the view as a parameter of the ViewHolder
         return viewHolder;
     }
 
@@ -106,6 +109,11 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
         }
 
         holder.bindSections(category, mRecipeSections.get(position));
+
+        // @DONE bind the inner recycler view
+        // Bind the inner recycler view to an adapter
+        horizontalAdapter = new RecipeSectionRecyclerViewAdapter(mContext, mRecipeSections.get(position));
+        holder.recipeImageRecyclerView.setAdapter(horizontalAdapter);
     }
 
     /**
@@ -125,10 +133,8 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
      * with the proper recipe info
      */
     public class RecipeSectionViewHolder extends RecyclerView.ViewHolder{
-
-        private Context mContext;
         private TextView sectionTitleTextView;
-        private RecyclerView recipeImageRecyclerView;
+        protected RecyclerView recipeImageRecyclerView;
 
         public RecipeSectionViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -163,9 +169,6 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
                 case OTHER:
                     sectionTitleTextView.setText(R.string.otherTitle);
             }
-
-            // @TODO fill the inner recycler view
-            // Fill the inner recycler view
         }
     }
 }
