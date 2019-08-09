@@ -160,23 +160,18 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
             // Set the title based on the section category
             switch(category){
                 case BREAKFAST:
-                    System.out.println("Breakfast");
                     sectionTitleTextView.setText(R.string.breakfastTitle);
                     break;
                 case LUNCH:
-                    System.out.println("Lunch");
                     sectionTitleTextView.setText(R.string.lunchTitle);
                     break;
                 case DINNER:
-                    System.out.println("Dinner");
                     sectionTitleTextView.setText(R.string.dinnerTitle);
                     break;
                 case DESSERT:
-                    System.out.println("Dessert");
                     sectionTitleTextView.setText(R.string.dessertTitle);
                     break;
                 case OTHER:
-                    System.out.println("Other");
                     sectionTitleTextView.setText(R.string.otherTitle);
                     break;
             }
