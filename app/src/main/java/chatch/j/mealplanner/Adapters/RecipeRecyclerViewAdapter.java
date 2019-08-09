@@ -8,6 +8,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
     private Context mContext;
     private ArrayList<ArrayList<Recipe>> mRecipeSections;
     private RecipeSectionRecyclerViewAdapter horizontalAdapter;
+
     public RecipeRecyclerViewAdapter(Context context, ArrayList<ArrayList<Recipe>> recipeSections) {
         mContext = context;
         mRecipeSections = recipeSections;
@@ -113,7 +115,10 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
         // @DONE bind the inner recycler view
         // Bind the inner recycler view to an adapter
         horizontalAdapter = new RecipeSectionRecyclerViewAdapter(mContext, mRecipeSections.get(position));
+        holder.recipeImageRecyclerView.setHasFixedSize(true);
         holder.recipeImageRecyclerView.setAdapter(horizontalAdapter);
+        holder.recipeImageRecyclerView.setLayoutManager(new LinearLayoutManager(mContext, RecyclerView.HORIZONTAL, false));
+
     }
 
     /**
@@ -155,19 +160,25 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
             // Set the title based on the section category
             switch(category){
                 case BREAKFAST:
+                    System.out.println("Breakfast");
                     sectionTitleTextView.setText(R.string.breakfastTitle);
                     break;
                 case LUNCH:
+                    System.out.println("Lunch");
                     sectionTitleTextView.setText(R.string.lunchTitle);
                     break;
                 case DINNER:
+                    System.out.println("Dinner");
                     sectionTitleTextView.setText(R.string.dinnerTitle);
                     break;
                 case DESSERT:
+                    System.out.println("Dessert");
                     sectionTitleTextView.setText(R.string.dessertTitle);
                     break;
                 case OTHER:
+                    System.out.println("Other");
                     sectionTitleTextView.setText(R.string.otherTitle);
+                    break;
             }
         }
     }
