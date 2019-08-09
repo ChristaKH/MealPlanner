@@ -13,15 +13,35 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+
+import chatch.j.mealplanner.Models.Recipe;
+
 public class MainActivity extends AppCompatActivity {
 
+    // @TODO Create a Recipes class to hold many recipes
+    // @TODO Create a sorting method in the Recipes class
+    // @TODO Use an array list of Recipes instead of an array list of array lists (here and in adapters)
     private Toolbar toolbar;
     private BottomNavigationView mainBottomNavigationView;
+    private ArrayList<Recipe> breakfastRecipes;
+    private ArrayList<Recipe> lunchRecipes;
+    private ArrayList<Recipe> dinnerRecipes;
+    private ArrayList<Recipe> dessertRecipes;
+    private ArrayList<Recipe> otherRecipes;
+    private ArrayList<ArrayList<Recipe>> allRecipes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Initialize all recipe array lists
+        breakfastRecipes = new ArrayList<Recipe>();
+        lunchRecipes = new ArrayList<Recipe>();
+        dinnerRecipes = new ArrayList<Recipe>();
+        dessertRecipes = new ArrayList<Recipe>();
+        otherRecipes = new ArrayList<Recipe>();
 
         // Connect the components of the xml to the main activity
         toolbar = findViewById(R.id.toolbar);
@@ -34,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
         setupNavigationView();
     }
 
+    /**
+     * This method is used to put together the bottom navigation view
+     */
     private void setupNavigationView(){
 
         // Give the bottom navigation tabs action when clicked
