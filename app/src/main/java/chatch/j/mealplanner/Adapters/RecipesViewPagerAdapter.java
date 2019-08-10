@@ -10,6 +10,8 @@ import chatch.j.mealplanner.MealsFragment;
 
 /**
  * This is the adapter for the ViewPager used in the recipes fragment.
+ * State pager adapter was chosen because of the possibility of having
+ * many, many recipes in the future.
  */
 public class RecipesViewPagerAdapter extends FragmentStatePagerAdapter {
     private int numTabs;
