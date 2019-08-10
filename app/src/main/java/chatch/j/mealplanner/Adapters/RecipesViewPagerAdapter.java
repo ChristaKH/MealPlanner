@@ -6,7 +6,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import chatch.j.mealplanner.DessertsFragment;
+import chatch.j.mealplanner.DrinksFragment;
 import chatch.j.mealplanner.MealsFragment;
+import chatch.j.mealplanner.OthersFragment;
 
 /**
  * This is the adapter for the ViewPager used in the recipes fragment.
@@ -28,12 +31,22 @@ public class RecipesViewPagerAdapter extends FragmentStatePagerAdapter {
      */
     @Override
     public Fragment getItem(int position) {
-        MealsFragment mealsFragment = new MealsFragment();
-        position++;
-        Bundle bundle = new Bundle();
-        bundle.putString("Meals", "Fragment: " + position);
-        mealsFragment.setArguments(bundle);
-        return mealsFragment;
+        switch (position) {
+            case 0:
+                MealsFragment mealsFragment = new MealsFragment();
+                return mealsFragment;
+            case 1:
+                DessertsFragment dessertsFragment = new DessertsFragment();
+                return dessertsFragment;
+            case 2:
+                DrinksFragment drinksFragment = new DrinksFragment();
+                return drinksFragment;
+            case 3:
+                OthersFragment othersFragment = new OthersFragment();
+                return othersFragment;
+            default:
+                return null;
+        }
     }
 
     /**
