@@ -4,6 +4,7 @@ package chatch.j.mealplanner;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
  */
 public class MealsFragment extends Fragment {
 
+    private RecyclerView mealsRecyclerView;
 
     public MealsFragment() {
         // Required empty public constructor
@@ -25,7 +27,11 @@ public class MealsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_meals, container, false);
+        View view = inflater.inflate(R.layout.fragment_meals, container, false);
+
+        mealsRecyclerView = view.findViewById(R.id.mealsRecyclerView);
+
+        return view;
     }
 
 }
