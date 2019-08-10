@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 import chatch.j.mealplanner.Adapters.RecipesViewPagerAdapter;
@@ -29,6 +30,7 @@ public class RecipesFragment extends Fragment {
 
     private TabLayout recipeTabLayout;  // Tab layout for the 4 categories of recipes
     private ViewPager recipesViewPager; // Used for smooth transition of fragments holding recipes by category
+
     private RecipesViewPagerAdapter mRecipesViewPagerAdapter;
 
     @Override
@@ -40,7 +42,9 @@ public class RecipesFragment extends Fragment {
         recipesViewPager = view.findViewById(R.id.recipesViewPager);
         recipeTabLayout = view.findViewById(R.id.recipeTabLayout);
 
-        mRecipesViewPagerAdapter = new RecipesViewPagerAdapter(getActivity().getSupportFragmentManager());
+        mRecipesViewPagerAdapter = new RecipesViewPagerAdapter(getChildFragmentManager());
+        recipesViewPager.setAdapter(mRecipesViewPagerAdapter);
+        recipeTabLayout.setupWithViewPager(recipesViewPager);
 
         return view;
     }
