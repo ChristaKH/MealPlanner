@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This is a layout that represents a single recipe item that will
+     be shown in the recipe fragment -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/recipeCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/sidePaddingCardView"
+        app:cardElevation="@dimen/sidePaddingCardView"
+        app:cardUseCompatPadding="true">
+
+        <ImageView
+            android:id="@+id/cardImageView"
+            android:layout_width="@dimen/recipeImageSize"
+            android:layout_height="@dimen/recipeImageSize"
+            app:srcCompat="@color/desire" />
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
