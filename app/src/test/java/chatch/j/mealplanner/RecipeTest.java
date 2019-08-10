@@ -4,8 +4,8 @@ package chatch.j.mealplanner;
  * This is the test class for the Recipe class in the Models folder
  */
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
@@ -39,7 +39,7 @@ public class RecipeTest {
      * initialize and fill the ingredient array lists
      * initialize and fill the directions array lists
      */
-    @Before
+    @BeforeEach
     public void createRecipe(){
         // Initialize the variables that need to be cleared before every run
         testRecipe = new Recipe();
@@ -63,7 +63,7 @@ public class RecipeTest {
     /**
      * Method for testing the getTitle() method of class Recipe
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetTitle(){
         for(int i = 0; i < expectedTitles.length; i++){
             testRecipe.setTitle(expectedTitles[i]);
@@ -74,7 +74,7 @@ public class RecipeTest {
     /**
      * Method for testing the setTitle() method of class Recipe
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetTitle(){
         for(int i = 0; i < testTitles.length; i++){
             testRecipe.setTitle(testTitles[i]);
@@ -121,7 +121,7 @@ public class RecipeTest {
     /**
      * Method for testing the setDirections() method
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetDirections(){
         testRecipe.setDirections(tDirections);
         ArrayList<String> tempDirections = testRecipe.getDirections();

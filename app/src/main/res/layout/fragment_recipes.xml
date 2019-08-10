@@ -5,14 +5,50 @@
     can be viewed at one time so we allow the user to see all sections
     by scrolling vertically -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RecipesFragment" >
 
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/recipeTabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/backgroundColor"
+        android:elevation="@dimen/titlePadding"
+        android:theme="@style/toolbarTheme"
+        app:tabIndicatorColor="@color/desire">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/mealsTabItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mealsTitle" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/dessertsTabItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dessertsTitle" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/drinksTabItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/drinksTitle" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/othersTabItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/othersTitle" />
+    </com.google.android.material.tabs.TabLayout>
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/recipesViewPager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="@color/backgroundColor" />
 </LinearLayout>

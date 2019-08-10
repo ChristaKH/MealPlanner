@@ -12,7 +12,9 @@ import android.view.ViewGroup;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * A subclass of the Fragment class that will be used to display
+ * a list of recipes whose category is "Meal". This fragment uses
+ * a RecyclerView to allow a long list of recipes to be scrolled through.
  */
 public class MealsFragment extends Fragment {
 

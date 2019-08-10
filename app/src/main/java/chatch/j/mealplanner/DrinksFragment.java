@@ -11,7 +11,8 @@ import android.view.ViewGroup;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * A subclass of the Fragment class that will be used to display
+ * a list of recipes with the category of "Drink"
  */
 public class DrinksFragment extends Fragment {
 
