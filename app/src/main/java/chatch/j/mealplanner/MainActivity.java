@@ -4,9 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
+
+import androidx.fragment.app.FragmentManager;
+
+import androidx.fragment.app.FragmentTransaction;
+
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -95,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = this.getSupportFragmentManager();
         if(fragmentManager != null){
             FragmentTransaction ft = fragmentManager.beginTransaction();
             if(ft != null){
