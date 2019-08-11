@@ -15,4 +15,8 @@
     <string name="dessertsTitle">DESSERTS</string>
     <string name="drinksTitle">DRINKS</string>
     <string name="othersTitle">OTHERS</string>
+    <string name="recipeNameTitle">Recipe Name Here</string>
+    <string name="creatorTitle">Creator Name Here</string>
+    <string name="cookTimeTitle">Cook Time Here</string>
+    <string name="difficultyTitle">Difficulty Here</string>
 </resources>
