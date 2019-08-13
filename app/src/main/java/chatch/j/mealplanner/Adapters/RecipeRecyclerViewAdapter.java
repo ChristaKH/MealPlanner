@@ -69,7 +69,7 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
      */
     @Override
     public void onBindViewHolder(@NonNull RecipeViewHolder holder, int position) {
-        //holder.bindRecipe(      );
+        holder.bindRecipe(mRecipes.get(position));
     }
 
     /**
