@@ -1,5 +1,7 @@
 package chatch.j.mealplanner.Adapters;
 
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -9,8 +11,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import chatch.j.mealplanner.Models.Recipe;
 import chatch.j.mealplanner.R;
 
 /**
@@ -19,29 +23,34 @@ import chatch.j.mealplanner.R;
  * form depending on the selected category.
  */
 public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecyclerViewAdapter.RecipeViewHolder> {
+    private ArrayList<Recipe> mRecipes = new ArrayList<Recipe>();
+    private Context mContext;
 
     /**
      * Called when RecyclerView needs a new {@link RecyclerView.ViewHolder} of the given type to represent
      * an item.
      * <p>
      * This new ViewHolder should be constructed with a new View that can represent the items
-     * of the given type. You can either create a new View manually or inflate it from an XML
-     * layout file.
+     * of the given type.
      * <p>
-     * The new ViewHolder will be used to display items of the adapter using
+     * The RecipeViewHolder will be used to display recipes of the adapter using
      * onBindViewHolder(ViewHolder, int, List). Since it will be re-used to display
-     * different items in the data set, it is a good idea to cache references to sub views of
+     * different recipes in the data set, it is a good idea to cache references to sub views of
      * the View to avoid unnecessary {@link View#findViewById(int)} calls.
      *
      * @param parent   The ViewGroup into which the new View will be added after it is bound to
      *                 an adapter position.
      * @param viewType The view type of the new View.
-     * @return A new ViewHolder that holds a View of the given view type.
+     * @return A new RecipeViewHolder that holds a View of the given view type.
      */
     @NonNull
     @Override
     public RecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        // Inflate the single recipe in CardView form
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_recipe_layout, parent, false);
+        RecipeViewHolder viewHolder = new RecipeViewHolder(view);
+
+        return viewHolder;
     }
 
     /**
