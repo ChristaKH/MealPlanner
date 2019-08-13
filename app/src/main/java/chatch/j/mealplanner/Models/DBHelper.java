@@ -189,16 +189,21 @@ public class DBHelper extends SQLiteOpenHelper {
         database.close();
         return recipesList;
     }
-/**
-    public void deleteGame(Game game){
+
+    /**
+     * Method that deletes a single recipe from the database
+     * @param recipe
+     */
+    public void deleteRecipe(Recipe recipe){
         SQLiteDatabase db = getWritableDatabase();
 
         // DELETE THE TABLE ROW
         db.delete(DATABASE_TABLE, KEY_FIELD_ID + " = ?",
-                new String[] {String.valueOf(game.getId())});
+                new String[] {String.valueOf(recipe.getId())});
         db.close();
     }
 
+    /**
     public void deleteAllGames()
     {
         SQLiteDatabase db = getWritableDatabase();
