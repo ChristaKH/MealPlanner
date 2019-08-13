@@ -54,28 +54,22 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
     }
 
     /**
-     * Called by RecyclerView to display the data at the specified position. This method should
-     * update the contents of the {@link RecyclerView.ViewHolder#itemView} to reflect the item at the given
+     * Called by RecyclerView to display the data at the specified position. This method
+     * updates the contents of the RecipeViewHolder to reflect the recipe at the given
      * position.
      * <p>
      * Note that unlike {@link ListView}, RecyclerView will not call this method
-     * again if the position of the item changes in the data set unless the item itself is
-     * invalidated or the new position cannot be determined. For this reason, you should only
-     * use the <code>position</code> parameter while acquiring the related data item inside
-     * this method and should not keep a copy of it. If you need the position of an item later
-     * on (e.g. in a click listener), use {@link RecyclerView.ViewHolder#getAdapterPosition()} which will
-     * have the updated adapter position.
+     * again if the position of the recipe changes in the data set unless the recipe itself is
+     * invalidated or the new position cannot be determined.
      * <p>
-     * Override {@link #onBindViewHolder(RecyclerView.ViewHolder, int, List)} instead if Adapter can
-     * handle efficient partial bind.
      *
      * @param holder   The ViewHolder which should be updated to represent the contents of the
      *                 item at the given position in the data set.
-     * @param position The position of the item within the adapter's data set.
+     * @param position The position of the recipe within the adapter's data set.
      */
     @Override
     public void onBindViewHolder(@NonNull RecipeViewHolder holder, int position) {
-
+        holder.bindRecipe(position);
     }
 
     /**
@@ -107,6 +101,10 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
             cardCreatorTextView = itemView.findViewById(R.id.cardCreatorTextView);
             cardCookTimeTextView = itemView.findViewById(R.id.cardCookTimeTextView);
             cardDifficultyTextView = itemView.findViewById(R.id.cardDifficultyTextView);
+        }
+
+        public void bindRecipe(int position){
+
         }
     }
 }
