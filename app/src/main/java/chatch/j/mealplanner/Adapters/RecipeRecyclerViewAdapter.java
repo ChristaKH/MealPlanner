@@ -73,13 +73,13 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
     }
 
     /**
-     * Returns the total number of items in the data set held by the adapter.
+     * Returns the total number of recipes in the data set held by the adapter.
      *
-     * @return The total number of items in this adapter.
+     * @return The total number of recipes in this adapter.
      */
     @Override
     public int getItemCount() {
-        return 0;
+        return mRecipes.size();
     }
 
     public class RecipeViewHolder extends RecyclerView.ViewHolder{
