@@ -13,6 +13,7 @@ import java.util.Scanner;
  *  - Cooking Directions
  *
  *  Optional:
+ *  - id
  *  - Recipe Creator
  *  - Cook Time
  *  - Difficulty
@@ -31,6 +32,7 @@ public class Recipe {
     private int mCookTime;
     private String mImageName;
     private Category mCategory;
+    private long id; // exists for database reasons
 
     // enum to represent recipe difficulty
     public enum Difficulty {NONE, EASY, MEDIUM, HARD}
@@ -303,6 +305,24 @@ public class Recipe {
      */
     public void setCategory(Category newCategory){
         mCategory = newCategory;
+    }
+
+    /**
+     * Method that sets the database if number for this recipe
+     * @param newID    database id number for recipe
+     */
+    public void setId(long newID){
+        if(newID >= 0){
+            id = newID;
+        }
+    }
+
+    /**
+     * Method that returns the id of the recipe in the database
+     * @return  id number of the recipe
+     */
+    public long getId(){
+        return id;
     }
 
     /**
