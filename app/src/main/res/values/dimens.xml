@@ -2,6 +2,6 @@
 <resources>
     <dimen name="titlePadding">8dp</dimen>
     <dimen name="recipeImageSize">112dp</dimen>
-    <dimen name="sidePaddingCardView">12dp</dimen>
+    <dimen name="sidePaddingCardView">8dp</dimen>
     <dimen name="verticalCardViewPadding">4dp</dimen>
 </resources>

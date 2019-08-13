@@ -19,7 +19,9 @@
         android:background="@color/backgroundColor"
         android:elevation="@dimen/titlePadding"
         android:theme="@style/toolbarTheme"
-        app:tabIndicatorColor="@color/desire">
+        app:tabGravity="fill"
+        app:tabIndicatorColor="@color/desire"
+        app:tabMode="fixed">
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/mealsTabItem"
