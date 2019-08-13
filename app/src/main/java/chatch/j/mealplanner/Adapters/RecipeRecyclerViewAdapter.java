@@ -69,7 +69,7 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
      */
     @Override
     public void onBindViewHolder(@NonNull RecipeViewHolder holder, int position) {
-        holder.bindRecipe(position);
+        //holder.bindRecipe(      );
     }
 
     /**
@@ -82,6 +82,11 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
         return mRecipes.size();
     }
 
+    /**
+     * This is the custom ViewHolder for the RecipeRecyclerViewAdapter class which
+     * is used to populate the RecyclerViews in the Recipe Fragment with recipes based
+     * on recipe category
+     */
     public class RecipeViewHolder extends RecyclerView.ViewHolder{
 
         /**
@@ -96,6 +101,7 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
         public RecipeViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            mContext = itemView.getContext();
             cardRecipeImageView = itemView.findViewById(R.id.cardRecipeImageView);
             cardRecipeTitleTextView = itemView.findViewById(R.id.cardRecipeTitleTextView);
             cardCreatorTextView = itemView.findViewById(R.id.cardCreatorTextView);
@@ -103,8 +109,37 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
             cardDifficultyTextView = itemView.findViewById(R.id.cardDifficultyTextView);
         }
 
-        public void bindRecipe(int position){
+        /**
+         * This method makes it easier for the the recycler view to be populated based
+         * on the contents of the View Holder. This method should be called inside the
+         * onBindViewHolder(RecipeViewHolder, int) method
+         * @param recipe
+         */
+        public void bindRecipe(Recipe recipe){
+            // @TODO properly add in images
+            // cardRecipeImageView.setImageDrawable();
+            cardRecipeTitleTextView.setText(recipe.getTitle());
+            cardCreatorTextView.setText(recipe.getCreator());
+            cardCookTimeTextView.setText(recipe.getCookTime());
 
+            // Change the text view based on the enum representing difficulty
+            switch(recipe.getDifficulty()){
+                case NONE:
+                    cardDifficultyTextView.setText("--");
+                    break;
+                case EASY:
+                    cardDifficultyTextView.setText("EASY");
+                    break;
+                case MEDIUM:
+                    cardDifficultyTextView.setText("MEDIUM");
+                    break;
+                case HARD:
+                    cardDifficultyTextView.setText("HARD");
+                    break;
+                default:
+                    cardDifficultyTextView.setText("--");
+                    break;
+            }
         }
     }
 }
