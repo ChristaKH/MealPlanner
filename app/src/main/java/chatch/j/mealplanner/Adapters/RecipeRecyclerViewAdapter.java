@@ -23,8 +23,13 @@ import chatch.j.mealplanner.R;
  * form depending on the selected category.
  */
 public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecyclerViewAdapter.RecipeViewHolder> {
-    private ArrayList<Recipe> mRecipes = new ArrayList<Recipe>();
+    private ArrayList<Recipe> mRecipes;
     private Context mContext;
+
+
+    public RecipeRecyclerViewAdapter(ArrayList<Recipe> recipes) {
+        mRecipes = recipes;
+    }
 
     /**
      * Called when RecyclerView needs a new {@link RecyclerView.ViewHolder} of the given type to represent
@@ -120,7 +125,7 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
             // cardRecipeImageView.setImageDrawable();
             cardRecipeTitleTextView.setText(recipe.getTitle());
             cardCreatorTextView.setText(recipe.getCreator());
-            cardCookTimeTextView.setText(recipe.getCookTime());
+            cardCookTimeTextView.setText(String.valueOf(recipe.getCookTime()));
 
             // Change the text view based on the enum representing difficulty
             switch(recipe.getDifficulty()){
