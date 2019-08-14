@@ -203,14 +203,14 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    /**
-    public void deleteAllGames()
+
+    public void deleteAllRecipes()
     {
         SQLiteDatabase db = getWritableDatabase();
         db.delete(DATABASE_TABLE, null, null);
         db.close();
     }
-
+/**
     public void updateGame(Game game){
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
