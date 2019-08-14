@@ -204,27 +204,72 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
+    /**
+     * This method will erase all Recipes by deleting the all of
+     * the data stored in the database. This should not be used unless
+     * absolutely necessary or in cases of testing.
+     */
     public void deleteAllRecipes()
     {
         SQLiteDatabase db = getWritableDatabase();
         db.delete(DATABASE_TABLE, null, null);
         db.close();
     }
-/**
-    public void updateGame(Game game){
+
+    /**
+     * This method updates the information for a specific Recipe
+     * in the database
+     * @param recipe    New Recipe whose data will take the place of
+     *                  the old recipe
+     */
+    public void updateRecipe(Recipe recipe){
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(FIELD_RECIPE_TITLE, game.getName());
-        values.put(FIELD_DESCRIPTION, game.getDescription());
-        values.put(FIELD_RATING, game.getRating());
-        values.put(FIELD_IMAGE_NAME, game.getImageName());
+        values.put(FIELD_RECIPE_TITLE, recipe.getTitle());
+        // TODO: put in info for the ingredients arraylist
+        // TODO: put in info for the directions arraylist
+        values.put(FIELD_CREATOR, recipe.getCreator());
+        values.put(FIELD_COOK_TIME, recipe.getCookTime());
+
+        switch(recipe.getDifficulty()){
+            case EASY:
+                values.put(FIELD_DIFFICULTY, "EASY");
+                break;
+            case MEDIUM:
+                values.put(FIELD_DIFFICULTY, "MEDIUM");
+                break;
+            case HARD:
+                values.put(FIELD_DIFFICULTY, "HARD");
+                break;
+            default:
+                values.put(FIELD_DIFFICULTY, "NONE");
+                break;
+        }
+
+        switch(recipe.getCategory()){
+            case MEAL:
+                values.put(FIELD_CATEGORY, "MEAL");
+                break;
+            case DESSERT:
+                values.put(FIELD_CATEGORY, "DESSERT");
+                break;
+            case DRINK:
+                values.put(FIELD_CATEGORY, "DRINK");
+                break;
+            default:
+                values.put(FIELD_CATEGORY, "NONE");
+                break;
+        }
+
+        values.put(FIELD_IMAGE_NAME, recipe.getImageName());
 
         db.update(DATABASE_TABLE, values, KEY_FIELD_ID + " = ?",
-                new String[]{String.valueOf(game.getId())});
+                new String[]{String.valueOf(recipe.getId())});
         db.close();
     }
 
+    /**
     public Game getGame(int id) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.query(
