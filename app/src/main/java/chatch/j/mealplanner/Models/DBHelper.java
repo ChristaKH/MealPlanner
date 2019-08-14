@@ -269,31 +269,63 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+
     /**
-    public Game getGame(int id) {
+     * This method retrieves a single recipe based on an id
+     * @param id    Id of the Recipe that is being searched for
+     * @return  Sought after Recipe
+     */
+    public Recipe getRecipe(int id) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.query(
                 DATABASE_TABLE,
-                new String[]{KEY_FIELD_ID, FIELD_RECIPE_TITLE, FIELD_DESCRIPTION, FIELD_RATING, FIELD_IMAGE_NAME},
+                new String[]{KEY_FIELD_ID, FIELD_RECIPE_TITLE, FIELD_CREATOR, FIELD_COOK_TIME, FIELD_DIFFICULTY, FIELD_IMAGE_NAME, FIELD_CATEGORY},
                 KEY_FIELD_ID + "=?",
                 new String[]{String.valueOf(id)},
                 null, null, null, null );
 
-        Game game = null;
+        Recipe recipe = null;
         if (cursor != null) {
             cursor.moveToFirst();
 
-            game = new Game(
-                    cursor.getLong(0),
-                    cursor.getString(1),
-                    cursor.getString(2),
-                    cursor.getFloat(3),
-                    cursor.getString(4));
+            recipe = new Recipe();
+
+            recipe.setId(cursor.getLong(0));
+            recipe.setTitle(cursor.getString(1));
+            // TODO: Set the value of ingredients
+            // TODO: Set the value of the directions
+            // TODO: Shift cursor numbers
+            recipe.setCreator(cursor.getString(2));
+            recipe.setCookTime(cursor.getInt(3));
+
+            String difficulty = cursor.getString(4);
+            if(difficulty.equalsIgnoreCase("EASY")){
+                recipe.setDifficulty(Recipe.Difficulty.EASY);
+            } else if(difficulty.equalsIgnoreCase("MEDIUM")){
+                recipe.setDifficulty(Recipe.Difficulty.MEDIUM);
+            } else if(difficulty.equalsIgnoreCase("HARD")){
+                recipe.setDifficulty(Recipe.Difficulty.HARD);
+            } else{
+                recipe.setDifficulty(Recipe.Difficulty.NONE);
+            }
+
+            recipe.setImageName(cursor.getString(5));
+
+            String category = cursor.getString(6);
+            if(category.equalsIgnoreCase("MEAL")){
+                recipe.setCategory(Recipe.Category.MEAL);
+            } else if(category.equalsIgnoreCase("DESSERT")){
+                recipe.setCategory(Recipe.Category.DESSERT);
+            } else if(category.equalsIgnoreCase("DRINK")){
+                recipe.setCategory(Recipe.Category.DRINK);
+            } else{
+                recipe.setCategory(Recipe.Category.OTHER);
+            }
 
             cursor.close();
         }
         db.close();
-        return game;
-    }**/
+        return recipe;
+    }
 
 }
