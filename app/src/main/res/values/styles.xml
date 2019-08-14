@@ -10,7 +10,7 @@
 
     <style name="toolbarTheme" parent="Theme.AppCompat.Light">
         <item name="android:fontFamily">@font/fira_sans</item>
-        <item name="android:background">@color/white</item>
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
 
     <style name="bottomNavTheme" parent="Theme.AppCompat.Light">
