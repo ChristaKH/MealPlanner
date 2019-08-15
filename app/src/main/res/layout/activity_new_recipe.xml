@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- This activity will have 4 fragments in order to:
+    1. Retrieve bulk of recipe information
+    2. Retrieve recipe ingredients
+    3. Retrieve recipe directions
+    4. Tell user that recipe has been successfully added
+   .........................................................
+   New recipe must retrieve from the user:
+            - Recipe Title: TextView
+            - Recipe Creator (optional): TextView
+            - Cook Time (optional): SeekBar
+            - Recipe Difficulty (optional): Drop down menu,radio buttons, or SeekBar
+            - Recipe Image (optional): Button leading to activity for picking photo from Gallery
+            - Category of Recipe (optional): Drop down menu,radio buttons, or SeekBar
+            - List of ingredients
+            - List of directions -->
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".NewRecipeActivity">
 
     <include
@@ -11,4 +27,10 @@
         layout="@layout/toolbar"
         android:elevation="@dimen/titlePadding" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/newRecipeRootLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"></LinearLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
