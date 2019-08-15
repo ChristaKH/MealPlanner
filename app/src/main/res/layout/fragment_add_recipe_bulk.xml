@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This is the xml for the fragment in the New Recipe Activity which
+    allows the user to input most of the initial information for a new
+    recipe. The information taken using this fragment includes:
+    - Recipe Title: Required (TextView)
+    - Creator: Optional (TextView)
+    - Cook Time: Optional (SeekBar)
+    - Difficulty: Optional (drop down menu, radio buttons, or seek bar)
+    - Image: Optional (normal button that opens up the gallery to take a picture)
+    - Category: Optional (drop down menu, radio buttons, or seek bar) -->
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddRecipeBulkFragment"/>
