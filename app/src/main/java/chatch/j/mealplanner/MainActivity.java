@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager;
 
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,9 +36,37 @@ public class MainActivity extends AppCompatActivity {
 
         // Attach the toolbar
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.app_name);
 
         // Set a default item to be selected and perform actions when items are clicked
         setupNavigationView();
+    }
+
+    /**
+     * This method will allow us to add the menu items
+     * to the toolbar, specifically the "add new recipe" button
+     * @param menu  Menu of buttons that was made for the toolbar
+     */
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.new_recipe_menu, menu);
+
+        return true;
+    }
+
+    /**
+     * This method performs an action when the toolbar menu
+     * item is selected. Specifically, this reacts when the
+     * add button is clicked and will bring up the activity for
+     * entering a new Recipe.
+     * @param menuItem selected menu item
+     */
+    public boolean onOptionsItemSelected(MenuItem menuItem){
+        // When the add button on the toolbar is selected
+        // Change to the NewRecipeActivity in order to input
+        // a new Recipe
+        Intent newIntent = new Intent(this, NewRecipeActivity.class);
+        startActivity(newIntent);
+        return super.onOptionsItemSelected(menuItem);
     }
 
     /**
