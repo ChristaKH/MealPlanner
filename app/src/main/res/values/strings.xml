@@ -20,5 +20,6 @@
     <string name="cookTimeTitle">Cook Time Here</string>
     <string name="difficultyTitle">Difficulty Here</string>
     <string name="addTitle">Add</string>
+    <string name="newTitle">New</string>
     <string name="newRecipeActivityTitle">Add a new recipe</string>
 </resources>

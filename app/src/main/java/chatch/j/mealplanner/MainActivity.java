@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
      * @param menu  Menu of buttons that was made for the toolbar
      */
     public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.new_recipe_menu, menu);
+        getMenuInflater().inflate(R.menu.add_recipe_menu, menu);
 
         return true;
     }

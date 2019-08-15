@@ -17,6 +17,7 @@ public class NewRecipeActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.newRecipeActivityTitle);
-
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);// set drawable icon to the back arrow
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }
