@@ -61,11 +61,16 @@ public class MainActivity extends AppCompatActivity {
      * @param menuItem selected menu item
      */
     public boolean onOptionsItemSelected(MenuItem menuItem){
-        // When the add button on the toolbar is selected
-        // Change to the NewRecipeActivity in order to input
-        // a new Recipe
-        Intent newIntent = new Intent(this, NewRecipeActivity.class);
-        startActivity(newIntent);
+        switch(menuItem.getItemId()){
+            case R.id.addMenuItem:
+                // When the add button on the toolbar is selected
+                // Change to the NewRecipeActivity in order to input
+                // a new Recipe
+                Intent newIntent = new Intent(this, NewRecipeActivity.class);
+                startActivity(newIntent);
+                break;
+        }
+
         return super.onOptionsItemSelected(menuItem);
     }
 
