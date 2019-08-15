@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
      * to the toolbar, specifically the "add new recipe" button
      * @param menu  Menu of buttons that was made for the toolbar
      */
+    @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.add_recipe_menu, menu);
 
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
      * entering a new Recipe.
      * @param menuItem selected menu item
      */
+    @Override
     public boolean onOptionsItemSelected(MenuItem menuItem){
         switch(menuItem.getItemId()){
             case R.id.addMenuItem:
