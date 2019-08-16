@@ -2,6 +2,8 @@ package chatch.j.mealplanner;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -40,5 +42,14 @@ public class NewRecipeActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        FragmentManager fragmentManager = this.getSupportFragmentManager();
+        if(fragmentManager != null){
+            FragmentTransaction ft = fragmentManager.beginTransaction();
+            if(ft != null){
+                ft.replace(R.id.newRecipeRootLayout, new AddRecipeBulkFragment());
+                ft.commit();
+            }
+        }
     }
 }

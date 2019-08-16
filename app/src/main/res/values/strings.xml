@@ -22,4 +22,6 @@
     <string name="addTitle">Add</string>
     <string name="newTitle">New</string>
     <string name="newRecipeActivityTitle">Add a new recipe</string>
+    <string name="newRecipeName">Recipe Name</string>
+    <string name="creator">Creator</string>
 </resources>
