@@ -34,5 +34,8 @@
     <color name="sizzlingRed">#F63859</color>
     <color name="eggshell">#EEEBD0</color>
     <color name="paleChestnut">#EBB3A9</color>
+
+
     <color name="black">#000000</color>
+    <color name="darkGray">#A9A9A9	</color>
 </resources>

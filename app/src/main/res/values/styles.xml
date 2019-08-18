@@ -18,4 +18,9 @@
         <item name="android:background">@color/white</item>
         <item name="colorPrimary">@color/middlePurple</item>
     </style>
+    
+    <style name="seekbar_style" parent="Widget.AppCompat.SeekBar.Discrete">
+        <item name="android:colorControlActivated">@drawable/seekbar_gradient</item>
+        <item name="android:colorControlNormal">@color/darkGray</item>
+    </style>
 </resources>
