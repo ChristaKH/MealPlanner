@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item>
-        <shape>
-            <gradient
-                android:endColor="@color/pinkOrange"
-                android:startColor="@color/sizzlingRed"
-                android:useLevel="true" />
-        </shape>
-    </item>
 
-</layer-list> -->
+<!-- This drawable is used for the seekbar for cook time in the add recipe
+    bulk fragment. The enabled portion of the seekbar should be a gradient
+    that goes from the color Sizzling Red to the color Pink Orange; the rest
+    of the line should be a Dark Gray. The shape of the "line" for the seekbar
+    should also be a thin rectangle with the activated portion being thicker
+    than the non-activated portion -->
 
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- This portion of the code is for the non-activated portion of the seekbar -->
     <item android:id="@android:id/background"
         android:gravity="center_vertical|fill_horizontal">
         <shape android:shape="rectangle"
@@ -22,6 +18,8 @@
             <solid android:color="@color/darkGray" />
         </shape>
     </item>
+
+    <!-- This is the code for the activated, gradient portion of the seekbar -->
     <item android:id="@android:id/progress"
         android:gravity="center_vertical|fill_horizontal">
         <scale android:scaleWidth="100%">
