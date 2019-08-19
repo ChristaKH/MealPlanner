@@ -3,8 +3,8 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/pinkOrange</item>
+        <item name="colorPrimaryDark">@color/sizzlingRed</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
@@ -17,10 +17,5 @@
         <item name="android:fontFamily">@font/fira_sans</item>
         <item name="android:background">@color/white</item>
         <item name="colorPrimary">@color/middlePurple</item>
-    </style>
-    
-    <style name="seekbar_style" parent="Widget.AppCompat.SeekBar.Discrete">
-        <item name="android:colorControlActivated">@drawable/seekbar_gradient</item>
-        <item name="android:colorControlNormal">@color/darkGray</item>
     </style>
 </resources>

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
     <item>
         <shape>
@@ -9,4 +10,36 @@
         </shape>
     </item>
 
+</layer-list> -->
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background"
+        android:gravity="center_vertical|fill_horizontal">
+        <shape android:shape="rectangle"
+            android:tint="@color/darkGray">
+            <corners android:radius="8dp"/>
+            <size android:height="8dp" />
+            <solid android:color="@color/darkGray" />
+        </shape>
+    </item>
+    <item android:id="@android:id/progress"
+        android:gravity="center_vertical|fill_horizontal">
+        <scale android:scaleWidth="100%">
+            <selector>
+                <item android:state_enabled="false"
+                    android:drawable="@android:color/transparent" />
+                <item>
+                    <shape android:shape="rectangle">
+                        <corners android:radius="8dp"/>
+                        <size android:height="30dp" />
+                        <gradient
+                            android:type="linear"
+                            android:startColor="@color/pinkOrange"
+                            android:endColor="@color/sizzlingRed"
+                            android:angle="180"/>
+                    </shape>
+                </item>
+            </selector>
+        </scale>
+    </item>
 </layer-list>

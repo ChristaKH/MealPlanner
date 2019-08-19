@@ -1,6 +1,12 @@
 package chatch.j.mealplanner;
 
 
+import android.graphics.LinearGradient;
+import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RectShape;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SeekBar;
 
 
 /**
@@ -15,6 +22,7 @@ import android.view.ViewGroup;
  */
 public class AddRecipeBulkFragment extends Fragment {
 
+    private SeekBar cookTimeSeekbar;
 
     public AddRecipeBulkFragment() {
         // Required empty public constructor
@@ -24,8 +32,8 @@ public class AddRecipeBulkFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_recipe_bulk, container, false);
+        View view = inflater.inflate(R.layout.fragment_add_recipe_bulk, container, false);
+        return view;
     }
 
 }
