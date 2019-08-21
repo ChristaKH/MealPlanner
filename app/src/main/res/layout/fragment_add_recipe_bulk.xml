@@ -105,8 +105,10 @@
             website: https://github.com/warkiz/IndicatorSeekBar -->
     <LinearLayout
         android:id="@+id/cookTimeLinearLayout"
-        android:layout_width="395dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -127,8 +129,7 @@
             android:id="@+id/cookTimeSeekBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:paddingTop="36dp"
             app:isb_indicator_color="@color/sizzlingRed"
             app:isb_indicator_text_color="@color/white"
             app:isb_indicator_text_size="18sp"
@@ -162,7 +163,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.339">
+        app:layout_constraintVertical_bias="0.4">
 
         <TextView
             android:id="@+id/textView"
@@ -170,14 +171,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/fira_sans"
+            android:paddingBottom="@dimen/titlePadding"
             android:text="@string/difficulty"
             android:textSize="18dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:style="?android:attr/buttonBarStyle">
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/easyDifficultyButton"

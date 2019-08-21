@@ -61,7 +61,59 @@ public class AddRecipeBulkFragment extends Fragment {
         mediumDifficultyButton = view.findViewById(R.id.mediumDifficultyButton);
         hardDifficultyButton = view.findViewById(R.id.hardDifficultyButton);
 
+        // Set onClickListeners for the three difficulty buttons
+        // Only one button at a time can have red background and white text
+        easyDifficultyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // When Easy button is clicked
+                // Easy button should have red background and white words
+                easyDifficultyButton.setBackgroundTintList(view.getResources().getColorStateList(R.color.sizzlingRed));
+                easyDifficultyButton.setTextColor(getResources().getColor(R.color.white));
+
+                // Medium and Hard button should have white backgrounds and black words
+                mediumDifficultyButton.setBackgroundTintList(view.getResources().getColorStateList(R.color.white));
+                mediumDifficultyButton.setTextColor(getResources().getColor(R.color.black));
+
+                hardDifficultyButton.setBackgroundTintList(view.getResources().getColorStateList(R.color.white));
+                hardDifficultyButton.setTextColor(getResources().getColor(R.color.black));
+            }
+        });
+
+        mediumDifficultyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // When Medium button is clicked
+                // Medium button should have red background and white words
+                mediumDifficultyButton.setBackgroundTintList(view.getResources().getColorStateList(R.color.sizzlingRed));
+                mediumDifficultyButton.setTextColor(getResources().getColor(R.color.white));
+
+                // Easy and Hard button should have white backgrounds and black words
+                easyDifficultyButton.setBackgroundTintList(view.getResources().getColorStateList(R.color.white));
+                easyDifficultyButton.setTextColor(getResources().getColor(R.color.black));
+
+                hardDifficultyButton.setBackgroundTintList(view.getResources().getColorStateList(R.color.white));
+                hardDifficultyButton.setTextColor(getResources().getColor(R.color.black));
+            }
+        });
+
+        hardDifficultyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // When Hard button is clicked
+                // Hard button should have red background and white words
+                hardDifficultyButton.setBackgroundTintList(view.getResources().getColorStateList(R.color.sizzlingRed));
+                hardDifficultyButton.setTextColor(getResources().getColor(R.color.white));
+
+                // Easy and Medium button should have white backgrounds and black words
+                easyDifficultyButton.setBackgroundTintList(view.getResources().getColorStateList(R.color.white));
+                easyDifficultyButton.setTextColor(getResources().getColor(R.color.black));
+
+                mediumDifficultyButton.setBackgroundTintList(view.getResources().getColorStateList(R.color.white));
+                mediumDifficultyButton.setTextColor(getResources().getColor(R.color.black));
+            }
+        });
+
         return view;
     }
-
 }
