@@ -44,6 +44,7 @@
                 android:id="@+id/newRecipeTitleTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:fontFamily="@font/fira_sans"
                 android:text="@string/newRecipeName"
                 android:textSize="18sp" />
@@ -52,7 +53,9 @@
                 android:id="@+id/newRecipeTitleEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
                 android:background="@drawable/textview_rounded_corners"
                 android:elevation="@dimen/verticalCardViewPadding"
                 android:ems="5"
@@ -75,6 +78,7 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:fontFamily="@font/fira_sans"
                 android:text="@string/creator"
                 android:textSize="18sp" />
@@ -83,7 +87,8 @@
                 android:id="@+id/newRecipeCreatorEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/textview_rounded_corners"
                 android:elevation="@dimen/verticalCardViewPadding"
@@ -95,68 +100,116 @@
         </LinearLayout>
     </LinearLayout>
     <!-- TextView and special SeekBar used for setting the Recipe cook time -->
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/fira_sans"
-        android:text="@string/cookTime"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.048"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.193" />
 
     <!-- Special seekbar created by warkiz
             website: https://github.com/warkiz/IndicatorSeekBar -->
-    <com.warkiz.widget.IndicatorSeekBar
-        android:id="@+id/cookTimeSeekBar"
+    <LinearLayout
+        android:id="@+id/cookTimeLinearLayout"
+        android:layout_width="395dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.212">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/fira_sans"
+            android:text="@string/cookTime"
+            android:textSize="18sp" />
+
+        <com.warkiz.widget.IndicatorSeekBar
+            android:id="@+id/cookTimeSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:isb_indicator_color="@color/sizzlingRed"
+            app:isb_indicator_text_color="@color/white"
+            app:isb_indicator_text_size="18sp"
+            app:isb_max="@dimen/cookTimeMax"
+            app:isb_min="0"
+            app:isb_only_thumb_draggable="false"
+            app:isb_progress="0"
+            app:isb_seek_smoothly="true"
+            app:isb_show_indicator="rounded_rectangle"
+            app:isb_show_tick_marks_type="divider"
+            app:isb_show_tick_texts="true"
+            app:isb_thumb_color="@color/sizzlingRed"
+            app:isb_thumb_size="20dp"
+            app:isb_tick_marks_size="13dp"
+            app:isb_tick_texts_color="@color/darkGray"
+            app:isb_tick_texts_size="15sp"
+            app:isb_ticks_count="0"
+            app:isb_track_background_color="@color/darkGray"
+            app:isb_track_background_size="2dp"
+            app:isb_track_progress_color="@color/sizzlingRed"
+            app:isb_track_progress_size="8dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/difficultyLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        app:isb_indicator_color="@color/sizzlingRed"
-        app:isb_indicator_text_color="@color/white"
-        app:isb_indicator_text_size="18sp"
-        app:isb_max="@dimen/cookTimeMax"
-        app:isb_min="0"
-        app:isb_only_thumb_draggable="false"
-        app:isb_progress="0"
-        app:isb_seek_smoothly="true"
-        app:isb_show_indicator="rounded_rectangle"
-        app:isb_show_tick_marks_type="divider"
-        app:isb_show_tick_texts="true"
-        app:isb_thumb_color="@color/sizzlingRed"
-        app:isb_thumb_size="20dp"
-        app:isb_tick_marks_size="13dp"
-        app:isb_tick_texts_color="@color/darkGray"
-        app:isb_tick_texts_size="15sp"
-        app:isb_ticks_count="0"
-        app:isb_track_background_color="@color/darkGray"
-        app:isb_track_background_size="2dp"
-        app:isb_track_progress_color="@color/sizzlingRed"
-        app:isb_track_progress_size="8dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.24" />
+        app:layout_constraintVertical_bias="0.339">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/fira_sans"
-        android:text="@string/difficulty"
-        android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.047"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.318" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/fira_sans"
+            android:text="@string/difficulty"
+            android:textSize="18dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:style="?android:attr/buttonBarStyle">
+
+            <Button
+                android:id="@+id/easyDifficultyButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/sizzlingRed"
+                android:elevation="@dimen/verticalCardViewPadding"
+                android:fontFamily="@font/fira_sans"
+                android:text="@string/easyDifficulty"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/mediumDifficultyButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/white"
+                android:elevation="@dimen/verticalCardViewPadding"
+                android:fontFamily="@font/fira_sans"
+                android:text="@string/mediumDifficulty" />
+
+            <Button
+                android:id="@+id/hardDifficultyButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/white"
+                android:elevation="@dimen/verticalCardViewPadding"
+                android:fontFamily="@font/fira_sans"
+                android:text="@string/hardDifficulty" />
+        </LinearLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

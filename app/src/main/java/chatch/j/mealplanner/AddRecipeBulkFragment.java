@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
 
@@ -38,6 +39,9 @@ public class AddRecipeBulkFragment extends Fragment {
     private EditText newRecipeTitleEditText;
     private EditText newRecipeCreatorEditText;
     private IndicatorSeekBar cookTimeSeekbar;
+    private Button easyDifficultyButton;
+    private Button mediumDifficultyButton;
+    private Button hardDifficultyButton;
 
     public AddRecipeBulkFragment() {
         // Required empty public constructor
@@ -53,6 +57,9 @@ public class AddRecipeBulkFragment extends Fragment {
         newRecipeTitleEditText = view.findViewById(R.id.newRecipeTitleEditText);
         newRecipeCreatorEditText = view.findViewById(R.id.newRecipeCreatorEditText);
         cookTimeSeekbar = view.findViewById(R.id.cookTimeSeekBar);
+        easyDifficultyButton = view.findViewById(R.id.easyDifficultyButton);
+        mediumDifficultyButton = view.findViewById(R.id.mediumDifficultyButton);
+        hardDifficultyButton = view.findViewById(R.id.hardDifficultyButton);
 
         return view;
     }
