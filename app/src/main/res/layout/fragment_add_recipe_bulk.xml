@@ -16,10 +16,13 @@
     android:background="@color/backgroundColor"
     tools:context=".AddRecipeBulkFragment">
 
+    <!-- LinearLayout to help organize the horizontal components for recipe name
+         and creator name -->
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:baselineAligned="false"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -36,6 +39,7 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
+            <!-- TextView and EditText for the Recipe name -->
             <TextView
                 android:id="@+id/newRecipeTitleTextView"
                 android:layout_width="wrap_content"
@@ -66,6 +70,7 @@
             android:orientation="vertical"
             android:weightSum="1">
 
+            <!-- TextView and EditText for the Recipe creator name -->
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
@@ -89,7 +94,7 @@
                 android:textSize="24sp" />
         </LinearLayout>
     </LinearLayout>
-
+    <!-- TextView and special SeekBar used for setting the Recipe cook time -->
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
@@ -104,6 +109,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.193" />
 
+    <!-- Special seekbar created by warkiz
+            website: https://github.com/warkiz/IndicatorSeekBar -->
     <com.warkiz.widget.IndicatorSeekBar
         android:id="@+id/cookTimeSeekBar"
         android:layout_width="match_parent"
@@ -136,6 +143,20 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.241" />
+        app:layout_constraintVertical_bias="0.24" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/fira_sans"
+        android:text="@string/difficulty"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.318" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
