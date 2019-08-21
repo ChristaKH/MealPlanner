@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.SeekBar;
 
 import com.warkiz.widget.IndicatorSeekBar;
@@ -33,6 +34,9 @@ import com.warkiz.widget.IndicatorSeekBar;
  */
 public class AddRecipeBulkFragment extends Fragment {
 
+    // Important components from the xml
+    private EditText newRecipeTitleEditText;
+    private EditText newRecipeCreatorEditText;
     private IndicatorSeekBar cookTimeSeekbar;
 
     public AddRecipeBulkFragment() {
@@ -44,6 +48,10 @@ public class AddRecipeBulkFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_recipe_bulk, container, false);
+
+        // Connect java objects to their xml counterparts
+        newRecipeTitleEditText = view.findViewById(R.id.newRecipeTitleEditText);
+        newRecipeCreatorEditText = view.findViewById(R.id.newRecipeCreatorEditText);
         cookTimeSeekbar = view.findViewById(R.id.cookTimeSeekBar);
 
         return view;
