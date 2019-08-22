@@ -5,6 +5,13 @@
     android:layout_height="match_parent"
     tools:context=".OthersFragment">
 
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Others Fragment" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/othersRecyclerView"
         android:layout_width="match_parent"

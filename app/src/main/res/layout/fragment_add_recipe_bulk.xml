@@ -235,20 +235,14 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <FrameLayout
+            <ImageView
+                android:id="@+id/imageView4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:foreground="@drawable/rounded_corners">
-
-                <ImageView
-                    android:id="@+id/imageView4"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:elevation="@dimen/default_gap"
-                    android:src="@drawable/meal_example" />
-            </FrameLayout>
+                android:elevation="@dimen/default_gap"
+                android:padding="@dimen/verticalCardViewPadding"
+                android:src="@drawable/meal_example" />
 
             <ImageView
                 android:id="@+id/imageView6"
@@ -256,6 +250,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:elevation="@dimen/default_gap"
+                android:padding="@dimen/verticalCardViewPadding"
                 android:src="@drawable/meal_example" />
         </TableRow>
 
@@ -270,6 +265,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:elevation="@dimen/default_gap"
+                android:padding="@dimen/verticalCardViewPadding"
                 android:src="@drawable/meal_example" />
 
             <ImageView
@@ -277,8 +273,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:src="@drawable/meal_example"
-                android:elevation="@dimen/default_gap" />
+                android:elevation="@dimen/default_gap"
+                android:padding="@dimen/verticalCardViewPadding"
+                android:src="@drawable/meal_example" />
         </TableRow>
 
     </TableLayout>
