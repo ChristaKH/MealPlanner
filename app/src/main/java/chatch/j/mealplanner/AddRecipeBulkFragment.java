@@ -13,6 +13,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +25,6 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 
 import com.warkiz.widget.IndicatorSeekBar;
-
 
 /**
  * A simple {@link Fragment} subclass.
@@ -47,10 +47,6 @@ public class AddRecipeBulkFragment extends Fragment {
     private Button easyDifficultyButton;
     private Button mediumDifficultyButton;
     private Button hardDifficultyButton;
-    private Button mealButton;
-    private Button dessertButton;
-    private Button drinkButton;
-    private Button otherButton;
 
     private String recipeName;
     private String recipeCreator;
@@ -80,10 +76,6 @@ public class AddRecipeBulkFragment extends Fragment {
         easyDifficultyButton = view.findViewById(R.id.easyDifficultyButton);
         mediumDifficultyButton = view.findViewById(R.id.mediumDifficultyButton);
         hardDifficultyButton = view.findViewById(R.id.hardDifficultyButton);
-        mealButton = view.findViewById(R.id.mealButton);
-        dessertButton = view.findViewById(R.id.dessertButton);
-        drinkButton = view.findViewById(R.id.drinkButton);
-        otherButton = view.findViewById(R.id.otherButton);
 
         // Set onClickListeners for the three difficulty buttons
         // Only one button at a time can have red background and white text
@@ -147,33 +139,7 @@ public class AddRecipeBulkFragment extends Fragment {
             }
         });
 
-        // Time to set up the category buttons!
-        // First, we have to resize their pictures and set them as the background
-        Drawable largeImage = getResources().getDrawable(R.drawable.meal_example);
-        mealButton.measure(TableRow.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.MATCH_PARENT);
-        int imageWidth = mealButton.getMeasuredWidth();
-        int imageHeight = mealButton.getMeasuredHeight();
-
-        if(imageWidth > 0 && imageHeight > 0) {
-            mealButton.setBackground(resize(largeImage, imageWidth, imageHeight));
-        } else{
-            System.out.println(imageWidth + ":" + imageHeight);
-        }
-
         return view;
     }
 
-    /**
-     * This method will allow us to resize out images, specifically so that
-     * we can use larger images as the background for the category buttons.
-     * @param image Image that we are looking to resize
-     * @param width Desired width of the large image
-     * @param height    Desired height of the large image
-     * @return
-     */
-    private Drawable resize(Drawable image, int width, int height) {
-        Bitmap b = ((BitmapDrawable)image).getBitmap();
-        Bitmap bitmapResized = Bitmap.createScaledBitmap(b, width, height, true);
-        return new BitmapDrawable(getResources(), bitmapResized);
-    }
 }

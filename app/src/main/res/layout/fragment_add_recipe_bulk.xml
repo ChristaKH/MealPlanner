@@ -219,10 +219,10 @@
         android:id="@+id/recipeCategoryTableLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="96dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="96dp"
+        android:layout_marginBottom="96dp"
         android:stretchColumns="0,1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -235,22 +235,28 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <Button
-                android:id="@+id/mealButton"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:adjustViewBounds="true"
-                android:elevation="@dimen/default_gap"
-                android:scaleType="fitCenter" />
+                android:layout_weight="1"
+                android:foreground="@drawable/rounded_corners">
 
-            <Button
-                android:id="@+id/drinkButton"
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:elevation="@dimen/default_gap"
+                    android:src="@drawable/meal_example" />
+            </FrameLayout>
+
+            <ImageView
+                android:id="@+id/imageView6"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:elevation="@dimen/default_gap"
-                android:text="Button"
-                app:layout_column="3"
-                app:layout_row="0" />
+                android:src="@drawable/meal_example" />
         </TableRow>
 
         <TableRow
@@ -258,19 +264,21 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <Button
-                android:id="@+id/dessertButton"
+            <ImageView
+                android:id="@+id/imageView5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:elevation="@dimen/default_gap"
-                android:text="Button" />
+                android:src="@drawable/meal_example" />
 
-            <Button
-                android:id="@+id/otherButton"
+            <ImageView
+                android:id="@+id/imageView7"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:elevation="@dimen/default_gap"
-                android:text="Button" />
+                android:layout_weight="1"
+                android:src="@drawable/meal_example"
+                android:elevation="@dimen/default_gap" />
         </TableRow>
 
     </TableLayout>
