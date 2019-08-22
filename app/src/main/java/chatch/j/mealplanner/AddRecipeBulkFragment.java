@@ -42,6 +42,10 @@ public class AddRecipeBulkFragment extends Fragment {
     private Button easyDifficultyButton;
     private Button mediumDifficultyButton;
     private Button hardDifficultyButton;
+    private Button mealButton;
+    private Button dessertButton;
+    private Button drinkButton;
+    private Button otherButton;
 
     private String recipeName;
     private String recipeCreator;
@@ -71,6 +75,10 @@ public class AddRecipeBulkFragment extends Fragment {
         easyDifficultyButton = view.findViewById(R.id.easyDifficultyButton);
         mediumDifficultyButton = view.findViewById(R.id.mediumDifficultyButton);
         hardDifficultyButton = view.findViewById(R.id.hardDifficultyButton);
+        mealButton = view.findViewById(R.id.mealButton);
+        dessertButton = view.findViewById(R.id.dessertButton);
+        drinkButton = view.findViewById(R.id.drinkButton);
+        otherButton = view.findViewById(R.id.otherButton);
 
         // Set onClickListeners for the three difficulty buttons
         // Only one button at a time can have red background and white text
