@@ -29,7 +29,7 @@ import com.warkiz.widget.IndicatorSeekBar;
  *     - Recipe Title: Required (TextView)
  *     - Creator: Optional (TextView)
  *     - Cook Time: Optional (SeekBar)
- *     - Difficulty: Optional (drop down menu, radio buttons, or seek bar)
+ *     - Difficulty: Optional (Three buttons)
  *     - Image: Optional (normal button that opens up the gallery to take a picture)
  *     - Category: Optional (drop down menu, radio buttons, or seek bar)
  */
@@ -43,6 +43,11 @@ public class AddRecipeBulkFragment extends Fragment {
     private Button mediumDifficultyButton;
     private Button hardDifficultyButton;
 
+    private String recipeName;
+    private String recipeCreator;
+    private int cookTime;
+    private String difficulty;
+
     public AddRecipeBulkFragment() {
         // Required empty public constructor
     }
@@ -52,6 +57,12 @@ public class AddRecipeBulkFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_recipe_bulk, container, false);
+
+        // Give instance variables values
+        recipeName = "";
+        recipeCreator = "";
+        cookTime = 0;
+        difficulty = "EASY";
 
         // Connect java objects to their xml counterparts
         newRecipeTitleEditText = view.findViewById(R.id.newRecipeTitleEditText);
@@ -77,6 +88,9 @@ public class AddRecipeBulkFragment extends Fragment {
 
                 hardDifficultyButton.setBackgroundTintList(view.getResources().getColorStateList(R.color.white));
                 hardDifficultyButton.setTextColor(getResources().getColor(R.color.black));
+
+                // difficulty should be "EASY"
+                difficulty = "EASY";
             }
         });
 
@@ -94,6 +108,9 @@ public class AddRecipeBulkFragment extends Fragment {
 
                 hardDifficultyButton.setBackgroundTintList(view.getResources().getColorStateList(R.color.white));
                 hardDifficultyButton.setTextColor(getResources().getColor(R.color.black));
+
+                // difficulty should be set to "MEDIUM"
+                difficulty = "MEDIUM";
             }
         });
 
@@ -111,6 +128,9 @@ public class AddRecipeBulkFragment extends Fragment {
 
                 mediumDifficultyButton.setBackgroundTintList(view.getResources().getColorStateList(R.color.white));
                 mediumDifficultyButton.setTextColor(getResources().getColor(R.color.black));
+
+                // difficulty should be set to "HARD"
+                difficulty = "HARD";
             }
         });
 

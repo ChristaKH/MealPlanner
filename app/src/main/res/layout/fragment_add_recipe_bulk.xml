@@ -153,6 +153,8 @@
             app:isb_track_progress_size="8dp" />
     </LinearLayout>
 
+    <!-- This next section deals with the Difficulty section and includes
+        three buttons and a text view for a title -->
     <LinearLayout
         android:id="@+id/difficultyLinearLayout"
         android:layout_width="match_parent"
