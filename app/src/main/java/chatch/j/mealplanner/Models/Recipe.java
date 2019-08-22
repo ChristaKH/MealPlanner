@@ -38,7 +38,7 @@ public class Recipe {
     public enum Difficulty {NONE, EASY, MEDIUM, HARD}
 
     // enum to represent recipe category
-    public enum Category {MEAL, DESSERT, OTHER, DRINK};
+    public enum Category {MEAL, DESSERT, OTHER, DRINK}
 
     /**
      * Empty construtor that exists mainly for testing purposes
