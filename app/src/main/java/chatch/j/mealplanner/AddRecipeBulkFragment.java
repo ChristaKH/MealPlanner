@@ -1,8 +1,10 @@
 package chatch.j.mealplanner;
 
 
+import android.graphics.Bitmap;
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.ShapeDrawable;
@@ -14,9 +16,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 
 import com.warkiz.widget.IndicatorSeekBar;
 
@@ -60,7 +65,7 @@ public class AddRecipeBulkFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_add_recipe_bulk, container, false);
+        final View view = inflater.inflate(R.layout.fragment_add_recipe_bulk, container, false);
 
         // Give instance variables values
         recipeName = "";
@@ -142,6 +147,33 @@ public class AddRecipeBulkFragment extends Fragment {
             }
         });
 
+        // Time to set up the category buttons!
+        // First, we have to resize their pictures and set them as the background
+        Drawable largeImage = getResources().getDrawable(R.drawable.meal_example);
+        mealButton.measure(TableRow.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.MATCH_PARENT);
+        int imageWidth = mealButton.getMeasuredWidth();
+        int imageHeight = mealButton.getMeasuredHeight();
+
+        if(imageWidth > 0 && imageHeight > 0) {
+            mealButton.setBackground(resize(largeImage, imageWidth, imageHeight));
+        } else{
+            System.out.println(imageWidth + ":" + imageHeight);
+        }
+
         return view;
+    }
+
+    /**
+     * This method will allow us to resize out images, specifically so that
+     * we can use larger images as the background for the category buttons.
+     * @param image Image that we are looking to resize
+     * @param width Desired width of the large image
+     * @param height    Desired height of the large image
+     * @return
+     */
+    private Drawable resize(Drawable image, int width, int height) {
+        Bitmap b = ((BitmapDrawable)image).getBitmap();
+        Bitmap bitmapResized = Bitmap.createScaledBitmap(b, width, height, true);
+        return new BitmapDrawable(getResources(), bitmapResized);
     }
 }
