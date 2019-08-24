@@ -2,6 +2,7 @@ package chatch.j.mealplanner;
 
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
@@ -11,6 +12,8 @@ import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
 import android.os.Bundle;
 
+import androidx.core.graphics.drawable.RoundedBitmapDrawable;
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 import androidx.fragment.app.Fragment;
 
 import android.os.Environment;
@@ -20,6 +23,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -47,6 +51,10 @@ public class AddRecipeBulkFragment extends Fragment {
     private Button easyDifficultyButton;
     private Button mediumDifficultyButton;
     private Button hardDifficultyButton;
+    private ImageView mealImageView;
+    private ImageView dessertImageView;
+    private ImageView drinkImageView;
+    private ImageView otherImageView;
 
     private String recipeName;
     private String recipeCreator;
@@ -76,6 +84,16 @@ public class AddRecipeBulkFragment extends Fragment {
         easyDifficultyButton = view.findViewById(R.id.easyDifficultyButton);
         mediumDifficultyButton = view.findViewById(R.id.mediumDifficultyButton);
         hardDifficultyButton = view.findViewById(R.id.hardDifficultyButton);
+        mealImageView = view.findViewById(R.id.mealImageView);
+        dessertImageView = view.findViewById(R.id.dessertImageView);
+        drinkImageView = view.findViewById(R.id.drinkImageView);
+        otherImageView = view.findViewById(R.id.otherImageView);
+
+        // Curve the corners of the category images
+        mealImageView.setImageDrawable(getRoundCorners(R.drawable.meal_example, 8));
+        dessertImageView.setImageDrawable(getRoundCorners(R.drawable.meal_example, 8));
+        drinkImageView.setImageDrawable(getRoundCorners(R.drawable.meal_example, 8));
+        otherImageView.setImageDrawable(getRoundCorners(R.drawable.meal_example, 8));
 
         // Set onClickListeners for the three difficulty buttons
         // Only one button at a time can have red background and white text
@@ -142,4 +160,31 @@ public class AddRecipeBulkFragment extends Fragment {
         return view;
     }
 
+    /**
+     * This method takes in the id of a drawable and the desired radius of the
+     * curved corners and returns the changed image. The changed image is different
+     * from the first because the corners are curves.
+     * @param drawableId    Id of the image we wish to change
+     * @param cornerRadius  Desired radius of the curved corners. Must be greater than 0
+     * @return  Adjusted image as a drawable
+     */
+    private Drawable getRoundCorners(int drawableId, int cornerRadius){
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), drawableId);
+        RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(
+                                                            getResources(), bitmap);
+
+        if(cornerRadius > 0) {
+            // Set the RoundedBitmapDrawable corners radius
+            roundedBitmapDrawable.setCornerRadius(cornerRadius);
+        }
+
+                /*
+                    setAntiAlias(boolean aa)
+                        Enables or disables anti-aliasing for this drawable.
+                */
+        roundedBitmapDrawable.setAntiAlias(false);
+
+        // Set the ImageView image as drawable object
+        return roundedBitmapDrawable;
+    }
 }
