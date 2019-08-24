@@ -236,7 +236,7 @@
             android:layout_weight="1">
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/mealImageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -245,7 +245,7 @@
                 android:src="@drawable/meal_example" />
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/dessertImageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -260,7 +260,7 @@
             android:layout_weight="1">
 
             <ImageView
-                android:id="@+id/imageView5"
+                android:id="@+id/drinkImageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -269,7 +269,7 @@
                 android:src="@drawable/meal_example" />
 
             <ImageView
-                android:id="@+id/imageView7"
+                android:id="@+id/otherImageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
