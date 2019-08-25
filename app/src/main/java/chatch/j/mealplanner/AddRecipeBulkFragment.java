@@ -89,12 +89,6 @@ public class AddRecipeBulkFragment extends Fragment {
         drinkImageView = view.findViewById(R.id.drinkImageView);
         otherImageView = view.findViewById(R.id.otherImageView);
 
-        // Curve the corners of the category images
-        mealImageView.setImageDrawable(getRoundCorners(R.drawable.meal_example, 8));
-        dessertImageView.setImageDrawable(getRoundCorners(R.drawable.meal_example, 8));
-        drinkImageView.setImageDrawable(getRoundCorners(R.drawable.meal_example, 8));
-        otherImageView.setImageDrawable(getRoundCorners(R.drawable.meal_example, 8));
-
         // Set onClickListeners for the three difficulty buttons
         // Only one button at a time can have red background and white text
         easyDifficultyButton.setOnClickListener(new View.OnClickListener() {
@@ -158,33 +152,5 @@ public class AddRecipeBulkFragment extends Fragment {
         });
 
         return view;
-    }
-
-    /**
-     * This method takes in the id of a drawable and the desired radius of the
-     * curved corners and returns the changed image. The changed image is different
-     * from the first because the corners are curves.
-     * @param drawableId    Id of the image we wish to change
-     * @param cornerRadius  Desired radius of the curved corners. Must be greater than 0
-     * @return  Adjusted image as a drawable
-     */
-    private Drawable getRoundCorners(int drawableId, int cornerRadius){
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), drawableId);
-        RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(
-                                                            getResources(), bitmap);
-
-        if(cornerRadius > 0) {
-            // Set the RoundedBitmapDrawable corners radius
-            roundedBitmapDrawable.setCornerRadius(cornerRadius);
-        }
-
-                /*
-                    setAntiAlias(boolean aa)
-                        Enables or disables anti-aliasing for this drawable.
-                */
-        roundedBitmapDrawable.setAntiAlias(false);
-
-        // Set the ImageView image as drawable object
-        return roundedBitmapDrawable;
     }
 }
