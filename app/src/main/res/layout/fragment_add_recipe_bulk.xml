@@ -241,7 +241,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:elevation="@dimen/default_gap"
-                android:foreground="@drawable/category_rounded_corners"
                 android:padding="@dimen/verticalCardViewPadding"
                 android:src="@drawable/meal_example" />
 

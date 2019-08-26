@@ -1,6 +1,7 @@
 package chatch.j.mealplanner;
 
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.LinearGradient;
@@ -88,6 +89,36 @@ public class AddRecipeBulkFragment extends Fragment {
         dessertImageView = view.findViewById(R.id.dessertImageView);
         drinkImageView = view.findViewById(R.id.drinkImageView);
         otherImageView = view.findViewById(R.id.otherImageView);
+
+        // Use RoundedBitmapDrawable to give the ImageViews curved corners
+        // Curved mealImageView corners
+        Resources res = getResources();
+
+        Bitmap src = BitmapFactory.decodeResource(res, R.drawable.meal_example);
+        RoundedBitmapDrawable dr =
+                RoundedBitmapDrawableFactory.create(res, src);
+        dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 10.0f);
+        mealImageView.setImageDrawable(dr);
+
+        // Curved drinkImageView corners
+        src = BitmapFactory.decodeResource(res, R.drawable.drinks_example);
+        dr = RoundedBitmapDrawableFactory.create(res, src);
+        dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 10.0f);
+        drinkImageView.setImageDrawable(dr);
+
+        // Curved dessertImageView corners
+        // Curved drinkImageView corners
+        src = BitmapFactory.decodeResource(res, R.drawable.dessert_example);
+        dr = RoundedBitmapDrawableFactory.create(res, src);
+        dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 10.0f);
+        dessertImageView.setImageDrawable(dr);
+
+        // Curved otherImageView corners
+        // Change image later
+        src = BitmapFactory.decodeResource(res, R.drawable.dessert_example);
+        dr = RoundedBitmapDrawableFactory.create(res, src);
+        dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 10.0f);
+        otherImageView.setImageDrawable(dr);
 
         // Set onClickListeners for the three difficulty buttons
         // Only one button at a time can have red background and white text
