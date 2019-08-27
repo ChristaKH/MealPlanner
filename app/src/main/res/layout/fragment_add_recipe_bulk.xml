@@ -235,23 +235,48 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <ImageView
-                android:id="@+id/mealImageView"
+            <RelativeLayout
+                android:id="@+id/mealRelativeLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:elevation="@dimen/default_gap"
-                android:padding="@dimen/verticalCardViewPadding"
-                android:src="@drawable/meal_example" />
+                android:layout_weight="1">
 
-            <ImageView
-                android:id="@+id/dessertImageView"
+                <TextView
+                    android:id="@+id/mealTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/fira_sans_semibold"
+                    android:gravity="center"
+                    tools:text="@string/mealTitle" />
+
+                <ImageView
+                    android:id="@+id/mealImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/sizzlingRed"
+                    android:backgroundTintMode="src_atop"
+                    android:elevation="@dimen/default_gap"
+                    android:src="@drawable/meal_example"
+                    android:visibility="visible" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/dessertRelativeLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:elevation="@dimen/default_gap"
-                android:padding="@dimen/verticalCardViewPadding"
-                android:src="@drawable/meal_example" />
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/dessertImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:elevation="@dimen/default_gap"
+                    android:padding="@dimen/verticalCardViewPadding"
+                    android:src="@drawable/meal_example" />
+            </RelativeLayout>
+
         </TableRow>
 
         <TableRow

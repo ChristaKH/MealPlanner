@@ -4,9 +4,13 @@ package chatch.j.mealplanner;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.LinearGradient;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.ShapeDrawable;
@@ -25,9 +29,11 @@ import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 
 import com.warkiz.widget.IndicatorSeekBar;
 
@@ -52,7 +58,10 @@ public class AddRecipeBulkFragment extends Fragment {
     private Button easyDifficultyButton;
     private Button mediumDifficultyButton;
     private Button hardDifficultyButton;
+    private RelativeLayout mealRelativeLayout;
     private ImageView mealImageView;
+    private TextView mealTextView;
+    private RelativeLayout dessertRelativeLayout;
     private ImageView dessertImageView;
     private ImageView drinkImageView;
     private ImageView otherImageView;
@@ -85,7 +94,10 @@ public class AddRecipeBulkFragment extends Fragment {
         easyDifficultyButton = view.findViewById(R.id.easyDifficultyButton);
         mediumDifficultyButton = view.findViewById(R.id.mediumDifficultyButton);
         hardDifficultyButton = view.findViewById(R.id.hardDifficultyButton);
+        mealRelativeLayout = view.findViewById(R.id.mealRelativeLayout);
         mealImageView = view.findViewById(R.id.mealImageView);
+        mealTextView = view.findViewById(R.id.mealTextView);
+        dessertRelativeLayout = view.findViewById(R.id.dessertRelativeLayout);
         dessertImageView = view.findViewById(R.id.dessertImageView);
         drinkImageView = view.findViewById(R.id.drinkImageView);
         otherImageView = view.findViewById(R.id.otherImageView);
@@ -94,7 +106,7 @@ public class AddRecipeBulkFragment extends Fragment {
         // Curved mealImageView corners
         Resources res = getResources();
 
-        Bitmap src = BitmapFactory.decodeResource(res, R.drawable.meal_example);
+        Bitmap src =  BitmapFactory.decodeResource(res, R.drawable.meal);
         RoundedBitmapDrawable dr =
                 RoundedBitmapDrawableFactory.create(res, src);
         dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 10.0f);
@@ -114,8 +126,7 @@ public class AddRecipeBulkFragment extends Fragment {
         dessertImageView.setImageDrawable(dr);
 
         // Curved otherImageView corners
-        // Change image later
-        src = BitmapFactory.decodeResource(res, R.drawable.dessert_example);
+        src = BitmapFactory.decodeResource(res, R.drawable.other_pic);
         dr = RoundedBitmapDrawableFactory.create(res, src);
         dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 10.0f);
         otherImageView.setImageDrawable(dr);
@@ -182,6 +193,35 @@ public class AddRecipeBulkFragment extends Fragment {
             }
         });
 
+        // Set onClickListeners for the recipe category ImageViews
+        mealRelativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // This is the onClick method for when the dessertImageView is clicked.
+                // When clicked, this ImageView should become semi-opaque to show it was clicked
+                // Also, the other 3 ImageViews should display the corresponding
+                // food images at full opacity
+                mealImageView.setAlpha(0.5f);
+                drinkImageView.setAlpha(1.0f);
+                dessertImageView.setAlpha(1.0f);
+                otherImageView.setAlpha(1.0f);
+            }
+        });
+
+
+        dessertRelativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // This is the onClick method for when the mealImageView is clicked.
+                // When clicked, this ImageView should become semi-opaque to show it was clicked
+                // Also, the other 3 ImageViews should display the corresponding
+                // food images at full opacity
+                dessertImageView.setAlpha(0.5f);
+                drinkImageView.setAlpha(1.0f);
+                mealImageView.setAlpha(1.0f);
+                otherImageView.setAlpha(1.0f);
+            }
+        });
         return view;
     }
 }
