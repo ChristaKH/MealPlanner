@@ -284,23 +284,37 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <ImageView
-                android:id="@+id/drinkImageView"
+            <RelativeLayout
+                android:id="@+id/drinkRelativeLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:elevation="@dimen/default_gap"
-                android:padding="@dimen/verticalCardViewPadding"
-                android:src="@drawable/meal_example" />
+                android:layout_weight="1">
 
-            <ImageView
-                android:id="@+id/otherImageView"
+                <ImageView
+                    android:id="@+id/drinkImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:elevation="@dimen/default_gap"
+                    android:padding="@dimen/verticalCardViewPadding"
+                    android:src="@drawable/meal_example" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/otherRelativeLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:elevation="@dimen/default_gap"
-                android:padding="@dimen/verticalCardViewPadding"
-                android:src="@drawable/meal_example" />
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/otherImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:elevation="@dimen/default_gap"
+                    android:padding="@dimen/verticalCardViewPadding"
+                    android:src="@drawable/meal_example" />
+            </RelativeLayout>
         </TableRow>
 
     </TableLayout>

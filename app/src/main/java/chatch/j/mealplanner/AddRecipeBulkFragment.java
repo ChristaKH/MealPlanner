@@ -50,7 +50,9 @@ public class AddRecipeBulkFragment extends Fragment {
     private TextView mealTextView;
     private RelativeLayout dessertRelativeLayout;
     private ImageView dessertImageView;
+    private RelativeLayout drinkRelativeLayout;
     private ImageView drinkImageView;
+    private RelativeLayout otherRelativeLayout;
     private ImageView otherImageView;
 
     private String recipeName;
@@ -86,7 +88,9 @@ public class AddRecipeBulkFragment extends Fragment {
         mealTextView = view.findViewById(R.id.mealTextView);
         dessertRelativeLayout = view.findViewById(R.id.dessertRelativeLayout);
         dessertImageView = view.findViewById(R.id.dessertImageView);
+        drinkRelativeLayout = view.findViewById(R.id.drinkRelativeLayout);
         drinkImageView = view.findViewById(R.id.drinkImageView);
+        otherRelativeLayout = view.findViewById(R.id.otherRelativeLayout);
         otherImageView = view.findViewById(R.id.otherImageView);
 
         // Use RoundedBitmapDrawable to give the ImageViews curved corners
@@ -184,7 +188,7 @@ public class AddRecipeBulkFragment extends Fragment {
         mealRelativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // This is the onClick method for when the dessertImageView is clicked.
+                // This is the onClick method for when the mealImageView is clicked.
                 // When clicked, this ImageView should become semi-opaque to show it was clicked
                 // Also, the other 3 ImageViews should display the corresponding
                 // food images at full opacity
@@ -199,7 +203,7 @@ public class AddRecipeBulkFragment extends Fragment {
         dessertRelativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // This is the onClick method for when the mealImageView is clicked.
+                // This is the onClick method for when the dessertImageView is clicked.
                 // When clicked, this ImageView should become semi-opaque to show it was clicked
                 // Also, the other 3 ImageViews should display the corresponding
                 // food images at full opacity
@@ -209,6 +213,35 @@ public class AddRecipeBulkFragment extends Fragment {
                 otherImageView.setAlpha(1.0f);
             }
         });
+
+        drinkRelativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // This is the onClick method for when the drinkImageView is clicked.
+                // When clicked, this ImageView should become semi-opaque to show it was clicked
+                // Also, the other 3 ImageViews should display the corresponding
+                // food images at full opacity
+                drinkImageView.setAlpha(0.5f);
+                dessertImageView.setAlpha(1.0f);
+                mealImageView.setAlpha(1.0f);
+                otherImageView.setAlpha(1.0f);
+            }
+        });
+
+        otherRelativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // This is the onClick method for when the mealImageView is clicked.
+                // When clicked, this ImageView should become semi-opaque to show it was clicked
+                // Also, the other 3 ImageViews should display the corresponding
+                // food images at full opacity
+                otherImageView.setAlpha(0.5f);
+                drinkImageView.setAlpha(1.0f);
+                mealImageView.setAlpha(1.0f);
+                dessertImageView.setAlpha(1.0f);
+            }
+        });
+
         return view;
     }
 }
