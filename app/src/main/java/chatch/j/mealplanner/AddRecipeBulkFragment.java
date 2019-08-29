@@ -5,6 +5,8 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.core.graphics.drawable.RoundedBitmapDrawable;
@@ -45,6 +47,7 @@ public class AddRecipeBulkFragment extends Fragment {
     private Button easyDifficultyButton;
     private Button mediumDifficultyButton;
     private Button hardDifficultyButton;
+    /**
     private RelativeLayout mealRelativeLayout;
     private ImageView mealImageView;
     private TextView mealTextView;
@@ -54,6 +57,13 @@ public class AddRecipeBulkFragment extends Fragment {
     private ImageView drinkImageView;
     private RelativeLayout otherRelativeLayout;
     private ImageView otherImageView;
+     **/
+
+    // These are temporary textviews that I am just trying out for now
+    private TextView mealsTextView;
+    private TextView dessertsTextView;
+    private TextView drinksTextView;
+    private TextView othersTextView;
 
     private String recipeName;
     private String recipeCreator;
@@ -83,6 +93,7 @@ public class AddRecipeBulkFragment extends Fragment {
         easyDifficultyButton = view.findViewById(R.id.easyDifficultyButton);
         mediumDifficultyButton = view.findViewById(R.id.mediumDifficultyButton);
         hardDifficultyButton = view.findViewById(R.id.hardDifficultyButton);
+        /**
         mealRelativeLayout = view.findViewById(R.id.mealRelativeLayout);
         mealImageView = view.findViewById(R.id.mealImageView);
         mealTextView = view.findViewById(R.id.mealTextView);
@@ -121,6 +132,81 @@ public class AddRecipeBulkFragment extends Fragment {
         dr = RoundedBitmapDrawableFactory.create(res, src);
         dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 10.0f);
         otherImageView.setImageDrawable(dr);
+        **/
+
+        // (Temporary) Connect textviews to their cml counterparts
+        mealsTextView = view.findViewById(R.id.mealsTextView);
+        dessertsTextView = view.findViewById(R.id.dessertsTextView);
+        drinksTextView = view.findViewById(R.id.drinksTextView);
+        othersTextView = view.findViewById(R.id.othersTextView);
+
+        // (Temporary) Start off with the mealsTextView being "selected"
+        mealsTextView.setBackground(new ColorDrawable(getResources().getColor(R.color.sizzlingRed)));
+        mealsTextView.setText(R.string.mealTitle);
+        dessertsTextView.setBackground(getResources().getDrawable(R.drawable.dessert_example));
+        dessertsTextView.setText("");
+        drinksTextView.setBackground(getResources().getDrawable(R.drawable.drinks_example));
+        drinksTextView.setText("");
+        othersTextView.setBackground(getResources().getDrawable(R.drawable.other));
+        othersTextView.setText("");
+
+        //(temporary) Set the onClickListeners for the temporary text views
+        mealsTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mealsTextView.setBackground(new ColorDrawable(getResources().getColor(R.color.sizzlingRed)));
+                mealsTextView.setText(R.string.mealTitle);
+                dessertsTextView.setBackground(getResources().getDrawable(R.drawable.dessert_example));
+                dessertsTextView.setText("");
+                drinksTextView.setBackground(getResources().getDrawable(R.drawable.drinks_example));
+                drinksTextView.setText("");
+                othersTextView.setBackground(getResources().getDrawable(R.drawable.other));
+                othersTextView.setText("");
+            }
+        });
+
+        dessertsTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mealsTextView.setBackground(getResources().getDrawable(R.drawable.meal));
+                mealsTextView.setText("");
+                dessertsTextView.setBackground(new ColorDrawable(getResources().getColor(R.color.sizzlingRed)));
+                dessertsTextView.setText(R.string.dessertTitle);
+                drinksTextView.setBackground(getResources().getDrawable(R.drawable.drinks_example));
+                drinksTextView.setText("");
+                othersTextView.setBackground(getResources().getDrawable(R.drawable.other));
+                othersTextView.setText("");
+            }
+        });
+
+        drinksTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mealsTextView.setBackground(getResources().getDrawable(R.drawable.meal));
+                mealsTextView.setText("");
+                dessertsTextView.setBackground(getResources().getDrawable(R.drawable.dessert_example));
+                dessertsTextView.setText("");
+                drinksTextView.setBackground(new ColorDrawable(getResources().getColor(R.color.sizzlingRed)));
+                drinksTextView.setText(R.string.drinksTitle);
+                othersTextView.setBackground(getResources().getDrawable(R.drawable.other));
+                othersTextView.setText("");
+            }
+        });
+
+
+        othersTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mealsTextView.setBackground(getResources().getDrawable(R.drawable.meal));
+                mealsTextView.setText("");
+                dessertsTextView.setBackground(getResources().getDrawable(R.drawable.dessert_example));
+                dessertsTextView.setText("");
+                drinksTextView.setBackground(getResources().getDrawable(R.drawable.drinks_example));
+                drinksTextView.setText("");
+                othersTextView.setBackground(new ColorDrawable(getResources().getColor(R.color.sizzlingRed)));
+                othersTextView.setText(R.string.otherTitle);
+            }
+        });
 
         // Set onClickListeners for the three difficulty buttons
         // Only one button at a time can have red background and white text
@@ -184,6 +270,7 @@ public class AddRecipeBulkFragment extends Fragment {
             }
         });
 
+        /**
         // Set onClickListeners for the recipe category ImageViews
         mealRelativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -241,6 +328,7 @@ public class AddRecipeBulkFragment extends Fragment {
                 dessertImageView.setAlpha(1.0f);
             }
         });
+         **/
 
         return view;
     }

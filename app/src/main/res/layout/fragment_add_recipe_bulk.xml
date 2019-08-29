@@ -235,6 +235,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
+            <!--
             <RelativeLayout
                 android:id="@+id/mealRelativeLayout"
                 android:layout_width="match_parent"
@@ -276,7 +277,37 @@
                     android:padding="@dimen/verticalCardViewPadding"
                     android:src="@drawable/meal_example" />
             </RelativeLayout>
+            -->
 
+            <!-- Temporary addition of TextViews with food backgrounds -->
+            <!-- This is for the meals and desserts category but may be changed later -->
+            <TextView
+                android:id="@+id/mealsTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/meal"
+                android:clickable="true"
+                android:elevation="@dimen/verticalCardViewPadding"
+                android:fontFamily="@font/fira_sans_semibold"
+                android:gravity="bottom"
+                android:text="@string/mealTitle"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/dessertsTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/dessert_example"
+                android:clickable="true"
+                android:elevation="@dimen/verticalCardViewPadding"
+                android:fontFamily="@font/fira_sans_semibold"
+                android:gravity="bottom"
+                android:text="@string/dessertsTitle"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
         </TableRow>
 
         <TableRow
@@ -284,6 +315,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
+            <!--
             <RelativeLayout
                 android:id="@+id/drinkRelativeLayout"
                 android:layout_width="match_parent"
@@ -315,6 +347,37 @@
                     android:padding="@dimen/verticalCardViewPadding"
                     android:src="@drawable/meal_example" />
             </RelativeLayout>
+            -->
+
+            <!-- Temporary addition of TextViews with food backgrounds -->
+            <!-- This is for the drinks and other category but may be changed later -->
+            <TextView
+                android:id="@+id/drinksTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/drinks_example"
+                android:clickable="true"
+                android:elevation="@dimen/verticalCardViewPadding"
+                android:fontFamily="@font/fira_sans_semibold"
+                android:gravity="bottom"
+                android:text="@string/drinksTitle"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/othersTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/other"
+                android:clickable="true"
+                android:elevation="@dimen/verticalCardViewPadding"
+                android:fontFamily="@font/fira_sans_semibold"
+                android:gravity="bottom"
+                android:text="@string/othersTitle"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
         </TableRow>
 
     </TableLayout>
