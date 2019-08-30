@@ -17,6 +17,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -150,19 +152,34 @@ public class AddRecipeBulkFragment extends Fragment {
         othersTextView.setBackground(getResources().getDrawable(R.drawable.other));
         othersTextView.setText("");
 
+        // These animations will be used to fade the current background out and fade the new background in
+        final Animation fadeIn = AnimationUtils.loadAnimation(view.getContext(), R.anim.fade_in);
+        final Animation fadeOut = AnimationUtils.loadAnimation(view.getContext(), R.anim.fade_out);
+
         //(temporary) Set the onClickListeners for the temporary text views
         mealsTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mealsTextView.setBackground(new ColorDrawable(getResources().getColor(R.color.sizzlingRed)));
-                mealsTextView.setText(R.string.mealTitle);
-                dessertsTextView.setBackground(getResources().getDrawable(R.drawable.dessert_example));
-                dessertsTextView.setText("");
-                drinksTextView.setBackground(getResources().getDrawable(R.drawable.drinks_example));
-                drinksTextView.setText("");
-                othersTextView.setBackground(getResources().getDrawable(R.drawable.other));
-                othersTextView.setText("");
-            }
+               // if(mealsTextView.getBackground() == getResources().getDrawable(R.drawable.meal)) {
+                    // fade the old background out
+                    mealsTextView.startAnimation(fadeOut);
+
+                    // switch backgrounds and add text
+                    mealsTextView.setText(R.string.mealTitle);
+
+                    // fade the new background in
+                    mealsTextView.startAnimation(fadeIn);
+
+                    mealsTextView.setBackground(new ColorDrawable(getResources().getColor(R.color.sizzlingRed)));
+                    mealsTextView.setText(R.string.mealTitle);
+                    dessertsTextView.setBackground(getResources().getDrawable(R.drawable.dessert_example));
+                    dessertsTextView.setText("");
+                    drinksTextView.setBackground(getResources().getDrawable(R.drawable.drinks_example));
+                    drinksTextView.setText("");
+                    othersTextView.setBackground(getResources().getDrawable(R.drawable.other));
+                    othersTextView.setText("");
+                }
+            //}
         });
 
         dessertsTextView.setOnClickListener(new View.OnClickListener() {
