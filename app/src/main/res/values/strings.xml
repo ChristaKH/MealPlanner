@@ -30,4 +30,5 @@
     <string name="mediumDifficulty">MEDIUM</string>
     <string name="hardDifficulty">HARD</string>
     <string name="mealTitle">MEAL</string>
+    <string name="categoryTitle">Category</string>
 </resources>
