@@ -7,7 +7,7 @@
     - Cook Time: Optional (SeekBar)
     - Difficulty: Optional (drop down menu, radio buttons, or seek bar)
     - Image: Optional (normal button that opens up the gallery to take a picture)
-    - Category: Optional (drop down menu, radio buttons, or seek bar) -->
+    - Category: Optional (clickable TextViews) -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -101,7 +101,7 @@
     </LinearLayout>
     <!-- TextView and special SeekBar used for setting the Recipe cook time -->
 
-    <!-- Special seekbar created by warkiz
+    <!-- Special SeekBar created by warkiz
             website: https://github.com/warkiz/IndicatorSeekBar -->
     <LinearLayout
         android:id="@+id/cookTimeLinearLayout"
@@ -215,171 +215,79 @@
         </LinearLayout>
     </LinearLayout>
 
-    <TableLayout
-        android:id="@+id/recipeCategoryTableLayout"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="96dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="96dp"
-        android:layout_marginBottom="96dp"
-        android:stretchColumns="0,1"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.61"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/difficultyLinearLayout">
-
-        <TableRow
+        <!-- This is for the meals and desserts category -->
+        <TextView
+            android:id="@+id/mealsTextView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:background="@drawable/meal"
+            android:clickable="true"
+            android:elevation="@dimen/verticalCardViewPadding"
+            android:fontFamily="@font/fira_sans_semibold"
+            android:gravity="bottom|center"
+            android:padding="@dimen/titlePadding"
+            android:text="@string/mealTitle"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
 
-            <!--
-            <RelativeLayout
-                android:id="@+id/mealRelativeLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/mealTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/fira_sans_semibold"
-                    android:gravity="center"
-                    tools:text="@string/mealTitle" />
-
-                <ImageView
-                    android:id="@+id/mealImageView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="@color/sizzlingRed"
-                    android:backgroundTintMode="src_atop"
-                    android:elevation="@dimen/default_gap"
-                    android:src="@drawable/meal_example"
-                    android:visibility="visible" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/dessertRelativeLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <ImageView
-                    android:id="@+id/dessertImageView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:elevation="@dimen/default_gap"
-                    android:padding="@dimen/verticalCardViewPadding"
-                    android:src="@drawable/meal_example" />
-            </RelativeLayout>
-            -->
-
-            <!-- Temporary addition of TextViews with food backgrounds -->
-            <!-- This is for the meals and desserts category but may be changed later -->
-            <TextView
-                android:id="@+id/mealsTextView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/meal"
-                android:clickable="true"
-                android:elevation="@dimen/verticalCardViewPadding"
-                android:fontFamily="@font/fira_sans_semibold"
-                android:gravity="bottom"
-                android:text="@string/mealTitle"
-                android:textColor="@color/white"
-                android:textSize="24sp" />
-
-            <TextView
-                android:id="@+id/dessertsTextView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/dessert_example"
-                android:clickable="true"
-                android:elevation="@dimen/verticalCardViewPadding"
-                android:fontFamily="@font/fira_sans_semibold"
-                android:gravity="bottom"
-                android:text="@string/dessertsTitle"
-                android:textColor="@color/white"
-                android:textSize="24sp" />
-        </TableRow>
-
-        <TableRow
+        <TextView
+            android:id="@+id/dessertsTextView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:background="@drawable/dessert_example"
+            android:clickable="true"
+            android:elevation="@dimen/verticalCardViewPadding"
+            android:fontFamily="@font/fira_sans_semibold"
+            android:gravity="bottom|center"
+            android:padding="@dimen/titlePadding"
+            android:text="@string/dessertsTitle"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
 
-            <!--
-            <RelativeLayout
-                android:id="@+id/drinkRelativeLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
+        <!-- This is for the drinks and other category -->
+        <TextView
+            android:id="@+id/drinksTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/drinks_example"
+            android:clickable="true"
+            android:elevation="@dimen/verticalCardViewPadding"
+            android:fontFamily="@font/fira_sans_semibold"
+            android:gravity="bottom|center"
+            android:padding="@dimen/titlePadding"
+            android:text="@string/drinksTitle"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
 
-                <ImageView
-                    android:id="@+id/drinkImageView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:elevation="@dimen/default_gap"
-                    android:padding="@dimen/verticalCardViewPadding"
-                    android:src="@drawable/meal_example" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/otherRelativeLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <ImageView
-                    android:id="@+id/otherImageView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:elevation="@dimen/default_gap"
-                    android:padding="@dimen/verticalCardViewPadding"
-                    android:src="@drawable/meal_example" />
-            </RelativeLayout>
-            -->
-
-            <!-- Temporary addition of TextViews with food backgrounds -->
-            <!-- This is for the drinks and other category but may be changed later -->
-            <TextView
-                android:id="@+id/drinksTextView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/drinks_example"
-                android:clickable="true"
-                android:elevation="@dimen/verticalCardViewPadding"
-                android:fontFamily="@font/fira_sans_semibold"
-                android:gravity="bottom"
-                android:text="@string/drinksTitle"
-                android:textColor="@color/white"
-                android:textSize="24sp" />
-
-            <TextView
-                android:id="@+id/othersTextView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/other"
-                android:clickable="true"
-                android:elevation="@dimen/verticalCardViewPadding"
-                android:fontFamily="@font/fira_sans_semibold"
-                android:gravity="bottom"
-                android:text="@string/othersTitle"
-                android:textColor="@color/white"
-                android:textSize="24sp" />
-        </TableRow>
-
-    </TableLayout>
+        <TextView
+            android:id="@+id/othersTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/other"
+            android:clickable="true"
+            android:elevation="@dimen/verticalCardViewPadding"
+            android:fontFamily="@font/fira_sans_semibold"
+            android:gravity="bottom|center"
+            android:padding="@dimen/titlePadding"
+            android:text="@string/othersTitle"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
