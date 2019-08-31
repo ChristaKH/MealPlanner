@@ -1,16 +1,8 @@
 package chatch.j.mealplanner;
 
-
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
-import androidx.core.graphics.drawable.RoundedBitmapDrawable;
-import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -21,8 +13,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import android.widget.TextView;
 
@@ -38,7 +28,7 @@ import com.warkiz.widget.IndicatorSeekBar;
  *     - Cook Time: Optional (SeekBar)
  *     - Difficulty: Optional (Three buttons)
  *     - Image: Optional (normal button that opens up the gallery to take a picture)
- *     - Category: Optional (drop down menu, radio buttons, or seek bar)
+ *     - Category: Optional (clickable TextViews)
  */
 public class AddRecipeBulkFragment extends Fragment {
 
@@ -49,19 +39,8 @@ public class AddRecipeBulkFragment extends Fragment {
     private Button easyDifficultyButton;
     private Button mediumDifficultyButton;
     private Button hardDifficultyButton;
-    /**
-    private RelativeLayout mealRelativeLayout;
-    private ImageView mealImageView;
-    private TextView mealTextView;
-    private RelativeLayout dessertRelativeLayout;
-    private ImageView dessertImageView;
-    private RelativeLayout drinkRelativeLayout;
-    private ImageView drinkImageView;
-    private RelativeLayout otherRelativeLayout;
-    private ImageView otherImageView;
-     **/
 
-    // These are temporary textviews that I am just trying out for now
+    // TextViews that represent the possible recipe categories
     private TextView mealsTextView;
     private TextView dessertsTextView;
     private TextView drinksTextView;
@@ -71,6 +50,7 @@ public class AddRecipeBulkFragment extends Fragment {
     private String recipeCreator;
     private int cookTime;
     private String difficulty;
+    private String category;
 
     public AddRecipeBulkFragment() {
         // Required empty public constructor
@@ -82,11 +62,12 @@ public class AddRecipeBulkFragment extends Fragment {
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_add_recipe_bulk, container, false);
 
-        // Give instance variables values
+        // Give instance variables default values
         recipeName = "";
         recipeCreator = "";
         cookTime = 0;
         difficulty = "EASY";
+        category = "OTHER";
 
         // Connect java objects to their xml counterparts
         newRecipeTitleEditText = view.findViewById(R.id.newRecipeTitleEditText);
@@ -95,54 +76,14 @@ public class AddRecipeBulkFragment extends Fragment {
         easyDifficultyButton = view.findViewById(R.id.easyDifficultyButton);
         mediumDifficultyButton = view.findViewById(R.id.mediumDifficultyButton);
         hardDifficultyButton = view.findViewById(R.id.hardDifficultyButton);
-        /**
-        mealRelativeLayout = view.findViewById(R.id.mealRelativeLayout);
-        mealImageView = view.findViewById(R.id.mealImageView);
-        mealTextView = view.findViewById(R.id.mealTextView);
-        dessertRelativeLayout = view.findViewById(R.id.dessertRelativeLayout);
-        dessertImageView = view.findViewById(R.id.dessertImageView);
-        drinkRelativeLayout = view.findViewById(R.id.drinkRelativeLayout);
-        drinkImageView = view.findViewById(R.id.drinkImageView);
-        otherRelativeLayout = view.findViewById(R.id.otherRelativeLayout);
-        otherImageView = view.findViewById(R.id.otherImageView);
 
-        // Use RoundedBitmapDrawable to give the ImageViews curved corners
-        // Curved mealImageView corners
-        Resources res = getResources();
-
-        Bitmap src =  BitmapFactory.decodeResource(res, R.drawable.meal);
-        RoundedBitmapDrawable dr =
-                RoundedBitmapDrawableFactory.create(res, src);
-        dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 10.0f);
-        mealImageView.setImageDrawable(dr);
-
-        // Curved drinkImageView corners
-        src = BitmapFactory.decodeResource(res, R.drawable.drinks_example);
-        dr = RoundedBitmapDrawableFactory.create(res, src);
-        dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 10.0f);
-        drinkImageView.setImageDrawable(dr);
-
-        // Curved dessertImageView corners
-        // Curved drinkImageView corners
-        src = BitmapFactory.decodeResource(res, R.drawable.dessert_example);
-        dr = RoundedBitmapDrawableFactory.create(res, src);
-        dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 10.0f);
-        dessertImageView.setImageDrawable(dr);
-
-        // Curved otherImageView corners
-        src = BitmapFactory.decodeResource(res, R.drawable.other_pic);
-        dr = RoundedBitmapDrawableFactory.create(res, src);
-        dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 10.0f);
-        otherImageView.setImageDrawable(dr);
-        **/
-
-        // (Temporary) Connect textviews to their cml counterparts
+        // Connect TextViews to their xml counterparts
         mealsTextView = view.findViewById(R.id.mealsTextView);
         dessertsTextView = view.findViewById(R.id.dessertsTextView);
         drinksTextView = view.findViewById(R.id.drinksTextView);
         othersTextView = view.findViewById(R.id.othersTextView);
 
-        // (Temporary) Start off with the mealsTextView being "selected"
+        // Start off with the mealsTextView being "selected"
         mealsTextView.setBackground(new ColorDrawable(getResources().getColor(R.color.sizzlingRed)));
         mealsTextView.setText(R.string.mealTitle);
         dessertsTextView.setBackground(getResources().getDrawable(R.drawable.dessert_example));
@@ -156,7 +97,7 @@ public class AddRecipeBulkFragment extends Fragment {
         final Animation fadeIn = AnimationUtils.loadAnimation(view.getContext(), R.anim.fade_in);
         final Animation fadeOut = AnimationUtils.loadAnimation(view.getContext(), R.anim.fade_out);
 
-        //(temporary) Set the onClickListeners for the temporary text views
+        // Set the onClickListeners for the temporary TextViews
         mealsTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -286,67 +227,6 @@ public class AddRecipeBulkFragment extends Fragment {
                 difficulty = "HARD";
             }
         });
-
-        /**
-        // Set onClickListeners for the recipe category ImageViews
-        mealRelativeLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // This is the onClick method for when the mealImageView is clicked.
-                // When clicked, this ImageView should become semi-opaque to show it was clicked
-                // Also, the other 3 ImageViews should display the corresponding
-                // food images at full opacity
-                mealImageView.setAlpha(0.5f);
-                drinkImageView.setAlpha(1.0f);
-                dessertImageView.setAlpha(1.0f);
-                otherImageView.setAlpha(1.0f);
-            }
-        });
-
-
-        dessertRelativeLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // This is the onClick method for when the dessertImageView is clicked.
-                // When clicked, this ImageView should become semi-opaque to show it was clicked
-                // Also, the other 3 ImageViews should display the corresponding
-                // food images at full opacity
-                dessertImageView.setAlpha(0.5f);
-                drinkImageView.setAlpha(1.0f);
-                mealImageView.setAlpha(1.0f);
-                otherImageView.setAlpha(1.0f);
-            }
-        });
-
-        drinkRelativeLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // This is the onClick method for when the drinkImageView is clicked.
-                // When clicked, this ImageView should become semi-opaque to show it was clicked
-                // Also, the other 3 ImageViews should display the corresponding
-                // food images at full opacity
-                drinkImageView.setAlpha(0.5f);
-                dessertImageView.setAlpha(1.0f);
-                mealImageView.setAlpha(1.0f);
-                otherImageView.setAlpha(1.0f);
-            }
-        });
-
-        otherRelativeLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // This is the onClick method for when the mealImageView is clicked.
-                // When clicked, this ImageView should become semi-opaque to show it was clicked
-                // Also, the other 3 ImageViews should display the corresponding
-                // food images at full opacity
-                otherImageView.setAlpha(0.5f);
-                drinkImageView.setAlpha(1.0f);
-                mealImageView.setAlpha(1.0f);
-                dessertImageView.setAlpha(1.0f);
-            }
-        });
-         **/
-
         return view;
     }
 }
