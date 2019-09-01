@@ -14,6 +14,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.warkiz.widget.IndicatorSeekBar;
@@ -45,6 +46,8 @@ public class AddRecipeBulkFragment extends Fragment {
     private TextView dessertsTextView;
     private TextView drinksTextView;
     private TextView othersTextView;
+
+    private LinearLayout categoryLinearLayout;
 
     private String recipeName;
     private String recipeCreator;
@@ -83,9 +86,20 @@ public class AddRecipeBulkFragment extends Fragment {
         drinksTextView = view.findViewById(R.id.drinksTextView);
         othersTextView = view.findViewById(R.id.othersTextView);
 
+        categoryLinearLayout = view.findViewById(R.id.categoryLinearLayout);
+
+        int width = categoryLinearLayout.getMeasuredWidth();
+
+
+        mealsTextView.setHeight(mealsTextView.getMeasuredWidth());
+        dessertsTextView.setHeight(dessertsTextView.getMeasuredWidth());
+        drinksTextView.setHeight(dessertsTextView.getMeasuredWidth());
+        othersTextView.setHeight(dessertsTextView.getMeasuredWidth());
+        categoryLinearLayout.setMinimumHeight(mealsTextView.getMeasuredWidth());
+
         // Start off with the mealsTextView being "selected"
         mealsTextView.setBackground(new ColorDrawable(getResources().getColor(R.color.sizzlingRed)));
-        mealsTextView.setText(R.string.mealTitle);
+        mealsTextView.setText(R.string.mealsTitle);
         dessertsTextView.setBackground(getResources().getDrawable(R.drawable.dessert_example));
         dessertsTextView.setText("");
         drinksTextView.setBackground(getResources().getDrawable(R.drawable.drinks_example));
