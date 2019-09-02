@@ -215,114 +215,131 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="8dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/difficultyLinearLayout">
-
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:fontFamily="@font/fira_sans"
-            android:paddingBottom="16dp"
-            android:text="@string/categoryTitle"
-            android:textSize="18sp" />
-
-        <LinearLayout
-            android:id="@+id/categoryLinearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="12"
-            android:orientation="horizontal">
-            <!-- This is for the meals and desserts category -->
-            <TextView
-                android:id="@+id/mealsTextView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/meal"
-                android:clickable="true"
-                android:elevation="@dimen/verticalCardViewPadding"
-                android:fontFamily="@font/fira_sans_semibold"
-                android:gravity="bottom|center"
-                android:padding="@dimen/titlePadding"
-                android:text="@string/mealTitle"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/dessertsTextView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/dessert_example"
-                android:clickable="true"
-                android:elevation="@dimen/verticalCardViewPadding"
-                android:fontFamily="@font/fira_sans_semibold"
-                android:gravity="bottom|center"
-                android:padding="@dimen/titlePadding"
-                android:text="@string/dessertsTitle"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
-
-            <!-- This is for the drinks and other category -->
-            <TextView
-                android:id="@+id/drinksTextView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/drinks_example"
-                android:clickable="true"
-                android:elevation="@dimen/verticalCardViewPadding"
-                android:fontFamily="@font/fira_sans_semibold"
-                android:gravity="bottom|center"
-                android:padding="@dimen/titlePadding"
-                android:text="@string/drinksTitle"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/othersTextView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/other"
-                android:clickable="true"
-                android:elevation="@dimen/verticalCardViewPadding"
-                android:fontFamily="@font/fira_sans_semibold"
-                android:gravity="bottom|center"
-                android:padding="@dimen/titlePadding"
-                android:text="@string/othersTitle"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
-        </LinearLayout>
-    </LinearLayout>
-
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="108dp"
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.472"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintVertical_bias="0.618" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="220dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_weight="1"
+        android:fontFamily="@font/fira_sans"
+        android:paddingBottom="16dp"
+        android:text="@string/categoryTitle"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.33" />
+
+    <LinearLayout
+        android:id="@+id/categoryLinearLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
+        android:layout_weight="12"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9">
+        <!-- This is for the meals and desserts category -->
+        <TextView
+            android:id="@+id/mealsTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/meal"
+            android:clickable="true"
+            android:elevation="@dimen/verticalCardViewPadding"
+            android:fontFamily="@font/fira_sans_semibold"
+            android:gravity="bottom|center"
+            android:padding="@dimen/titlePadding"
+            android:text="@string/mealTitle"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/dessertsTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/dessert_example"
+            android:clickable="true"
+            android:elevation="@dimen/verticalCardViewPadding"
+            android:fontFamily="@font/fira_sans_semibold"
+            android:gravity="bottom|center"
+            android:padding="@dimen/titlePadding"
+            android:text="@string/dessertsTitle"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <!-- This is for the drinks and other category -->
+        <TextView
+            android:id="@+id/drinksTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/drinks_example"
+            android:clickable="true"
+            android:elevation="@dimen/verticalCardViewPadding"
+            android:fontFamily="@font/fira_sans_semibold"
+            android:gravity="bottom|center"
+            android:padding="@dimen/titlePadding"
+            android:text="@string/drinksTitle"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/othersTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/other"
+            android:clickable="true"
+            android:elevation="@dimen/verticalCardViewPadding"
+            android:fontFamily="@font/fira_sans_semibold"
+            android:gravity="bottom|center"
+            android:padding="@dimen/titlePadding"
+            android:text="@string/othersTitle"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/nameWarningTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/nameWarningText"
+        android:textColor="@color/mediumCandyAppleRed"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.098"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.007" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -31,4 +31,5 @@
     <string name="hardDifficulty">HARD</string>
     <string name="mealTitle">MEAL</string>
     <string name="categoryTitle">Category</string>
+    <string name="nameWarningText">Recipe name is required</string>
 </resources>
