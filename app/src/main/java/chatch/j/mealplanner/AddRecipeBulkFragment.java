@@ -18,6 +18,8 @@ import android.widget.TextView;
 
 import com.warkiz.widget.IndicatorSeekBar;
 
+import chatch.j.mealplanner.Models.Recipe;
+
 /**
  * A simple {@link Fragment} subclass.
  * This is a Fragment that takes in the bulk of the information for
@@ -99,66 +101,11 @@ public class AddRecipeBulkFragment extends Fragment {
         othersTextView.setBackground(getResources().getDrawable(R.drawable.other));
         othersTextView.setText("");
 
-        // These animations will be used to fade the current background out and fade the new background in
-        final Animation fadeIn = AnimationUtils.loadAnimation(view.getContext(), R.anim.fade_in);
-        final Animation fadeOut = AnimationUtils.loadAnimation(view.getContext(), R.anim.fade_out);
-
         // onClickListener for the meal TextView
         mealsTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ColorDrawable backgroundColorDrawable = null;
-
-                // Get the current background color
-                if (mealsTextView.getBackground() instanceof ColorDrawable) {
-                    backgroundColorDrawable = (ColorDrawable) mealsTextView.getBackground();
-                }
-
-                // If background color is  not "sizzling red"
-                //(If mealTextView wasn't the last category selected)
-                if (backgroundColorDrawable == null) {
-
-                    // Find the previously selected TextView
-                    // Which will have the background color of sizzling red and will be
-                    // an instance of ColorDrawable
-                    if(drinksTextView.getBackground() instanceof ColorDrawable){
-                        // Change it to the unselected background
-                        drinksTextView.setBackground(getResources().getDrawable(R.drawable.drinks_example));
-
-                        // Get rid of the category title
-                        drinksTextView.setText("");
-
-                        // Fade background in
-                        drinksTextView.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
-                    } else if(dessertsTextView.getBackground() instanceof ColorDrawable){
-                        // Change it to the unselected background
-                        dessertsTextView.setBackground(getResources().getDrawable(R.drawable.dessert_example));
-
-                        // Get rid of the category title
-                        dessertsTextView.setText("");
-
-                        // Fade background in
-                        dessertsTextView.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
-                    } else{ // By process of elimination othersTextView was selected
-                        // Change it to the unselected background
-                        othersTextView.setBackground(getResources().getDrawable(R.drawable.other));
-
-                        // Get rid of the category title
-                        othersTextView.setText("");
-
-                        // Fade background in
-                        othersTextView.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
-                    }
-
-                    // Change mealsTextView to the background of sizzling red
-                    mealsTextView.setBackground(new ColorDrawable(getResources().getColor(R.color.sizzlingRed)));
-
-                    // Add "MEALS" text
-                    mealsTextView.setText(R.string.mealsTitle);
-
-                    // Fade in new background
-                    mealsTextView.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
-                }
+                selectRecipeCategory(Recipe.Category.MEAL);
             }
         });
 
@@ -166,58 +113,7 @@ public class AddRecipeBulkFragment extends Fragment {
         dessertsTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ColorDrawable backgroundColorDrawable = null;
-
-                // Get the current background color
-                if (dessertsTextView.getBackground() instanceof ColorDrawable) {
-                    backgroundColorDrawable = (ColorDrawable) dessertsTextView.getBackground();
-                }
-
-                // If background color is  not "sizzling red"
-                //(If dessertsTextView wasn't the last category selected)
-                if (backgroundColorDrawable == null) {
-
-                    // Find the previously selected TextView
-                    // Which will have the background color of sizzling red and will be
-                    // an instance of ColorDrawable
-                    if(mealsTextView.getBackground() instanceof ColorDrawable){
-                        // Change it to the unselected background
-                        mealsTextView.setBackground(getResources().getDrawable(R.drawable.meal));
-
-                        // Get rid of the category title
-                        mealsTextView.setText("");
-
-                        // Fade background in
-                        mealsTextView.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
-                    } else if(drinksTextView.getBackground() instanceof ColorDrawable){
-                        // Change it to the unselected background
-                        drinksTextView.setBackground(getResources().getDrawable(R.drawable.drinks_example));
-
-                        // Get rid of the category title
-                        drinksTextView.setText("");
-
-                        // Fade background in
-                        drinksTextView.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
-                    } else{ // By process of elimination othersTextView was selected
-                        // Change it to the unselected background
-                        othersTextView.setBackground(getResources().getDrawable(R.drawable.other));
-
-                        // Get rid of the category title
-                        othersTextView.setText("");
-
-                        // Fade background in
-                        othersTextView.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
-                    }
-
-                    // Change dessertsTextView to the background of sizzling red
-                    dessertsTextView.setBackground(new ColorDrawable(getResources().getColor(R.color.sizzlingRed)));
-
-                    // Add "DESSERTS" text
-                    dessertsTextView.setText(R.string.dessertsTitle);
-
-                    // Fade in new background
-                    dessertsTextView.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
-                }
+                selectRecipeCategory(Recipe.Category.DESSERT);
             }
         });
 
@@ -225,58 +121,7 @@ public class AddRecipeBulkFragment extends Fragment {
         drinksTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ColorDrawable backgroundColorDrawable = null;
-
-                // Get the current background color
-                if (drinksTextView.getBackground() instanceof ColorDrawable) {
-                    backgroundColorDrawable = (ColorDrawable) drinksTextView.getBackground();
-                }
-
-                // If background color is  not "sizzling red"
-                //(If drinksTextView wasn't the last category selected)
-                if (backgroundColorDrawable == null) {
-
-                    // Find the previously selected TextView
-                    // Which will have the background color of sizzling red and will be
-                    // an instance of ColorDrawable
-                    if(mealsTextView.getBackground() instanceof ColorDrawable){
-                        // Change it to the unselected background
-                        mealsTextView.setBackground(getResources().getDrawable(R.drawable.meal));
-
-                        // Get rid of the category title
-                        mealsTextView.setText("");
-
-                        // Fade background in
-                        mealsTextView.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
-                    } else if(dessertsTextView.getBackground() instanceof ColorDrawable){
-                        // Change it to the unselected background
-                        dessertsTextView.setBackground(getResources().getDrawable(R.drawable.dessert_example));
-
-                        // Get rid of the category title
-                        dessertsTextView.setText("");
-
-                        // Fade background in
-                        dessertsTextView.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
-                    } else{ // By process of elimination othersTextView was selected
-                        // Change it to the unselected background
-                        othersTextView.setBackground(getResources().getDrawable(R.drawable.other));
-
-                        // Get rid of the category title
-                        othersTextView.setText("");
-
-                        // Fade background in
-                        othersTextView.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
-                    }
-
-                    // Change drinksTextView to the background of sizzling red
-                    drinksTextView.setBackground(new ColorDrawable(getResources().getColor(R.color.sizzlingRed)));
-
-                    // Add "DRINKS" text
-                    drinksTextView.setText(R.string.drinksTitle);
-
-                    // Fade in new background
-                    drinksTextView.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
-                }
+                selectRecipeCategory(Recipe.Category.DRINK);
             }
         });
 
@@ -284,58 +129,7 @@ public class AddRecipeBulkFragment extends Fragment {
         othersTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ColorDrawable backgroundColorDrawable = null;
-
-                // Get the current background color
-                if (othersTextView.getBackground() instanceof ColorDrawable) {
-                    backgroundColorDrawable = (ColorDrawable) othersTextView.getBackground();
-                }
-
-                // If background color is  not "sizzling red"
-                //(If othersTextView wasn't the last category selected)
-                if (backgroundColorDrawable == null) {
-
-                    // Find the previously selected TextView
-                    // Which will have the background color of sizzling red and will be
-                    // an instance of ColorDrawable
-                    if(mealsTextView.getBackground() instanceof ColorDrawable){
-                        // Change it to the unselected background
-                        mealsTextView.setBackground(getResources().getDrawable(R.drawable.meal));
-
-                        // Get rid of the category title
-                        mealsTextView.setText("");
-
-                        // Fade background in
-                        mealsTextView.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
-                    } else if(drinksTextView.getBackground() instanceof ColorDrawable){
-                        // Change it to the unselected background
-                        drinksTextView.setBackground(getResources().getDrawable(R.drawable.drinks_example));
-
-                        // Get rid of the category title
-                        drinksTextView.setText("");
-
-                        // Fade background in
-                        drinksTextView.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
-                    } else{ // By process of elimination dessertsTextView was selected
-                        // Change it to the unselected background
-                        dessertsTextView.setBackground(getResources().getDrawable(R.drawable.dessert_example));
-
-                        // Get rid of the category title
-                        dessertsTextView.setText("");
-
-                        // Fade background in
-                        dessertsTextView.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
-                    }
-
-                    // Change othersTextView to the background of sizzling red
-                    othersTextView.setBackground(new ColorDrawable(getResources().getColor(R.color.sizzlingRed)));
-
-                    // Add "OTHERS" text
-                    othersTextView.setText(R.string.othersTitle);
-
-                    // Fade in new background
-                    othersTextView.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
-                }
+                selectRecipeCategory(Recipe.Category.OTHER);
             }
         });
 
@@ -407,10 +201,93 @@ public class AddRecipeBulkFragment extends Fragment {
         chooseImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                openGallery();
             }
         });
 
         return view;
+    }
+
+    /**
+     * This method is used for the selecting of the recipe category and will change the
+     * background color of the selected TextView to sizzling red as well as add the words for
+     * the selected category. It will also remove the text of the last selected TextView (if it
+     * is different than the current one) and change the background to the image chosen to represent
+     * the category. If the current selected TextView is different from the previously selected TextView
+     * then both will be faded in using an animation.
+     * @param currentCategory category representing the current selected TextView
+     */
+    private void selectRecipeCategory(Recipe.Category currentCategory){
+        Recipe.Category previousCategory;
+
+        // Find which TextView was the last one selected
+        if(mealsTextView.getBackground() instanceof ColorDrawable){
+            previousCategory = Recipe.Category.MEAL;
+        } else if(drinksTextView.getBackground() instanceof ColorDrawable){
+            previousCategory = Recipe.Category.DRINK;
+        } else if(dessertsTextView.getBackground() instanceof  ColorDrawable){
+            previousCategory = Recipe.Category.DESSERT;
+        } else{
+            previousCategory = Recipe.Category.OTHER;
+        }
+
+        // If the current and previous category are different
+        if(previousCategory != currentCategory) {
+            // Set the background to sizzling red for the current category's TextView
+            // Set the text for the current category's TextView
+            // Fade in current TextView
+            switch(currentCategory){
+                case MEAL:
+                    mealsTextView.setBackground(new ColorDrawable(getResources().getColor(R.color.sizzlingRed)));
+                    mealsTextView.setText(R.string.mealsTitle);
+                    mealsTextView.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
+                    break;
+                case DRINK:
+                    drinksTextView.setBackground(new ColorDrawable(getResources().getColor(R.color.sizzlingRed)));
+                    drinksTextView.setText(R.string.drinksTitle);
+                    drinksTextView.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
+                    break;
+                case DESSERT:
+                    dessertsTextView.setBackground(new ColorDrawable(getResources().getColor(R.color.sizzlingRed)));
+                    dessertsTextView.setText(R.string.dessertsTitle);
+                    dessertsTextView.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
+                    break;
+                case OTHER:
+                    othersTextView.setBackground(new ColorDrawable(getResources().getColor(R.color.sizzlingRed)));
+                    othersTextView.setText(R.string.othersTitle);
+                    othersTextView.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
+                    break;
+            }
+
+            // Change the background for the previous category's TextView
+            // Remove the text for the previous category's TextView
+            // Fade in previous category's TextView
+            switch (previousCategory){
+                case MEAL:
+                    mealsTextView.setBackground(getResources().getDrawable(R.drawable.meal));
+                    mealsTextView.setText("");
+                    mealsTextView.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
+                    break;
+                case DRINK:
+                    drinksTextView.setBackground(getResources().getDrawable(R.drawable.drinks_example));
+                    drinksTextView.setText("");
+                    drinksTextView.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
+                    break;
+                case DESSERT:
+                    dessertsTextView.setBackground(getResources().getDrawable(R.drawable.dessert_example));
+                    dessertsTextView.setText("");
+                    dessertsTextView.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
+                    break;
+                case OTHER:
+                    othersTextView.setBackground(getResources().getDrawable(R.drawable.other));
+                    othersTextView.setText("");
+                    othersTextView.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
+                    break;
+            }
+        }
+    }
+
+    private void openGallery(){
+
     }
 }
