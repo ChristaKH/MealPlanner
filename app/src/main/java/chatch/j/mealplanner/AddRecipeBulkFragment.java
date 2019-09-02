@@ -33,6 +33,7 @@ import com.warkiz.widget.IndicatorSeekBar;
 public class AddRecipeBulkFragment extends Fragment {
 
     // Important components from the xml
+    private TextView nameWarningTextView;
     private EditText newRecipeTitleEditText;
     private EditText newRecipeCreatorEditText;
     private IndicatorSeekBar cookTimeSeekbar;
@@ -45,6 +46,8 @@ public class AddRecipeBulkFragment extends Fragment {
     private TextView dessertsTextView;
     private TextView drinksTextView;
     private TextView othersTextView;
+
+    private Button chooseImageButton;
 
     private String recipeName;
     private String recipeCreator;
@@ -70,6 +73,7 @@ public class AddRecipeBulkFragment extends Fragment {
         category = "OTHER";
 
         // Connect java objects to their xml counterparts
+        nameWarningTextView = view.findViewById(R.id.nameWarningTextView);
         newRecipeTitleEditText = view.findViewById(R.id.newRecipeTitleEditText);
         newRecipeCreatorEditText = view.findViewById(R.id.newRecipeCreatorEditText);
         cookTimeSeekbar = view.findViewById(R.id.cookTimeSeekBar);
@@ -82,6 +86,8 @@ public class AddRecipeBulkFragment extends Fragment {
         dessertsTextView = view.findViewById(R.id.dessertsTextView);
         drinksTextView = view.findViewById(R.id.drinksTextView);
         othersTextView = view.findViewById(R.id.othersTextView);
+
+        chooseImageButton = view.findViewById(R.id.chooseImageButton);
 
         // Start off with the mealsTextView being "selected"
         mealsTextView.setBackground(new ColorDrawable(getResources().getColor(R.color.sizzlingRed)));
@@ -395,6 +401,16 @@ public class AddRecipeBulkFragment extends Fragment {
                 difficulty = "HARD";
             }
         });
+
+        // Time to ask the user for a picture to use from their gallery for their recipe
+        // Set the onClickListener for the image selecting button
+        chooseImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
         return view;
     }
 }
