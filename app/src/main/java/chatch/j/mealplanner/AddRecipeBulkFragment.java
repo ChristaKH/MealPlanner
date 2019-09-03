@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.warkiz.widget.IndicatorSeekBar;
 
@@ -54,8 +55,8 @@ public class AddRecipeBulkFragment extends Fragment {
     private String recipeName;
     private String recipeCreator;
     private int cookTime;
-    private String difficulty;
-    private String category;
+    private Recipe.Difficulty difficulty;
+    private Recipe.Category category;
 
     public AddRecipeBulkFragment() {
         // Required empty public constructor
@@ -71,8 +72,8 @@ public class AddRecipeBulkFragment extends Fragment {
         recipeName = "";
         recipeCreator = "";
         cookTime = 0;
-        difficulty = "EASY";
-        category = "OTHER";
+        difficulty = Recipe.Difficulty.EASY;
+        category = Recipe.Category.OTHER;
 
         // Connect java objects to their xml counterparts
         nameWarningTextView = view.findViewById(R.id.nameWarningTextView);
@@ -93,6 +94,7 @@ public class AddRecipeBulkFragment extends Fragment {
         // Start off with the mealsTextView being "selected"
         mealsTextView.setBackground(new ColorDrawable(getResources().getColor(R.color.sizzlingRed)));
         mealsTextView.setText(R.string.mealsTitle);
+        category = Recipe.Category.MEAL;
         dessertsTextView.setBackground(getResources().getDrawable(R.drawable.dessert_example));
         dessertsTextView.setText("");
         drinksTextView.setBackground(getResources().getDrawable(R.drawable.drinks_example));
@@ -150,8 +152,8 @@ public class AddRecipeBulkFragment extends Fragment {
                 hardDifficultyButton.setBackgroundTintList(view.getResources().getColorStateList(R.color.white));
                 hardDifficultyButton.setTextColor(getResources().getColor(R.color.black));
 
-                // difficulty should be "EASY"
-                difficulty = "EASY";
+                // difficulty should be EASY
+                difficulty = Recipe.Difficulty.EASY;
             }
         });
 
@@ -170,8 +172,8 @@ public class AddRecipeBulkFragment extends Fragment {
                 hardDifficultyButton.setBackgroundTintList(view.getResources().getColorStateList(R.color.white));
                 hardDifficultyButton.setTextColor(getResources().getColor(R.color.black));
 
-                // difficulty should be set to "MEDIUM"
-                difficulty = "MEDIUM";
+                // difficulty should be set to MEDIUM
+                difficulty = Recipe.Difficulty.MEDIUM;
             }
         });
 
@@ -190,11 +192,41 @@ public class AddRecipeBulkFragment extends Fragment {
                 mediumDifficultyButton.setBackgroundTintList(view.getResources().getColorStateList(R.color.white));
                 mediumDifficultyButton.setTextColor(getResources().getColor(R.color.black));
 
-                // difficulty should be set to "HARD"
-                difficulty = "HARD";
+                // difficulty should be set to HARD
+                difficulty = Recipe.Difficulty.HARD;
             }
         });
 
+        // Set the onClickListener for the Next button
+        // When clicked, it should transition to the fragment that allows for the addition
+        // Of ingredients for the recipe.
+        // It should also check to see if the recipe name TextView is filled out.
+        // If not, the warning TextView should show up to alert the user and the transition to the
+        // Next fragment will not take place
+        // All filled out information should be passed to the next fragment
+        toIngredientsNextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // If the EditText for the recipe name is empty show the user the warning
+                if(newRecipeTitleEditText.getText().length() == 0){
+                    nameWarningTextView.setVisibility(View.VISIBLE);
+                } else{ // EditText for the recipe name has content inside
+                    // Retrieve the recipe name
+                    recipeName = newRecipeTitleEditText.getText().toString();
+
+                    // If the EditText for the creator name isn't empty, retrieve the creator name
+                    if(newRecipeCreatorEditText.getText().length() != 0){
+                        recipeCreator = newRecipeCreatorEditText.getText().toString();
+                    }
+
+                    // SeekBar will always yield a result so retrieve SeekBar value for cook time
+                    cookTime = cookTimeSeekbar.getProgress();
+
+                    // Difficulty is already updated in their button onClickListeners so no need to retrieve value
+                    // Category is already updated in the selectRecipeCategory() method so no need to retrieve value
+                }
+            }
+        });
         return view;
     }
 
@@ -203,7 +235,8 @@ public class AddRecipeBulkFragment extends Fragment {
      * background color of the selected TextView to sizzling red as well as add the words for
      * the selected category. It will also remove the text of the last selected TextView (if it
      * is different than the current one) and change the background to the image chosen to represent
-     * the category. If the current selected TextView is different from the previously selected TextView
+     * the category as well as change the value of the category variable to the appropriate value.
+     * If the current selected TextView is different from the previously selected TextView
      * then both will be faded in using an animation.
      * @param currentCategory category representing the current selected TextView
      */
@@ -252,26 +285,31 @@ public class AddRecipeBulkFragment extends Fragment {
             // Change the background for the previous category's TextView
             // Remove the text for the previous category's TextView
             // Fade in previous category's TextView
+            // Set the value of the category
             switch (previousCategory){
                 case MEAL:
                     mealsTextView.setBackground(getResources().getDrawable(R.drawable.meal));
                     mealsTextView.setText("");
                     mealsTextView.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
+                    category = Recipe.Category.MEAL;
                     break;
                 case DRINK:
                     drinksTextView.setBackground(getResources().getDrawable(R.drawable.drinks_example));
                     drinksTextView.setText("");
                     drinksTextView.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
+                    category = Recipe.Category.DRINK;
                     break;
                 case DESSERT:
                     dessertsTextView.setBackground(getResources().getDrawable(R.drawable.dessert_example));
                     dessertsTextView.setText("");
                     dessertsTextView.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
+                    category = Recipe.Category.DESSERT;
                     break;
                 case OTHER:
                     othersTextView.setBackground(getResources().getDrawable(R.drawable.other));
                     othersTextView.setText("");
                     othersTextView.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
+                    category = Recipe.Category.OTHER;
                     break;
             }
         }
