@@ -216,12 +216,17 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/chooseImageButton"
-        android:layout_width="65dp"
-        android:layout_height="50dp"
+        android:id="@+id/toIngredientsNextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/photo_icon"
+        android:background="@drawable/toolbar_gradient"
+        android:elevation="@dimen/verticalCardViewPadding"
+        android:fontFamily="@font/fira_sans_semibold"
+        android:text="@string/nextText"
+        android:textColor="@color/white"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.472"
@@ -258,7 +263,7 @@
         android:layout_marginBottom="32dp"
         android:layout_weight="12"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/chooseImageButton"
+        app:layout_constraintBottom_toTopOf="@+id/toIngredientsNextButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9">

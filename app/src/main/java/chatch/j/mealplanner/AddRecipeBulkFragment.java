@@ -1,18 +1,15 @@
 package chatch.j.mealplanner;
 
-import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,11 +18,7 @@ import android.widget.TextView;
 
 import com.warkiz.widget.IndicatorSeekBar;
 
-import java.net.URI;
-
 import chatch.j.mealplanner.Models.Recipe;
-
-import static android.app.Activity.RESULT_OK;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -56,15 +49,13 @@ public class AddRecipeBulkFragment extends Fragment {
     private TextView drinksTextView;
     private TextView othersTextView;
 
-    private Button chooseImageButton;
+    private Button toIngredientsNextButton;
 
     private String recipeName;
     private String recipeCreator;
     private int cookTime;
     private String difficulty;
     private String category;
-    private static final int PICK_IMAGE = 100;
-    private Uri imageURI;
 
     public AddRecipeBulkFragment() {
         // Required empty public constructor
@@ -91,14 +82,13 @@ public class AddRecipeBulkFragment extends Fragment {
         easyDifficultyButton = view.findViewById(R.id.easyDifficultyButton);
         mediumDifficultyButton = view.findViewById(R.id.mediumDifficultyButton);
         hardDifficultyButton = view.findViewById(R.id.hardDifficultyButton);
+        toIngredientsNextButton = view.findViewById(R.id.toIngredientsNextButton);
 
         // Connect TextViews to their xml counterparts
         mealsTextView = view.findViewById(R.id.mealsTextView);
         dessertsTextView = view.findViewById(R.id.dessertsTextView);
         drinksTextView = view.findViewById(R.id.drinksTextView);
         othersTextView = view.findViewById(R.id.othersTextView);
-
-        chooseImageButton = view.findViewById(R.id.chooseImageButton);
 
         // Start off with the mealsTextView being "selected"
         mealsTextView.setBackground(new ColorDrawable(getResources().getColor(R.color.sizzlingRed)));
@@ -205,15 +195,6 @@ public class AddRecipeBulkFragment extends Fragment {
             }
         });
 
-        // Time to ask the user for a picture to use from their gallery for their recipe
-        // Set the onClickListener for the image selecting button
-        chooseImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openGallery();
-            }
-        });
-
         return view;
     }
 
@@ -293,29 +274,6 @@ public class AddRecipeBulkFragment extends Fragment {
                     othersTextView.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
                     break;
             }
-        }
-    }
-
-    /**
-     * This method will begin the action of opening up the gallery on the user's mobile device
-     */
-    private void openGallery(){
-        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-        startActivityForResult(gallery, PICK_IMAGE);
-    }
-
-    /**
-     *
-     * @param requestCode
-     * @param resultCode
-     * @param data
-     */
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(resultCode == RESULT_OK && requestCode == PICK_IMAGE){
-            imageURI = data.getData();
         }
     }
 }
