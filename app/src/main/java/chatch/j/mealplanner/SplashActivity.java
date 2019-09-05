@@ -12,7 +12,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- * The SplashActivity is
+ * The SplashActivity is used to display the splash screen. This activity has a
+ * TextView with the app's title which will slowly fade into view. (To be added later)
+ * The activity also displays the logo/icon at the start and once the TextView is fully
+ * faded into view it'll perform an animation to spin the icon/logo.
  */
 public class SplashActivity extends AppCompatActivity {
 
@@ -23,6 +26,8 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        // Animation for the app title TextView
+        // Starts off invisible and then fades into view
         appTitleTextView = findViewById(R.id.appTitleTextView);
         appTitleTextView.setVisibility(View.INVISIBLE);
         appTitleTextView.startAnimation(AnimationUtils.loadAnimation(this, R.anim.splash_title_fade_in));
