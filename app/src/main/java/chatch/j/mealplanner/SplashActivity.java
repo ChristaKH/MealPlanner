@@ -11,6 +11,9 @@ import android.widget.TextView;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * The SplashActivity is
+ */
 public class SplashActivity extends AppCompatActivity {
 
     private TextView appTitleTextView;
