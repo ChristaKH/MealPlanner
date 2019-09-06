@@ -181,9 +181,9 @@ public class DBHelper extends SQLiteOpenHelper {
                     recipe.setDifficulty(Recipe.Difficulty.NONE);
                 }
 
-                recipe.setImageName(cursor.getString(5));
+                recipe.setImageName(cursor.getString(7));
 
-                String category = cursor.getString(6);
+                String category = cursor.getString(8);
                 if(category.equalsIgnoreCase("MEAL")){
                     recipe.setCategory(Recipe.Category.MEAL);
                 } else if(category.equalsIgnoreCase("DESSERT")){
@@ -295,7 +295,7 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.query(
                 DATABASE_TABLE,
-                new String[]{KEY_FIELD_ID, FIELD_RECIPE_TITLE, FIELD_CREATOR, FIELD_COOK_TIME, FIELD_DIFFICULTY, FIELD_IMAGE_NAME, FIELD_CATEGORY},
+                new String[]{KEY_FIELD_ID, FIELD_RECIPE_TITLE, FIELD_INGREDIENTS, FIELD_DIRECTIONS, FIELD_CREATOR, FIELD_COOK_TIME, FIELD_DIFFICULTY, FIELD_IMAGE_NAME, FIELD_CATEGORY},
                 KEY_FIELD_ID + "=?",
                 new String[]{String.valueOf(id)},
                 null, null, null, null );
@@ -308,13 +308,18 @@ public class DBHelper extends SQLiteOpenHelper {
 
             recipe.setId(cursor.getLong(0));
             recipe.setTitle(cursor.getString(1));
-            // TODO: Set the value of ingredients
-            // TODO: Set the value of the directions
-            // TODO: Shift cursor numbers
-            recipe.setCreator(cursor.getString(2));
-            recipe.setCookTime(cursor.getInt(3));
 
-            String difficulty = cursor.getString(4);
+            // DONE: Set the value of ingredients
+            recipe.setIngredients(convertStringToList(cursor.getString(2)));
+
+            // DONE: Set the value of the directions
+            recipe.setDirections(convertStringToList(cursor.getString(3)));
+
+            // DONE: Shift cursor numbers
+            recipe.setCreator(cursor.getString(4));
+            recipe.setCookTime(cursor.getInt(5));
+
+            String difficulty = cursor.getString(6);
             if(difficulty.equalsIgnoreCase("EASY")){
                 recipe.setDifficulty(Recipe.Difficulty.EASY);
             } else if(difficulty.equalsIgnoreCase("MEDIUM")){
@@ -325,9 +330,9 @@ public class DBHelper extends SQLiteOpenHelper {
                 recipe.setDifficulty(Recipe.Difficulty.NONE);
             }
 
-            recipe.setImageName(cursor.getString(5));
+            recipe.setImageName(cursor.getString(7));
 
-            String category = cursor.getString(6);
+            String category = cursor.getString(8);
             if(category.equalsIgnoreCase("MEAL")){
                 recipe.setCategory(Recipe.Category.MEAL);
             } else if(category.equalsIgnoreCase("DESSERT")){
