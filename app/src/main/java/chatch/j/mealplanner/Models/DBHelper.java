@@ -239,8 +239,12 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
 
         values.put(FIELD_RECIPE_TITLE, recipe.getTitle());
-        // TODO: put in info for the ingredients arraylist
-        // TODO: put in info for the directions arraylist
+        // DONE: put in info for the ingredients arraylist
+        values.put(FIELD_INGREDIENTS, convertListToString(recipe.getIngredients()));
+
+        // DONE: put in info for the directions arraylist
+        values.put(FIELD_DIRECTIONS, convertListToString(recipe.getDirections()));
+
         values.put(FIELD_CREATOR, recipe.getCreator());
         values.put(FIELD_COOK_TIME, recipe.getCookTime());
 
