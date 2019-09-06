@@ -76,8 +76,8 @@ public class DBHelper extends SQLiteOpenHelper {
         //ADD KEY-VALUE PAIR INFORMATION FOR THE RECIPE TITLE
         values.put(FIELD_RECIPE_TITLE, recipe.getTitle());
 
-        String ingredients = convertArrayToString((String[])recipe.getIngredients().toArray());
-        String directions = convertArrayToString((String[])recipe.getDirections().toArray());
+        String ingredients = convertListToString(recipe.getIngredients());
+        String directions = convertListToString(recipe.getDirections());
 
         values.put(FIELD_INGREDIENTS, ingredients);
         // DONE: put info for the directions array list
@@ -145,8 +145,8 @@ public class DBHelper extends SQLiteOpenHelper {
         // A cursor is the results of a database query (what gets returned)
         Cursor cursor = database.query(
                 DATABASE_TABLE,
-                // TODO: add ingredients and directions into the query
-                new String[]{KEY_FIELD_ID, FIELD_RECIPE_TITLE, FIELD_CREATOR, FIELD_COOK_TIME, FIELD_DIFFICULTY, FIELD_IMAGE_NAME, FIELD_CATEGORY},
+                // DONE: add ingredients and directions into the query
+                new String[]{KEY_FIELD_ID, FIELD_RECIPE_TITLE, FIELD_INGREDIENTS, FIELD_DIRECTIONS, FIELD_CREATOR, FIELD_COOK_TIME, FIELD_DIFFICULTY, FIELD_IMAGE_NAME, FIELD_CATEGORY},
                 null,
                 null,
                 null, null, null, null );
@@ -158,13 +158,19 @@ public class DBHelper extends SQLiteOpenHelper {
 
                 recipe.setId(cursor.getLong(0));
                 recipe.setTitle(cursor.getString(1));
-                // TODO: Set the value of ingredients
-                // TODO: Set the value of the directions
-                // TODO: Shift cursor numbers
-                recipe.setCreator(cursor.getString(2));
-                recipe.setCookTime(cursor.getInt(3));
+                // DONE: Set the value of ingredients
+                ArrayList<String> ingredients = convertStringToList(cursor.getString(2));
+                recipe.setIngredients(ingredients);
 
-                String difficulty = cursor.getString(4);
+                // DONE: Set the value of the directions
+                ArrayList<String> directions = convertStringToList(cursor.getString(3));
+                recipe.setDirections(directions);
+
+                // DONE: Shift cursor numbers
+                recipe.setCreator(cursor.getString(4));
+                recipe.setCookTime(cursor.getInt(5));
+
+                String difficulty = cursor.getString(6);
                 if(difficulty.equalsIgnoreCase("EASY")){
                     recipe.setDifficulty(Recipe.Difficulty.EASY);
                 } else if(difficulty.equalsIgnoreCase("MEDIUM")){
@@ -342,12 +348,12 @@ public class DBHelper extends SQLiteOpenHelper {
      * @param array String array that we wish to mush together into one String
      * @return  New String of mushed together values
      */
-    private String convertArrayToString(String[] array){
+    private String convertListToString(ArrayList<String> array){
         String str = "";
-        for (int i = 0;i<array.length; i++) {
-            str = str+array[i];
+        for (int i = 0;i<array.size(); i++) {
+            str = str+array.get(i);
             // Do not append comma at the end of last element
-            if(i<array.length-1){
+            if(i<array.size()-1){
                 str = str+strSeparator;
             }
         }
@@ -362,8 +368,14 @@ public class DBHelper extends SQLiteOpenHelper {
      * @param str   String value that we wish to separate. It is assumed to already be in the converted form.
      * @return  String array that contains the separated contents
      */
-    private String[] convertStringToArray(String str){
+    private ArrayList<String> convertStringToList(String str){
         String[] arr = str.split(strSeparator);
-        return arr;
+
+        ArrayList<String> array = new ArrayList<String>();
+
+        for(int i = 0; i < arr.length; i++){
+            array.add(arr[i]);
+        }
+        return array;
     }
 }
