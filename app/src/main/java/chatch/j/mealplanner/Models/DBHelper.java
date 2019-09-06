@@ -15,6 +15,8 @@ import java.util.List;
  */
 public class DBHelper extends SQLiteOpenHelper {
 
+    private String strSeparator = "__,__";  // Important for adding String array into table
+
     //TASK 1: DEFINE THE DATABASE VERSION, NAME AND TABLE NAME
     public static final String DATABASE_NAME = "MealPlanner";
     private static final String DATABASE_TABLE = "Recipes";
@@ -74,8 +76,12 @@ public class DBHelper extends SQLiteOpenHelper {
         //ADD KEY-VALUE PAIR INFORMATION FOR THE RECIPE TITLE
         values.put(FIELD_RECIPE_TITLE, recipe.getTitle());
 
-        // TODO: put info for the ingredients array list
-        // TODO: put info for the directions array list
+        String ingredients = convertArrayToString((String[])recipe.getIngredients().toArray());
+        String directions = convertArrayToString((String[])recipe.getDirections().toArray());
+
+        values.put(FIELD_INGREDIENTS, ingredients);
+        // DONE: put info for the directions array list
+        values.put(FIELD_DIRECTIONS, directions);
 
         // ADD KEY-VALUE PAIR INFORMATION FOR THE RECIPE CREATOR
         values.put(FIELD_CREATOR, recipe.getCookTime());
@@ -328,4 +334,36 @@ public class DBHelper extends SQLiteOpenHelper {
         return recipe;
     }
 
+    /**
+     * This method is useful since we cannot add String arrays into the table. Both
+     * the Recipe ingredients and directions come in a String array so this will convert
+     * the contents of the String arrays into one long string separated by a unique string
+     * of characters.
+     * @param array String array that we wish to mush together into one String
+     * @return  New String of mushed together values
+     */
+    private String convertArrayToString(String[] array){
+        String str = "";
+        for (int i = 0;i<array.length; i++) {
+            str = str+array[i];
+            // Do not append comma at the end of last element
+            if(i<array.length-1){
+                str = str+strSeparator;
+            }
+        }
+        return str;
+    }
+
+    /**
+     * This method is useful since we cannot add String arrays into the table and we cannot
+     * get String arrays back out. This method will take a String (assumed to be in the converted form)
+     * and separate it based on the designated combination of characters to signal a separation of String
+     * values.
+     * @param str   String value that we wish to separate. It is assumed to already be in the converted form.
+     * @return  String array that contains the separated contents
+     */
+    private String[] convertStringToArray(String str){
+        String[] arr = str.split(strSeparator);
+        return arr;
+    }
 }
