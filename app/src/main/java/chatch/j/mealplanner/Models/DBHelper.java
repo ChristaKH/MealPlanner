@@ -37,12 +37,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate (SQLiteDatabase database){
-        // TODO: add field information for the array lists
+        // DONE: add field information for the array lists
         String table = "CREATE TABLE IF NOT EXISTS " + DATABASE_TABLE + "("
                 + KEY_FIELD_ID + " INTEGER PRIMARY KEY, "
                 + FIELD_RECIPE_TITLE + " TEXT, "
-             /**   + FIELD_INGREGIENTS + " FILL LATER, " **/
-             /**    + FIELD_DIRECTIONS + " FILL LATER, " **/
+                + FIELD_INGREDIENTS + " TEXT, "
+                + FIELD_DIRECTIONS + " TEXT, "
                 + FIELD_CREATOR + " TEXT, "
                 + FIELD_COOK_TIME + " INTEGER, "
                 + FIELD_DIFFICULTY + " TEXT, "
