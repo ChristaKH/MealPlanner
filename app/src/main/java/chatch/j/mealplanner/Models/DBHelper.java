@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -183,7 +184,7 @@ public class DBHelper extends SQLiteOpenHelper {
                     recipe.setDifficulty(Recipe.Difficulty.NONE);
                 }
 
-                recipe.setImageName(cursor.getString(7));
+                recipe.setImage(cursor.getString(7));
 
                 String category = cursor.getString(8);
                 if(category.equalsIgnoreCase("MEAL")){
@@ -400,5 +401,14 @@ public class DBHelper extends SQLiteOpenHelper {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
         return outputStream.toByteArray();
+    }
+
+    /**
+     * This method takes an array of bytes and translates it to its Bitmap image
+     * @param imageBytes
+     * @return  Bitmap value of the entered bytes
+     */
+    public static Bitmap getBitmapFromBytes(byte[] imageBytes){
+        return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
     }
 }
