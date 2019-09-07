@@ -5,7 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,7 +86,7 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(FIELD_DIRECTIONS, directions);
 
         // ADD KEY-VALUE PAIR INFORMATION FOR THE RECIPE CREATOR
-        values.put(FIELD_CREATOR, recipe.getCookTime());
+        values.put(FIELD_CREATOR, recipe.getCreator());
 
         // ADD KEY-VALUE PAIR INFORMATION FOR THE RECIPE COOK TIME
         values.put(FIELD_COOK_TIME, recipe.getCookTime());
@@ -105,8 +107,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 break;
         }
 
-        //ADD KEY-VALUE PAIR INFORMATION FOR THE RECIPE IMAGE NAME
-        values.put(FIELD_IMAGE, recipe.getImageName());
+        //ADD KEY-VALUE PAIR INFORMATION FOR THE RECIPE IMAGE
+        values.put(FIELD_IMAGE, getBitmapAsByteArray(recipe.getImage()));
 
         // ADD KEY-VALUE PAIR INFORMATION FOR THE RECIPE CATEGORY
         switch(recipe.getCategory()){
@@ -386,5 +388,17 @@ public class DBHelper extends SQLiteOpenHelper {
             array.add(arr[i]);
         }
         return array;
+    }
+
+    /**
+     * This method prepares a Bitmap image to be put into the SQLite table by converting
+     * a Bitmap image into a series of bytes
+     * @param bitmap    Bitmap of the specific image
+     * @return  Array of bytes from the converted image.
+     */
+    public static byte[] getBitmapAsByteArray(Bitmap bitmap) {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
+        return outputStream.toByteArray();
     }
 }
