@@ -184,7 +184,7 @@ public class DBHelper extends SQLiteOpenHelper {
                     recipe.setDifficulty(Recipe.Difficulty.NONE);
                 }
 
-                recipe.setImage(cursor.getString(7));
+                recipe.setImage(getBitmapFromBytes(cursor.getBlob(7)));
 
                 String category = cursor.getString(8);
                 if(category.equalsIgnoreCase("MEAL")){
