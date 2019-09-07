@@ -281,7 +281,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 break;
         }
 
-        values.put(FIELD_IMAGE, recipe.getImageName());
+        values.put(FIELD_IMAGE, getBitmapAsByteArray(recipe.getImage()));
 
         db.update(DATABASE_TABLE, values, KEY_FIELD_ID + " = ?",
                 new String[]{String.valueOf(recipe.getId())});
