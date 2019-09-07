@@ -1,5 +1,6 @@
 package chatch.j.mealplanner.Models;
 
+import android.graphics.Bitmap;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class Recipe {
     private String mCreator;
     private Difficulty mDifficulty;
     private int mCookTime;
-    private String mImageName;
+    private Bitmap mImage;
     private Category mCategory;
     private long id; // exists for database reasons
 
@@ -51,7 +52,7 @@ public class Recipe {
         mCreator = "";
         mDifficulty = Difficulty.NONE;
         mCookTime = 0;
-        mImageName = "";
+        mImage = null;
         mCategory = Category.OTHER;
     }
 
@@ -68,7 +69,7 @@ public class Recipe {
         mCreator = "";
         mDifficulty = Difficulty.NONE;
         mCookTime = 0;
-        mImageName = "";
+        mImage = null;
         mCategory = Category.OTHER;
     }
 
@@ -87,7 +88,7 @@ public class Recipe {
         this.setCreator(creator);
         mDifficulty = Difficulty.NONE;
         mCookTime = 0;
-        mImageName = "";
+        mImage = null;
         mCategory = Category.OTHER;
     }
 
@@ -106,7 +107,7 @@ public class Recipe {
         this.setDifficulty(difficulty);
         mCreator = "";
         mCookTime = 0;
-        mImageName = "";
+        mImage = null;
         mCategory = Category.OTHER;
     }
 
@@ -125,7 +126,7 @@ public class Recipe {
         this.setCookTime(cookTime);
         mCreator = "";
         mDifficulty = Difficulty.NONE;
-        mImageName = "";
+        mImage = null;
         mCategory = Category.OTHER;
     }
 
@@ -138,18 +139,18 @@ public class Recipe {
      * @param creator   Name of creator of current recipe
      * @param difficulty    Level of difficulty for current recipe
      * @param cookTime  Time it takes to make the recipe in minutes
-     * @param imageName Name of the image file for the recipe
+     * @param image Image file of recipe
      * @param category  Category of the recipe
      */
     public Recipe(String title, ArrayList<String> ingredients, ArrayList<String> directions,
-                  String creator, Difficulty difficulty, int cookTime, String imageName, Category category) {
+                  String creator, Difficulty difficulty, int cookTime, Bitmap image, Category category) {
         this.setTitle(title);
         this.setIngredients(ingredients);
         this.setDirections(directions);
         this.setCookTime(cookTime);
         this.setCreator(creator);
         this.setDifficulty(difficulty);
-        this.setImageName(imageName);
+        this.setImage(image);
         this.setCategory(category);
     }
 
@@ -275,19 +276,19 @@ public class Recipe {
     }
 
     /**
-     * Method that returns the value of mImageName
-     * @return  Name of the image file for the recipe
+     * Method that returns the value of mImage
+     * @return  Image file for the recipe
      */
-    public String getImageName(){
-        return mImageName;
+    public Bitmap getImage(){
+        return mImage;
     }
 
     /**
-     * Method that sets the name of the image file of the recipe
-     * @param newImageName  New name of the image file
+     * Method that sets the image file of the recipe
+     * @param newImage  New image file
      */
-    public void setImageName(String newImageName){
-        mImageName = newImageName;
+    public void setImage(Bitmap newImage){
+        mImage = newImage;
     }
 
     /**
