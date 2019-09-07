@@ -48,7 +48,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 + FIELD_CREATOR + " TEXT, "
                 + FIELD_COOK_TIME + " INTEGER, "
                 + FIELD_DIFFICULTY + " TEXT, "
-                + FIELD_IMAGE + " TEXT, "
+                + FIELD_IMAGE + " BLOB, "
                 + FIELD_CATEGORY +  " TEXT " +  ")";
         database.execSQL (table);
     }
