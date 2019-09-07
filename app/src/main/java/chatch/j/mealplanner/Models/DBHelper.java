@@ -30,7 +30,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String FIELD_CREATOR = "creator_name";
     private static final String FIELD_COOK_TIME = "cook_time";
     private static final String FIELD_DIFFICULTY = "difficulty";
-    private static final String FIELD_IMAGE_NAME = "image_name";
+    private static final String FIELD_IMAGE = "image";
     private static final String FIELD_CATEGORY = "category";
 
     public DBHelper(Context context){
@@ -48,7 +48,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 + FIELD_CREATOR + " TEXT, "
                 + FIELD_COOK_TIME + " INTEGER, "
                 + FIELD_DIFFICULTY + " TEXT, "
-                + FIELD_IMAGE_NAME + " TEXT, "
+                + FIELD_IMAGE + " TEXT, "
                 + FIELD_CATEGORY +  " TEXT " +  ")";
         database.execSQL (table);
     }
@@ -106,7 +106,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
 
         //ADD KEY-VALUE PAIR INFORMATION FOR THE RECIPE IMAGE NAME
-        values.put(FIELD_IMAGE_NAME, recipe.getImageName());
+        values.put(FIELD_IMAGE, recipe.getImageName());
 
         // ADD KEY-VALUE PAIR INFORMATION FOR THE RECIPE CATEGORY
         switch(recipe.getCategory()){
@@ -146,7 +146,7 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor cursor = database.query(
                 DATABASE_TABLE,
                 // DONE: add ingredients and directions into the query
-                new String[]{KEY_FIELD_ID, FIELD_RECIPE_TITLE, FIELD_INGREDIENTS, FIELD_DIRECTIONS, FIELD_CREATOR, FIELD_COOK_TIME, FIELD_DIFFICULTY, FIELD_IMAGE_NAME, FIELD_CATEGORY},
+                new String[]{KEY_FIELD_ID, FIELD_RECIPE_TITLE, FIELD_INGREDIENTS, FIELD_DIRECTIONS, FIELD_CREATOR, FIELD_COOK_TIME, FIELD_DIFFICULTY, FIELD_IMAGE, FIELD_CATEGORY},
                 null,
                 null,
                 null, null, null, null );
@@ -278,7 +278,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 break;
         }
 
-        values.put(FIELD_IMAGE_NAME, recipe.getImageName());
+        values.put(FIELD_IMAGE, recipe.getImageName());
 
         db.update(DATABASE_TABLE, values, KEY_FIELD_ID + " = ?",
                 new String[]{String.valueOf(recipe.getId())});
@@ -295,7 +295,7 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.query(
                 DATABASE_TABLE,
-                new String[]{KEY_FIELD_ID, FIELD_RECIPE_TITLE, FIELD_INGREDIENTS, FIELD_DIRECTIONS, FIELD_CREATOR, FIELD_COOK_TIME, FIELD_DIFFICULTY, FIELD_IMAGE_NAME, FIELD_CATEGORY},
+                new String[]{KEY_FIELD_ID, FIELD_RECIPE_TITLE, FIELD_INGREDIENTS, FIELD_DIRECTIONS, FIELD_CREATOR, FIELD_COOK_TIME, FIELD_DIFFICULTY, FIELD_IMAGE, FIELD_CATEGORY},
                 KEY_FIELD_ID + "=?",
                 new String[]{String.valueOf(id)},
                 null, null, null, null );
