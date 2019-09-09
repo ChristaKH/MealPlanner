@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.transition.Fade;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -84,6 +85,7 @@ public class NewRecipeActivity extends AppCompatActivity
 
     @Override
     public void onAddIngredientsInteraction(Uri uri) {
-
+        // Complete later
     }
+
 }

@@ -35,4 +35,6 @@
     <string name="nextText">NEXT</string>
     <string name="splashTitle">MEAL PLANNER</string>
     <string name="inMinutesText">(In minutes)</string>
+    <string name="ingredientsText">INGREDIENTS</string>
+    <string name="ingredientNameText">Ingredient Name</string>
 </resources>
