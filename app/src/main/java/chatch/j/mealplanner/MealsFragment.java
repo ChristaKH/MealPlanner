@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -26,6 +27,7 @@ import chatch.j.mealplanner.Models.Recipe;
 public class MealsFragment extends Fragment {
 
     private RecyclerView mealsRecyclerView;
+    private TextView noMealsTextView;
     private RecipeRecyclerViewAdapter adapter;
 
     private ArrayList<Recipe> allRecipes;
@@ -51,6 +53,8 @@ public class MealsFragment extends Fragment {
         adapter = new RecipeRecyclerViewAdapter(meals);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
 
+        noMealsTextView = view.findViewById(R.id.noMealsTextView);
+
         mealsRecyclerView = view.findViewById(R.id.mealsRecyclerView);
         mealsRecyclerView.setLayoutManager(layoutManager);
         mealsRecyclerView.setAdapter(adapter);
@@ -60,11 +64,19 @@ public class MealsFragment extends Fragment {
         allRecipes = (ArrayList<Recipe>)db.getAllRecipes();
 
         // Separate all Recipe objects that have MEAL as their category
+        Recipe tempRecipe;
         for(int i = 0; i < allRecipes.size(); i++){
-            Recipe tempRecipe = allRecipes.get(i);
+            tempRecipe = allRecipes.get(i);
             if(tempRecipe.getCategory() == Recipe.Category.MEAL){
                 meals.add(tempRecipe);
             }
+        }
+
+        // If there are MEAL recipes display message to indicate that
+        if(meals.size() == 0){
+            noMealsTextView.setVisibility(View.VISIBLE);
+        } else{
+            noMealsTextView.setVisibility(View.INVISIBLE);
         }
 
         adapter.notifyDataSetChanged();
