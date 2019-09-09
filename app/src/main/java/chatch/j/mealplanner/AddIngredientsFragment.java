@@ -14,12 +14,12 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link AddIngredientsFragment.OnFragmentInteractionListener} interface
+ * {@link OnAddIngredientsInteractionListener} interface
  * to handle interaction events.
  */
 public class AddIngredientsFragment extends Fragment {
 
-    private OnFragmentInteractionListener mListener;
+    private OnAddIngredientsInteractionListener mListener;
 
     public AddIngredientsFragment() {
         // Required empty public constructor
@@ -35,18 +35,18 @@ public class AddIngredientsFragment extends Fragment {
 
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onAddIngredientsInteraction(uri);
         }
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof OnAddIngredientsInteractionListener) {
+            mListener = (OnAddIngredientsInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement OnAddIngredientsInteractionListener");
         }
     }
 
@@ -66,8 +66,8 @@ public class AddIngredientsFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    public interface OnAddIngredientsInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onAddIngredientsInteraction(Uri uri);
     }
 }
