@@ -17,7 +17,9 @@ import chatch.j.mealplanner.Models.Recipe;
  * This is the class for the XML activity_new_recipe. The activity exists
  * so that the user can input new recipes into the database and app.
  */
-public class NewRecipeActivity extends AppCompatActivity{
+public class NewRecipeActivity extends AppCompatActivity
+                                implements AddRecipeBulkFragment.AddRecipeBulkInteractionListener,
+                                            AddIngredientsFragment.OnAddIngredientsInteractionListener{
     private Toolbar toolbar;
 
     // New Recipe to be added
@@ -60,5 +62,28 @@ public class NewRecipeActivity extends AppCompatActivity{
                 ft.commit();
             }
         }
+    }
+
+    /**
+     * Defines the action that takes place when the Next button is clicked in
+     * the AddRecipeBulk fragment.
+     * When Next button is appropriately clicked (check in the fragment class),
+     * switch fragments from the AddRecipeBulkFragment to the AddIngredientsFragment
+     */
+    @Override
+    public void onBulkNextClicked() {
+        FragmentManager fragmentManager = this.getSupportFragmentManager();
+        if(fragmentManager != null){
+            FragmentTransaction ft = fragmentManager.beginTransaction();
+            if(ft != null){
+                ft.replace(R.id.newRecipeRootLayout, new AddIngredientsFragment());
+                ft.commit();
+            }
+        }
+    }
+
+    @Override
+    public void onAddIngredientsInteraction(Uri uri) {
+
     }
 }
