@@ -40,4 +40,6 @@
     <string name="previousShortText">PREV</string>
     <string name="noMealsText">No meal recipes yet!</string>
     <string name="noDessertsText">No dessert recipes yet!</string>
+    <string name="noDrinksText">No drink recipes yet!</string>
+    <string name="noOthersText">No other recipes yet!</string>
 </resources>

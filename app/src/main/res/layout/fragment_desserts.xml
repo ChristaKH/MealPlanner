@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- This is the xml for the desserts fragment which serves to display
+    all of the Recipes in the database that have the category of DESSERT.
+    This xml contains:
+    - RecyclerView to display all Dessert Recipes
+    - TextView to display message only if there are no Recipes in
+    the database with the category of DESSERT
+    -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
