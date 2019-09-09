@@ -38,4 +38,5 @@
     <string name="ingredientsText">INGREDIENTS</string>
     <string name="ingredientNameText">Ingredient Name</string>
     <string name="previousShortText">PREV</string>
+    <string name="noMealsText">No meal recipes yet!</string>
 </resources>
