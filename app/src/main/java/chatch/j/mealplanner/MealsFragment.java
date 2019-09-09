@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import chatch.j.mealplanner.Adapters.RecipeRecyclerViewAdapter;
+import chatch.j.mealplanner.Models.DBHelper;
 import chatch.j.mealplanner.Models.Recipe;
 
 
@@ -27,7 +28,9 @@ public class MealsFragment extends Fragment {
     private RecyclerView mealsRecyclerView;
     private RecipeRecyclerViewAdapter adapter;
 
-    private ArrayList<Recipe> meals = new ArrayList<Recipe>();
+    private ArrayList<Recipe> allRecipes;
+    private ArrayList<Recipe> meals;
+    private DBHelper db;
 
     public MealsFragment() {
         // Required empty public constructor
@@ -37,6 +40,12 @@ public class MealsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // Initialize the database
+        db = new DBHelper(getContext());
+
+        meals = new ArrayList<Recipe>();
+        allRecipes = new ArrayList<Recipe>();
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_meals, container, false);
         adapter = new RecipeRecyclerViewAdapter(meals);
@@ -44,14 +53,32 @@ public class MealsFragment extends Fragment {
 
         mealsRecyclerView = view.findViewById(R.id.mealsRecyclerView);
         mealsRecyclerView.setLayoutManager(layoutManager);
-        mealsRecyclerView.setAdapter(adapter);mealsRecyclerView.setHasFixedSize(true);
+        mealsRecyclerView.setAdapter(adapter);
+        mealsRecyclerView.setHasFixedSize(true);
 
-        prepareTestData();
+        // load all Recipe objects from the database
+        allRecipes = (ArrayList<Recipe>)db.getAllRecipes();
+
+        // Separate all Recipe objects that have MEAL as their category
+        for(int i = 0; i < allRecipes.size(); i++){
+            Recipe tempRecipe = allRecipes.get(i);
+            if(tempRecipe.getCategory() == Recipe.Category.MEAL){
+                meals.add(tempRecipe);
+            }
+        }
+
+        adapter.notifyDataSetChanged();
+
+        // prepareTestData();
 
         return view;
     }
 
 
+    /**
+     * This method exists solely for the purpose of testing the RecyclerView of the meals
+     * fragment. It will populate the Recycler with 10 empty Recipe objects to be displayed.
+     */
     public void prepareTestData(){
         Recipe temp = new Recipe();
         for(int i = 0; i < 10; i++){
