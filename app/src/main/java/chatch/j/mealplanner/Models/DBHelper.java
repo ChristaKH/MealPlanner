@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -108,8 +109,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 break;
         }
 
-        //ADD KEY-VALUE PAIR INFORMATION FOR THE RECIPE IMAGE
-        values.put(FIELD_IMAGE_URI, getBitmapAsByteArray(recipe.getImageUri()));
+        //ADD KEY-VALUE PAIR INFORMATION FOR THE RECIPE IMAGE URI
+        values.put(FIELD_IMAGE_URI, recipe.getImageUri().toString());
 
         // ADD KEY-VALUE PAIR INFORMATION FOR THE RECIPE CATEGORY
         switch(recipe.getCategory()){
@@ -184,7 +185,7 @@ public class DBHelper extends SQLiteOpenHelper {
                     recipe.setDifficulty(Recipe.Difficulty.NONE);
                 }
 
-                recipe.setImageUri(getBitmapFromBytes(cursor.getBlob(7)));
+                recipe.setImageUri(Uri.parse(cursor.getString(7)));
 
                 String category = cursor.getString(8);
                 if(category.equalsIgnoreCase("MEAL")){
@@ -281,7 +282,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 break;
         }
 
-        values.put(FIELD_IMAGE_URI, getBitmapAsByteArray(recipe.getImageUri()));
+        values.put(FIELD_IMAGE_URI, recipe.getImageUri().toString());
 
         db.update(DATABASE_TABLE, values, KEY_FIELD_ID + " = ?",
                 new String[]{String.valueOf(recipe.getId())});
@@ -333,7 +334,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 recipe.setDifficulty(Recipe.Difficulty.NONE);
             }
 
-            recipe.setImageUri(getBitmapFromBytes(cursor.getBlob(7)));
+            recipe.setImageUri(Uri.parse(cursor.getString(7)));
 
             String category = cursor.getString(8);
             if(category.equalsIgnoreCase("MEAL")){
@@ -389,26 +390,5 @@ public class DBHelper extends SQLiteOpenHelper {
             array.add(arr[i]);
         }
         return array;
-    }
-
-    /**
-     * This method prepares a Bitmap image to be put into the SQLite table by converting
-     * a Bitmap image into a series of bytes
-     * @param bitmap    Bitmap of the specific image
-     * @return  Array of bytes from the converted image.
-     */
-    public static byte[] getBitmapAsByteArray(Bitmap bitmap) {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
-        return outputStream.toByteArray();
-    }
-
-    /**
-     * This method takes an array of bytes and translates it to its Bitmap image
-     * @param imageBytes
-     * @return  Bitmap value of the entered bytes
-     */
-    public static Bitmap getBitmapFromBytes(byte[] imageBytes){
-        return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
     }
 }
