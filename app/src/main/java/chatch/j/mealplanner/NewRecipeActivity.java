@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
+import chatch.j.mealplanner.Models.Recipe;
+
 /**
  * This is the class for the XML activity_new_recipe. The activity exists
  * so that the user can input new recipes into the database and app.
@@ -18,10 +20,16 @@ public class NewRecipeActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
 
+    // New Recipe to be added
+    // Values of Recipe will change throughout the fragments
+    public static Recipe newRecipe;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_recipe);
+
+        newRecipe = new Recipe();
 
         // Set the toolbar
         toolbar = findViewById(R.id.toolbar);
