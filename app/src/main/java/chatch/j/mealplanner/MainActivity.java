@@ -11,17 +11,20 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
+import chatch.j.mealplanner.Models.DBHelper;
+import chatch.j.mealplanner.Models.Recipe;
 
-    // @TODO Create a Recipes class to hold many recipes
+public class MainActivity extends AppCompatActivity {
+    private DBHelper db;
+
     // @TODO Create a sorting method in the Recipes class
-    // @TODO Use an array list of Recipes instead of an array list of array lists (here and in adapters)
     private Toolbar toolbar;
     private BottomNavigationView mainBottomNavigationView;
 
@@ -29,6 +32,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        db = new DBHelper(this);
+        db.deleteAllRecipes();
+        prepareTestRecipes();
 
         // Connect the components of the xml to the main activity
         toolbar = findViewById(R.id.toolbar);
@@ -142,5 +149,18 @@ public class MainActivity extends AppCompatActivity {
                 ft.commit();
             }
         }
+    }
+
+    private void prepareTestRecipes(){
+        // Meal Recipe object
+        Recipe meal = new Recipe();
+        meal.setTitle("meal");
+        meal.setDifficulty(Recipe.Difficulty.MEDIUM);
+        meal.setCookTime(60);
+        meal.setImageUri(BitmapFactory.decodeResource(getResources(),
+                R.drawable.meal));
+        meal.setCategory(Recipe.Category.MEAL);
+
+        db.addRecipe(meal);
     }
 }

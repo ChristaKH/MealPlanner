@@ -1,10 +1,9 @@
 package chatch.j.mealplanner.Models;
 
 import android.graphics.Bitmap;
-import android.util.Log;
+import android.net.Uri;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * This Recipe class represents a single recipe
@@ -31,7 +30,7 @@ public class Recipe {
     private String mCreator;
     private Difficulty mDifficulty;
     private int mCookTime;
-    private Bitmap mImage;
+    private Uri mImageUri;
     private Category mCategory;
     private long id; // exists for database reasons
 
@@ -52,7 +51,7 @@ public class Recipe {
         mCreator = "";
         mDifficulty = Difficulty.NONE;
         mCookTime = 0;
-        mImage = null;
+        mImageUri = null;
         mCategory = Category.OTHER;
     }
 
@@ -69,7 +68,7 @@ public class Recipe {
         mCreator = "";
         mDifficulty = Difficulty.NONE;
         mCookTime = 0;
-        mImage = null;
+        mImageUri = null;
         mCategory = Category.OTHER;
     }
 
@@ -88,7 +87,7 @@ public class Recipe {
         this.setCreator(creator);
         mDifficulty = Difficulty.NONE;
         mCookTime = 0;
-        mImage = null;
+        mImageUri = null;
         mCategory = Category.OTHER;
     }
 
@@ -107,7 +106,7 @@ public class Recipe {
         this.setDifficulty(difficulty);
         mCreator = "";
         mCookTime = 0;
-        mImage = null;
+        mImageUri = null;
         mCategory = Category.OTHER;
     }
 
@@ -126,7 +125,7 @@ public class Recipe {
         this.setCookTime(cookTime);
         mCreator = "";
         mDifficulty = Difficulty.NONE;
-        mImage = null;
+        mImageUri = null;
         mCategory = Category.OTHER;
     }
 
@@ -139,18 +138,18 @@ public class Recipe {
      * @param creator   Name of creator of current recipe
      * @param difficulty    Level of difficulty for current recipe
      * @param cookTime  Time it takes to make the recipe in minutes
-     * @param image Image file of recipe
+     * @param imageUri Image file of recipe
      * @param category  Category of the recipe
      */
     public Recipe(String title, ArrayList<String> ingredients, ArrayList<String> directions,
-                  String creator, Difficulty difficulty, int cookTime, Bitmap image, Category category) {
+                  String creator, Difficulty difficulty, int cookTime, Uri imageUri, Category category) {
         this.setTitle(title);
         this.setIngredients(ingredients);
         this.setDirections(directions);
         this.setCookTime(cookTime);
         this.setCreator(creator);
         this.setDifficulty(difficulty);
-        this.setImage(image);
+        this.setImageUri(imageUri);
         this.setCategory(category);
     }
 
@@ -276,19 +275,19 @@ public class Recipe {
     }
 
     /**
-     * Method that returns the value of mImage
-     * @return  Image file for the recipe
+     * Method that returns the value of mImageUri
+     * @return  Image Uri for the recipe
      */
-    public Bitmap getImage(){
-        return mImage;
+    public Uri getImageUri(){
+        return mImageUri;
     }
 
     /**
      * Method that sets the image file of the recipe
-     * @param newImage  New image file
+     * @param newImageUri  New image Uri
      */
-    public void setImage(Bitmap newImage){
-        mImage = newImage;
+    public void setImageUri(Uri newImageUri){
+        mImageUri = newImageUri;
     }
 
     /**

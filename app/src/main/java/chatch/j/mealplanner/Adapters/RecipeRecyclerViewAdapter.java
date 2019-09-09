@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import chatch.j.mealplanner.Models.Recipe;
 import chatch.j.mealplanner.R;
@@ -124,9 +123,17 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
             // @TODO properly add in images
             // cardRecipeImageView.setImageDrawable();
             cardRecipeTitleTextView.setText(recipe.getTitle());
-            cardCreatorTextView.setText(recipe.getCreator());
-            cardCookTimeTextView.setText(String.valueOf(recipe.getCookTime()));
+            if(recipe.getCreator().length() == 0){
+                cardCreatorTextView.setText("--");
+            } else {
+                cardCreatorTextView.setText(recipe.getCreator());
+            }
 
+            cardCookTimeTextView.setText(String.valueOf(recipe.getCookTime()) + " minutes");
+
+            if(recipe.getImageUri() != null){
+                cardRecipeImageView.setImageBitmap(recipe.getImageUri());
+            }
             // Change the text view based on the enum representing difficulty
             switch(recipe.getDifficulty()){
                 case NONE:
