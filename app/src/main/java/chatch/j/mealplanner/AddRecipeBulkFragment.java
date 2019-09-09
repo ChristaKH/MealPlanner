@@ -226,6 +226,13 @@ public class AddRecipeBulkFragment extends Fragment {
 
                     // Difficulty is already updated in their button onClickListeners so no need to retrieve value
                     // Category is already updated in the selectRecipeCategory() method so no need to retrieve value
+
+                    // Change the values of the newRecipe object in the NewRecipe activity
+                    NewRecipeActivity.newRecipe.setTitle(recipeName);
+                    NewRecipeActivity.newRecipe.setCreator(recipeCreator);
+                    NewRecipeActivity.newRecipe.setCookTime(cookTime);
+                    NewRecipeActivity.newRecipe.setDifficulty(difficulty);
+                    NewRecipeActivity.newRecipe.setCategory(category);
                 }
             }
         });

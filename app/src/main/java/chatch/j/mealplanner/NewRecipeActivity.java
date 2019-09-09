@@ -22,6 +22,7 @@ public class NewRecipeActivity extends AppCompatActivity {
 
     // New Recipe to be added
     // Values of Recipe will change throughout the fragments
+    // If final finish button is clicked then this object will be added to the database
     public static Recipe newRecipe;
 
     @Override
