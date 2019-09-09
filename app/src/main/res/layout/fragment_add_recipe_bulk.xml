@@ -125,6 +125,14 @@
             android:text="@string/cookTime"
             android:textSize="18sp" />
 
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/fira_sans"
+            android:gravity="center"
+            android:text="@string/inMinutesText" />
+
         <com.warkiz.widget.IndicatorSeekBar
             android:id="@+id/cookTimeSeekBar"
             android:layout_width="match_parent"

@@ -30,7 +30,6 @@ import chatch.j.mealplanner.Models.Recipe;
  *     - Creator: Optional (TextView)
  *     - Cook Time: Optional (SeekBar)
  *     - Difficulty: Optional (Three buttons)
- *     - Image: Optional (normal button that opens up the gallery to take a picture)
  *     - Category: Optional (clickable TextViews)
  */
 public class AddRecipeBulkFragment extends Fragment {
@@ -52,6 +51,7 @@ public class AddRecipeBulkFragment extends Fragment {
 
     private Button toIngredientsNextButton;
 
+    // These will hold the values to be put in a Recipe object
     private String recipeName;
     private String recipeCreator;
     private int cookTime;
@@ -211,6 +211,8 @@ public class AddRecipeBulkFragment extends Fragment {
                 if(newRecipeTitleEditText.getText().length() == 0){
                     nameWarningTextView.setVisibility(View.VISIBLE);
                 } else{ // EditText for the recipe name has content inside
+                    nameWarningTextView.setVisibility(View.INVISIBLE);
+
                     // Retrieve the recipe name
                     recipeName = newRecipeTitleEditText.getText().toString();
 

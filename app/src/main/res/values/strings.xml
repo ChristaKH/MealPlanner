@@ -34,4 +34,5 @@
     <string name="nameWarningText">Recipe name is required</string>
     <string name="nextText">NEXT</string>
     <string name="splashTitle">MEAL PLANNER</string>
+    <string name="inMinutesText">(In minutes)</string>
 </resources>
