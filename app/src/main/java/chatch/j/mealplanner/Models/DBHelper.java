@@ -5,11 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +21,7 @@ public class DBHelper extends SQLiteOpenHelper {
     //TASK 1: DEFINE THE DATABASE VERSION, NAME AND TABLE NAME
     public static final String DATABASE_NAME = "MealPlanner";
     private static final String DATABASE_TABLE = "Recipes";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     //TASK 2: DEFINE THE FIELDS (COLUMN NAMES) FOR THE TABLE
     private static final String KEY_FIELD_ID = "_id";
@@ -57,6 +54,9 @@ public class DBHelper extends SQLiteOpenHelper {
         database.execSQL (table);
     }
 
+    public void deleteDatabase(SQLiteDatabase database){
+        database.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE);
+    }
 
     @Override
     public void onUpgrade(SQLiteDatabase database,

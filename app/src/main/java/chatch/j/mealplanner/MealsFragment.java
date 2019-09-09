@@ -44,7 +44,6 @@ public class MealsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Initialize the database
         db = new DBHelper(getContext());
-
         meals = new ArrayList<Recipe>();
         allRecipes = new ArrayList<Recipe>();
 
