@@ -2,13 +2,10 @@ package chatch.j.mealplanner;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.transition.Fade;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
@@ -83,9 +80,21 @@ public class NewRecipeActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * This is the method that allows communication from the AddIngredientsFragment to
+     * the AddRecipeBulkFragment. Specifically used when the preious button is clicked, this
+     * method makes the transition back to the AddRecipeBulkFragment
+     */
     @Override
-    public void onAddIngredientsInteraction(Uri uri) {
-        // Complete later
+    public void previousButtonClicked() {
+        FragmentManager fragmentManager = this.getSupportFragmentManager();
+        if(fragmentManager != null){
+            FragmentTransaction ft = fragmentManager.beginTransaction();
+            if(ft != null){
+                ft.replace(R.id.newRecipeRootLayout, new AddRecipeBulkFragment());
+                ft.commit();
+            }
+        }
     }
 
 }

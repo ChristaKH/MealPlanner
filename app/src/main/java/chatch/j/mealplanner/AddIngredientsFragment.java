@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.Button;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,6 +18,11 @@ import android.view.ViewGroup;
  * to handle interaction events.
  */
 public class AddIngredientsFragment extends Fragment {
+
+    private String[] measurements = {"--", "TSP", "TBSP", "CUP", "QT", "OZ", "LB","GAL", "PT"};
+
+    //Components of the xml
+    private Button previousButton;
 
     private OnAddIngredientsInteractionListener mListener;
 
@@ -30,13 +35,18 @@ public class AddIngredientsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_ingredients, container, false);
-    }
+        View view = inflater.inflate(R.layout.fragment_add_ingredients, container, false);
+        previousButton = view.findViewById(R.id.previousButton);
 
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onAddIngredientsInteraction(uri);
-        }
+        // If the previous button is clicked, return to the AddRecipeBulkFragment
+        previousButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mListener.previousButtonClicked();
+            }
+        });
+
+        return view;
     }
 
     @Override
@@ -67,7 +77,6 @@ public class AddIngredientsFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnAddIngredientsInteractionListener {
-        // TODO: Update argument type and name
-        void onAddIngredientsInteraction(Uri uri);
+        void previousButtonClicked();
     }
 }
