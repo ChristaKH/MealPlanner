@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- This is the xml for the Login Activity. This will be used to either
+    sign a user in or sign a user up for the app.
+    This Activity's components include:
+    - TextView to display the app name at the top
+    - ImageView to display the app logo at the top (Add later)
+    - ImageView to display the icon that will be used to represent
+    the email section
+    - EditText that will be used for the user to enter their email for the account
+    - ImageView to display the icon that will be used to represent the password section
+    - EditText that will be used for the user to enter their password for the account
+    - Button that will be pressed when the user wants to sign into their account
+    - Button that will be pressed when the user wants to sign up for an account
+    - TextView that will display the warning/error signs when necessary and stay invisible otherwise
+    -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -95,4 +109,73 @@
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@+id/emailEditText"
         app:layout_constraintVertical_bias="0.007" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordEditText"
+        app:layout_constraintVertical_bias="0.044">
+
+        <com.github.florent37.shapeofview.shapes.RoundRectView
+            android:id="@+id/roundRectView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+
+            android:layout_weight="1"
+            android:elevation="4dp"
+            app:shape_roundRect_borderWidth="2dp"
+            app:shape_roundRect_bottomLeftRadius="10dp"
+            app:shape_roundRect_bottomRightRadius="10dp"
+            app:shape_roundRect_topLeftRadius="10dp"
+            app:shape_roundRect_topRightRadius="10dp">
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/toolbar_gradient"
+                android:fontFamily="@font/fira_sans_semibold"
+                android:text="@string/action_sign_in_short"
+                android:textColor="@color/white" />
+        </com.github.florent37.shapeofview.shapes.RoundRectView>
+
+        <com.github.florent37.shapeofview.shapes.RoundRectView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+
+            android:elevation="4dp"
+            app:shape_roundRect_borderWidth="2dp"
+            app:shape_roundRect_bottomLeftRadius="10dp"
+            app:shape_roundRect_bottomRightRadius="10dp"
+            app:shape_roundRect_topLeftRadius="10dp"
+            app:shape_roundRect_topRightRadius="10dp">
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/toolbar_gradient"
+                android:fontFamily="@font/fira_sans_semibold"
+                android:text="@string/signUpText"
+                android:textColor="@color/white" />
+        </com.github.florent37.shapeofview.shapes.RoundRectView>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
