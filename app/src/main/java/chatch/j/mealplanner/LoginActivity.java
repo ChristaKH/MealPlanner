@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.AuthResult;
@@ -29,15 +30,29 @@ public class LoginActivity extends AppCompatActivity {
     private EditText passwordEditText;
     private Button signInButton;
     private Button signUpButton;
+    private TextView loginErrorTextView;
 
     // Firebase objects
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
+    private String emptyEmailError = "Must enter a valid email";
+    private String emptyPasswordError = "Must enter a valid password";
+    private String shortPasswordError = "Password must be at least 6 character long";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        // Connect to xml components
+        emailEditText = findViewById(R.id.emailEditText);
+        passwordEditText = findViewById(R.id.passwordEditText);
+        signInButton = findViewById(R.id.signInButton);
+        signUpButton = findViewById(R.id.signUpButton);
+        loginErrorTextView = findViewById(R.id.loginErrorTextView);
+
+        loginErrorTextView.setVisibility(View.INVISIBLE);
 
         // Instantiate our Firebase object
         mAuth = FirebaseAuth.getInstance();
@@ -61,16 +76,26 @@ public class LoginActivity extends AppCompatActivity {
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String email = emailEditText.getText().toString();
+                String password = passwordEditText.getText().toString();
 
+                // If there was no email entered, display email error message
+                if(email.length() == 0){
+                    loginErrorTextView.setText(emptyEmailError);
+                    loginErrorTextView.setVisibility(View.VISIBLE);
+                } else if(password.length() == 0){
+                    // If there was no password entered, display password error message
+                    loginErrorTextView.setText(emptyPasswordError);
+                    loginErrorTextView.setVisibility(View.VISIBLE);
+                } else if(password.length() < 6){
+                    // If the password was too short, display other password error message
+                    loginErrorTextView.setText(shortPasswordError);
+                    loginErrorTextView.setVisibility(View.VISIBLE);
+                } else{
+
+                }
             }
         });
-
-        // Connect to xml components
-        emailEditText = findViewById(R.id.emailEditText);
-        passwordEditText = findViewById(R.id.passwordEditText);
-        signInButton = findViewById(R.id.signInButton);
-        signUpButton = findViewById(R.id.signUpButton);
-
     }
 
     /**
