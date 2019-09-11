@@ -3,14 +3,18 @@ package chatch.j.mealplanner;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,6 +28,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
+    private Context mContext;
 
     // Important components of the login xml
     private EditText emailEditText;
@@ -36,14 +41,17 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
-    private String emptyEmailError = "Must enter a valid email";
+    private String emailError = "Must enter a valid email";
     private String emptyPasswordError = "Must enter a valid password";
     private String shortPasswordError = "Password must be at least 6 character long";
+    private String incorrectLoginError = "Incorrect login information was entered";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        mContext = this;
 
         // Connect to xml components
         emailEditText = findViewById(R.id.emailEditText);
@@ -79,21 +87,9 @@ public class LoginActivity extends AppCompatActivity {
                 String email = emailEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
 
-                // If there was no email entered, display email error message
-                if(email.length() == 0){
-                    loginErrorTextView.setText(emptyEmailError);
-                    loginErrorTextView.setVisibility(View.VISIBLE);
-                } else if(password.length() == 0){
-                    // If there was no password entered, display password error message
-                    loginErrorTextView.setText(emptyPasswordError);
-                    loginErrorTextView.setVisibility(View.VISIBLE);
-                } else if(password.length() < 6){
-                    // If the password was too short, display other password error message
-                    loginErrorTextView.setText(shortPasswordError);
-                    loginErrorTextView.setVisibility(View.VISIBLE);
-                } else{
-
-                }
+                // Attempt to sign in using the sign in method
+                // Error checking is done here too
+                signIn(email, password);
             }
         });
     }
@@ -107,5 +103,73 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
 
         mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    /**
+     * Customizable toast message
+     * @param message   Message that will be shown through a toast
+     */
+    private void toastMessage(String message){
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * This method exists to error check the entered email and password as well as
+     * sign in the user. If the email or password EditText is empty, the error message
+     * will be displayed. If both are filled out, the values will attempt to be authenticated.
+     * If authentification is unsuccessful the user will be notified with the TextView error
+     * message. If the authentification is sucessful, the user will be notified via toast and
+     * will then move on to the MainActivity.
+     * @param email
+     * @param password
+     */
+    private void signIn(String email, String password){
+        // If there was no email entered, display email error message
+        if(email.length() == 0){
+            loginErrorTextView.setText(emailError);
+            loginErrorTextView.setVisibility(View.VISIBLE);
+        } else if(!email.contains("@")) {
+            // If the entered email doesn't contain an '@' character
+            // Than it is not a proper email so show an error message
+            loginErrorTextView.setText(emailError);
+            loginErrorTextView.setVisibility(View.VISIBLE);
+        } else if(email.lastIndexOf('.') < email.indexOf('@')){
+            // If the '.' character used for the .com, .edu, etc. comes before the
+            // '@' character then the email is in the wrong format
+            // Alert the user with error message
+            loginErrorTextView.setText(emailError);
+            loginErrorTextView.setVisibility(View.VISIBLE);
+        } else if(password.length() == 0){
+            // If there was no password entered, display password error message
+            loginErrorTextView.setText(emptyPasswordError);
+            loginErrorTextView.setVisibility(View.VISIBLE);
+        } else if(password.length() < 6){
+            // If the password was too short, display other password error message
+            loginErrorTextView.setText(shortPasswordError);
+            loginErrorTextView.setVisibility(View.VISIBLE);
+        } else{
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            // If successfully signed in, show a toast to  indicate success
+                            // Log successful sign in
+                            // Move to the MainActivity
+                            if(task.isSuccessful()){
+                                Log.d(TAG, "signInWithEmailAndPassword:Success");
+                                toastMessage("Logged in with " + emailEditText.getText().toString());
+                                loginErrorTextView.setVisibility(View.INVISIBLE);
+                                Intent mainIntent = new Intent(mContext, MainActivity.class);
+                                startActivity(mainIntent);
+                            } else{
+                                // If user was not signed in, alert them using the error TextView
+                                // Log successful login attempt
+                                Log.w(TAG, "signInWithEmailAndPassword:Failed", task.getException());
+                                loginErrorTextView.setText(incorrectLoginError);
+                                loginErrorTextView.setVisibility(View.VISIBLE);
+                            }
+                        }
+                    });
+        }
     }
 }
