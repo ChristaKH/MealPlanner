@@ -16,6 +16,12 @@ import android.widget.Button;
  * Activities that contain this fragment must implement the
  * {@link OnAddIngredientsInteractionListener} interface
  * to handle interaction events.
+ *
+ * This fragment is used to enter the ingredients that are used in a new recipe.
+ * The user will be able to select the measurement type (tbs, cup, etc.) and add the
+ * ingredient name and amount. Once added, the ingredient will show in the RecyclerView below
+ * and the user will be able to enter another ingredient if they wish. The user will also be able to
+ * delete an ingredient id they wish.
  */
 public class AddIngredientsFragment extends Fragment {
 
