@@ -45,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
     private String emptyPasswordError = "Must enter a valid password";
     private String shortPasswordError = "Password must be at least 6 character long";
     private String incorrectLoginError = "Incorrect login information was entered";
+    private String usedEmailError = "Email is already in use";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +93,19 @@ public class LoginActivity extends AppCompatActivity {
                 signIn(email, password);
             }
         });
+
+        // Listener for when the sign up button is clicked
+        signUpButton.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String email = emailEditText.getText().toString();
+                String password = passwordEditText.getText().toString();
+
+                // Attempt to sign up using the sign up method
+                // Error checking done here too
+                signUp(email, password);
+            }
+        }));
     }
 
     /**
@@ -170,6 +184,69 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         }
                     });
+        }
+    }
+
+    /**
+     * This method is used to sign up a new user. This method checks first that
+     * the appropriate email and password are entered. After that, the method checks
+     * to see if the email is already in use. If already in use, method displays error
+     * message to user. If not in use, method creates a new account with the given information
+     * then logs the user in and displays successful login with a toast. Finally, continue
+     * to the MainActivity.
+     * @param email Email given by the user. Must contain '@' and '.'
+     * @param password  Password given by user. Must be at least 6 characters in length
+     */
+    private void signUp(String email, String password){
+        // If there was no email entered, display email error message
+        if(email.length() == 0){
+            loginErrorTextView.setText(emailError);
+            loginErrorTextView.setVisibility(View.VISIBLE);
+        } else if(!email.contains("@")) {
+            // If the entered email doesn't contain an '@' character
+            // Than it is not a proper email so show an error message
+            loginErrorTextView.setText(emailError);
+            loginErrorTextView.setVisibility(View.VISIBLE);
+        } else if(email.lastIndexOf('.') < email.indexOf('@')){
+            // If the '.' character used for the .com, .edu, etc. comes before the
+            // '@' character then the email is in the wrong format
+            // Alert the user with error message
+            loginErrorTextView.setText(emailError);
+            loginErrorTextView.setVisibility(View.VISIBLE);
+        } else if(password.length() == 0){
+            // If there was no password entered, display password error message
+            loginErrorTextView.setText(emptyPasswordError);
+            loginErrorTextView.setVisibility(View.VISIBLE);
+        } else if(password.length() < 6){
+            // If the password was too short, display other password error message
+            loginErrorTextView.setText(shortPasswordError);
+            loginErrorTextView.setVisibility(View.VISIBLE);
+        } else {
+            // If valid email and password are entered, attempt to create new account
+            mAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    // If the account was successfully created
+                    // Log success
+                    // Display success using a toast
+                    // Transition to MainActivity
+                    if(task.isSuccessful()){
+                        Log.d(TAG, "createUserWithEmailAndPassword:Success");
+                        toastMessage("Logged in with " + emailEditText.getText().toString());
+                        loginErrorTextView.setVisibility(View.INVISIBLE);
+                        Intent mainIntent = new Intent(mContext,MainActivity.class);
+                        startActivity(mainIntent);
+                    } else{
+                        // If account was unsuccessfully created
+                        // Show error message indicating that email is already in use
+                        // Log sign up failure
+                        loginErrorTextView.setText(usedEmailError);
+                        loginErrorTextView.setVisibility(View.VISIBLE);
+                        Log.w(TAG, "createUserWithEmailAndPassword:Failed", task.getException());
+                    }
+                }
+            });
         }
     }
 }
