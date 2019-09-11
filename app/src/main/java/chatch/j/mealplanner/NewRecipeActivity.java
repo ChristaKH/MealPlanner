@@ -82,8 +82,8 @@ public class NewRecipeActivity extends AppCompatActivity
 
     /**
      * This is the method that allows communication from the AddIngredientsFragment to
-     * the AddRecipeBulkFragment. Specifically used when the preious button is clicked, this
-     * method makes the transition back to the AddRecipeBulkFragment
+     * the AddRecipeBulkFragment. Specifically used when the previous button is clicked, this
+     * method makes the transition back to the AddRecipeBulkFragment.
      */
     @Override
     public void previousButtonClicked() {

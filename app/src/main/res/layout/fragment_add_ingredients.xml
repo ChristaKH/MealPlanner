@@ -38,61 +38,76 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.035" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
+    <EditText
+        android:id="@+id/ingredientAmountTextView"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_weight="4"
+        android:elevation="@dimen/titlePadding"
+        android:ems="2"
+        android:fontFamily="@font/fira_sans"
+        android:gravity="center"
+        android:inputType="number"
+        android:shadowColor="@color/sizzlingRed"
+        android:textColorLink="@color/sizzlingRed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.022"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton
+        android:id="@+id/measurementsCustomFAB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_weight="4"
+        android:textColorHighlight="@color/sizzlingRed"
+        android:textColorLink="@color/sizzlingRed"
+        android:textCursorDrawable="@color/sizzlingRed"
+        app:fabAnimateMenu="true"
+        app:fabElevation="@dimen/verticalCardViewPadding"
+        app:fabIconColor="@color/sizzlingRed"
+        app:fabMenuStyle="popDown"
+        app:fabSizes="normal"
+        app:fabType="roundedSquare"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.028"
+        app:layout_constraintStart_toEndOf="@+id/ingredientAmountTextView"
+        app:layout_constraintTop_toBottomOf="@+id/textView11"
+        app:layout_constraintVertical_bias="0.026" />
+
+    <EditText
+        android:id="@+id/ingredientNameEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:elevation="@dimen/verticalCardViewPadding"
+        android:ems="10"
+        android:hint="@string/ingredientNameText"
+        android:inputType="textPersonName"
+        android:textColorLink="@color/sizzlingRed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/measurementsCustomFAB"
         app:layout_constraintTop_toBottomOf="@+id/textView11"
-        app:layout_constraintVertical_bias="0.008">
-
-        <EditText
-            android:id="@+id/ingredientAmountTextView"
-            style="@style/Widget.AppCompat.EditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_weight="4"
-            android:elevation="@dimen/titlePadding"
-            android:ems="2"
-            android:fontFamily="@font/fira_sans"
-            android:gravity="center"
-            android:inputType="number"
-            android:shadowColor="@color/sizzlingRed"
-            android:textColorLink="@color/sizzlingRed" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/ingredientMeasurementRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:elevation="@dimen/verticalCardViewPadding"
-            android:orientation="vertical">
-
-        </androidx.recyclerview.widget.RecyclerView>
-
-        <EditText
-            android:id="@+id/ingredientNameEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:elevation="@dimen/verticalCardViewPadding"
-            android:ems="10"
-            android:hint="@string/ingredientNameText"
-            android:inputType="textPersonName"
-            android:textColorLink="@color/sizzlingRed" />
-    </LinearLayout>
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/addIngredientButton"
@@ -109,32 +124,17 @@
         android:textColor="@color/backgroundColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintVertical_bias="0.017" />
-
-    <View
-        android:id="@+id/divider2"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addIngredientButton"
-        app:layout_constraintVertical_bias="0.049" />
+        app:layout_constraintTop_toBottomOf="@+id/measurementsCustomFAB"
+        app:layout_constraintVertical_bias="0.007" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ingredientsRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -143,6 +143,7 @@
         app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -181,5 +182,21 @@
             android:text="@string/nextText"
             android:textColor="@color/white" />
     </LinearLayout>
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="8dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addIngredientButton"
+        app:layout_constraintVertical_bias="0.027" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

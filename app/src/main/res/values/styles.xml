@@ -5,7 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/pinkOrange</item>
         <item name="colorPrimaryDark">@color/sizzlingRed</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/sizzlingRed</item>
     </style>
 
     <style name="toolbarTheme" parent="Theme.AppCompat.Light">
