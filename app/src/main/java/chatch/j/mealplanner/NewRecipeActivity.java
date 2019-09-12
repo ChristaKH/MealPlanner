@@ -17,7 +17,8 @@ import chatch.j.mealplanner.Models.Recipe;
  */
 public class NewRecipeActivity extends AppCompatActivity
                                 implements AddRecipeBulkFragment.AddRecipeBulkInteractionListener,
-                                            AddIngredientsFragment.OnAddIngredientsInteractionListener{
+                                            AddIngredientsFragment.OnAddIngredientsInteractionListener,
+                                            AddDirectionsFragment.OnAddDirectionsInteractionListener{
     private Toolbar toolbar;
 
     // New Recipe to be added
@@ -97,4 +98,37 @@ public class NewRecipeActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * This is the method that allows communication from the AddIngredientsFragment to the
+     * AddDirectionsFragment. Specifically used when the next button is clicked, this method makes
+     * the transition to the AddDirectionsFragment.
+     */
+    @Override
+    public void nextButtonClicked() {
+        FragmentManager fragmentManager = this.getSupportFragmentManager();
+        if(fragmentManager != null){
+            FragmentTransaction ft = fragmentManager.beginTransaction();
+            if(ft != null){
+                ft.replace(R.id.newRecipeRootLayout, new AddDirectionsFragment());
+                ft.commit();
+            }
+        }
+    }
+
+    /**
+     * This is the method that allows communication from the AddDirectionsFragment to
+     * the AddIngredientsFragment. Specifically used when the previous button is clicked, this method
+     * makes the transition back to the AddIngredientsFragment.
+     */
+    @Override
+    public void onDirectionsPreviousClicked() {
+        FragmentManager fragmentManager = this.getSupportFragmentManager();
+        if(fragmentManager != null){
+            FragmentTransaction ft = fragmentManager.beginTransaction();
+            if(ft != null){
+                ft.replace(R.id.newRecipeRootLayout, new AddIngredientsFragment());
+                ft.commit();
+            }
+        }
+    }
 }

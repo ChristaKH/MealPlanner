@@ -29,6 +29,7 @@ public class AddIngredientsFragment extends Fragment {
 
     //Components of the xml
     private Button previousButton;
+    private Button nextButton;
 
     private OnAddIngredientsInteractionListener mListener;
 
@@ -43,12 +44,21 @@ public class AddIngredientsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_ingredients, container, false);
         previousButton = view.findViewById(R.id.previousButton);
+        nextButton = view.findViewById(R.id.nextButton);
 
         // If the previous button is clicked, return to the AddRecipeBulkFragment
         previousButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mListener.previousButtonClicked();
+            }
+        });
+
+        // If next button is clicked, move on to the AddDirectionsFragment
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mListener.nextButtonClicked();
             }
         });
 
@@ -84,5 +94,6 @@ public class AddIngredientsFragment extends Fragment {
      */
     public interface OnAddIngredientsInteractionListener {
         void previousButtonClicked();
+        void nextButtonClicked();
     }
 }
