@@ -9,10 +9,19 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+/**
+ * This Fragment is used so that the user can enter the directions of a new
+ * Recipe as well as load in a picture that they wish to represent the Recipe.
+ */
 public class AddDirectionsFragment extends Fragment {
 
     private OnAddDirectionsInteractionListener mListener;
+
+    // Important components from the xml
+    private Button directionsPreviousButton;
+    private Button directionsFinishButton;
 
     public AddDirectionsFragment() {
         // Required empty public constructor
@@ -22,7 +31,16 @@ public class AddDirectionsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_directions, container, false);
+        View view = inflater.inflate(R.layout.fragment_add_directions, container, false);
+
+        // Attach listener for previous button so that it goes back to the AddIngredientsFragment
+        directionsPreviousButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mListener.onDirectionsPreviousClicked();
+            }
+        });
+        return view;
     }
 
     @Override
