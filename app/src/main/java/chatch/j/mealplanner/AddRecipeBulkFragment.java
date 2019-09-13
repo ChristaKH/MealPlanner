@@ -58,7 +58,7 @@ public class AddRecipeBulkFragment extends Fragment {
     private Recipe.Category category;
 
     // Define the listener of the interface type
-    private AddRecipeBulkInteractionListener listener;
+    private AddRecipeBulkInteractionListener mListener;
 
     public AddRecipeBulkFragment() {
         // Required empty public constructor
@@ -230,14 +230,8 @@ public class AddRecipeBulkFragment extends Fragment {
                     // Category is already updated in the selectRecipeCategory() method so no need to retrieve value
 
                     // Change the values of the newRecipe object in the NewRecipe activity
-                    NewRecipeActivity.newRecipe.setTitle(recipeName);
-                    NewRecipeActivity.newRecipe.setCreator(recipeCreator);
-                    NewRecipeActivity.newRecipe.setCookTime(cookTime);
-                    NewRecipeActivity.newRecipe.setDifficulty(difficulty);
-                    NewRecipeActivity.newRecipe.setCategory(category);
-
                     // Switch to the AddIngredientsFragment
-                    onNextClick(view);
+                    mListener.onBulkNextClicked(recipeName, recipeCreator, cookTime, difficulty, category);
                 }
             }
         });
@@ -332,7 +326,7 @@ public class AddRecipeBulkFragment extends Fragment {
     // Define the events that the fragment will use to communicate
     public interface AddRecipeBulkInteractionListener{
         // This is the method for when the next button is clicked
-        public void onBulkNextClicked();
+        public void onBulkNextClicked(String name, String creator, int time, Recipe.Difficulty diff, Recipe.Category cat);
     }
 
     // Store the listener (activity) that will have events fired once the fragment is attached
@@ -340,15 +334,10 @@ public class AddRecipeBulkFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof AddRecipeBulkInteractionListener) {
-            listener = (AddRecipeBulkInteractionListener) context;
+            mListener = (AddRecipeBulkInteractionListener) context;
         } else {
             throw new ClassCastException(context.toString()
                     + " must implement AddRecipeBulkFragment.AddRecipeBulkInteractionListener");
         }
-    }
-
-    // Now we can fire the next button event when the user selects the next button in the fragment
-    public void onNextClick(View v) {
-        listener.onBulkNextClicked();
     }
 }

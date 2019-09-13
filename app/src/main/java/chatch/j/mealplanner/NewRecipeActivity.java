@@ -24,7 +24,7 @@ public class NewRecipeActivity extends AppCompatActivity
     // New Recipe to be added
     // Values of Recipe will change throughout the fragments
     // If final finish button is clicked then this object will be added to the database
-    public static Recipe newRecipe;
+    private Recipe newRecipe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,10 +67,19 @@ public class NewRecipeActivity extends AppCompatActivity
      * Defines the action that takes place when the Next button is clicked in
      * the AddRecipeBulk fragment.
      * When Next button is appropriately clicked (check in the fragment class),
-     * switch fragments from the AddRecipeBulkFragment to the AddIngredientsFragment
+     * take in the values for the new Recipe and add them to the Recipe object in NewRecipeActivity
+     * and switch fragments from the AddRecipeBulkFragment to the AddIngredientsFragment
      */
     @Override
-    public void onBulkNextClicked() {
+    public void onBulkNextClicked(String name, String creator, int time, Recipe.Difficulty diff, Recipe.Category cat) {
+        // Take the given values, presumably entered by the user for the new Recipe,and set them as values for the Recipe object
+        newRecipe.setTitle(name);
+        newRecipe.setCreator(creator);
+        newRecipe.setCookTime(time);
+        newRecipe.setDifficulty(diff);
+        newRecipe.setCategory(cat);
+
+        // Change to the AddIngredientsFragment
         FragmentManager fragmentManager = this.getSupportFragmentManager();
         if(fragmentManager != null){
             FragmentTransaction ft = fragmentManager.beginTransaction();
@@ -130,5 +139,16 @@ public class NewRecipeActivity extends AppCompatActivity
                 ft.commit();
             }
         }
+    }
+
+    /**
+     * This method is used in the AddDirectionsFragment to allow communication between the
+     * AddDirectionsFragment, the MainActivity, and the Firebase database. When called, this
+     * method will create a Recipe object, store it in the Firebase database, and return to
+     * the MainActivity.
+     */
+    @Override
+    public void onDirectionsFinishClicked() {
+
     }
 }

@@ -33,6 +33,9 @@ public class AddDirectionsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_directions, container, false);
 
+        directionsPreviousButton = view.findViewById(R.id.directionsPreviousButton);
+        directionsFinishButton = view.findViewById(R.id.directionsFinishButton);
+
         // Attach listener for previous button so that it goes back to the AddIngredientsFragment
         directionsPreviousButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,6 +43,17 @@ public class AddDirectionsFragment extends Fragment {
                 mListener.onDirectionsPreviousClicked();
             }
         });
+
+        // Attach listener for finish button so that it creates and stores a new Recipe object,
+        // Adds Recipe data to the database,
+        // And returns to the MainActivity
+        directionsPreviousButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mListener.onDirectionsFinishClicked();
+            }
+        });
+
         return view;
     }
 
@@ -73,5 +87,6 @@ public class AddDirectionsFragment extends Fragment {
     public interface OnAddDirectionsInteractionListener {
         // DONE: Update argument type and name
         void onDirectionsPreviousClicked();
+        void onDirectionsFinishClicked();
     }
 }
