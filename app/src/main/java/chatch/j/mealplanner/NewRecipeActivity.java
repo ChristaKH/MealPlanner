@@ -13,7 +13,8 @@ import chatch.j.mealplanner.Models.Recipe;
 
 /**
  * This is the class for the XML activity_new_recipe. The activity exists
- * so that the user can input new recipes into the database and app.
+ * so that the user can input new recipes into the database and app. This class
+ * coordinates communication between its 3 Fragments as well as with the database.
  */
 public class NewRecipeActivity extends AppCompatActivity
                                 implements AddRecipeBulkFragment.AddRecipeBulkInteractionListener,
@@ -149,6 +150,8 @@ public class NewRecipeActivity extends AppCompatActivity
      */
     @Override
     public void onDirectionsFinishClicked() {
-
+        //@TODO: Finish filling out newRecipe (Recipe) object
+        // @TODO: Send new Recipe object to the database
+        // @TODO: Return to the MainActivity
     }
 }
