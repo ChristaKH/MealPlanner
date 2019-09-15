@@ -6,8 +6,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
+
+import java.util.ArrayList;
 
 import chatch.j.mealplanner.Models.Recipe;
 
@@ -149,8 +152,11 @@ public class NewRecipeActivity extends AppCompatActivity
      * the MainActivity.
      */
     @Override
-    public void onDirectionsFinishClicked() {
-        //@TODO: Finish filling out newRecipe (Recipe) object
+    public void onDirectionsFinishClicked(ArrayList<String> directions, Bitmap image) {
+        //@DONE: Finish filling out newRecipe (Recipe) object
+        newRecipe.setDirections(directions);
+
+        // @TODO: include code to give the Recipe object the bitmap image
         // @TODO: Send new Recipe object to the database
         // @TODO: Return to the MainActivity
     }

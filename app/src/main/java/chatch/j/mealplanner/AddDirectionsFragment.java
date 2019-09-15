@@ -1,6 +1,7 @@
 package chatch.j.mealplanner;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -10,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import java.util.ArrayList;
 
 /**
  * This Fragment is used so that the user can enter the directions of a new
@@ -22,6 +25,9 @@ public class AddDirectionsFragment extends Fragment {
     // Important components from the xml
     private Button directionsPreviousButton;
     private Button directionsFinishButton;
+
+    private ArrayList<String>recipeDirections;
+    private Bitmap recipeImage;
 
     public AddDirectionsFragment() {
         // Required empty public constructor
@@ -36,6 +42,8 @@ public class AddDirectionsFragment extends Fragment {
         directionsPreviousButton = view.findViewById(R.id.directionsPreviousButton);
         directionsFinishButton = view.findViewById(R.id.directionsFinishButton);
 
+        recipeDirections = new ArrayList<String>();
+
         // Attach listener for previous button so that it goes back to the AddIngredientsFragment
         directionsPreviousButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,10 +55,10 @@ public class AddDirectionsFragment extends Fragment {
         // Attach listener for finish button so that it creates and stores a new Recipe object,
         // Adds Recipe data to the database,
         // And returns to the MainActivity
-        directionsPreviousButton.setOnClickListener(new View.OnClickListener() {
+        directionsFinishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mListener.onDirectionsFinishClicked();
+                mListener.onDirectionsFinishClicked(recipeDirections, recipeImage);
             }
         });
 
@@ -87,6 +95,6 @@ public class AddDirectionsFragment extends Fragment {
     public interface OnAddDirectionsInteractionListener {
         // DONE: Update argument type and name
         void onDirectionsPreviousClicked();
-        void onDirectionsFinishClicked();
+        void onDirectionsFinishClicked(ArrayList<String> directions, Bitmap image);
     }
 }
