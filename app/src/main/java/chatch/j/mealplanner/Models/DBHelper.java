@@ -110,7 +110,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
 
         //ADD KEY-VALUE PAIR INFORMATION FOR THE RECIPE IMAGE URI
-        values.put(FIELD_IMAGE_URI, recipe.getImageUri().toString());
+        values.put(FIELD_IMAGE_URI, recipe.getImageBitmap().toString());
 
         // ADD KEY-VALUE PAIR INFORMATION FOR THE RECIPE CATEGORY
         switch(recipe.getCategory()){
@@ -185,7 +185,7 @@ public class DBHelper extends SQLiteOpenHelper {
                     recipe.setDifficulty(Recipe.Difficulty.NONE);
                 }
 
-                recipe.setImageUri(Uri.parse(cursor.getString(7)));
+                recipe.setImageBitmap(Uri.parse(cursor.getString(7)));
 
                 String category = cursor.getString(8);
                 if(category.equalsIgnoreCase("MEAL")){
@@ -282,7 +282,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 break;
         }
 
-        values.put(FIELD_IMAGE_URI, recipe.getImageUri().toString());
+        values.put(FIELD_IMAGE_URI, recipe.getImageBitmap().toString());
 
         db.update(DATABASE_TABLE, values, KEY_FIELD_ID + " = ?",
                 new String[]{String.valueOf(recipe.getId())});
@@ -334,7 +334,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 recipe.setDifficulty(Recipe.Difficulty.NONE);
             }
 
-            recipe.setImageUri(Uri.parse(cursor.getString(7)));
+            recipe.setImageBitmap(Uri.parse(cursor.getString(7)));
 
             String category = cursor.getString(8);
             if(category.equalsIgnoreCase("MEAL")){

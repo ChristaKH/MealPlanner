@@ -17,7 +17,7 @@ import java.util.ArrayList;
  *  - Recipe Creator
  *  - Cook Time
  *  - Difficulty
- *  - Recipe Image Name
+ *  - Recipe Image Bitmap
  *  - Category
  */
 public class Recipe {
@@ -30,7 +30,7 @@ public class Recipe {
     private String mCreator;
     private Difficulty mDifficulty;
     private int mCookTime;
-    private Uri mImageUri;
+    private Bitmap mImageBitmap;
     private Category mCategory;
     private long id; // exists for database reasons
 
@@ -41,7 +41,7 @@ public class Recipe {
     public enum Category {MEAL, DESSERT, OTHER, DRINK}
 
     /**
-     * Empty construtor that exists mainly for testing purposes
+     * Empty constructor that exists mainly for testing purposes as well as database purposes
      * All instance variables are set to their default values
      */
     public Recipe(){
@@ -51,7 +51,7 @@ public class Recipe {
         mCreator = "";
         mDifficulty = Difficulty.NONE;
         mCookTime = 0;
-        mImageUri = null;
+        mImageBitmap = null;
         mCategory = Category.OTHER;
     }
 
@@ -68,7 +68,7 @@ public class Recipe {
         mCreator = "";
         mDifficulty = Difficulty.NONE;
         mCookTime = 0;
-        mImageUri = null;
+        mImageBitmap = null;
         mCategory = Category.OTHER;
     }
 
@@ -87,7 +87,7 @@ public class Recipe {
         this.setCreator(creator);
         mDifficulty = Difficulty.NONE;
         mCookTime = 0;
-        mImageUri = null;
+        mImageBitmap = null;
         mCategory = Category.OTHER;
     }
 
@@ -106,7 +106,7 @@ public class Recipe {
         this.setDifficulty(difficulty);
         mCreator = "";
         mCookTime = 0;
-        mImageUri = null;
+        mImageBitmap = null;
         mCategory = Category.OTHER;
     }
 
@@ -125,7 +125,7 @@ public class Recipe {
         this.setCookTime(cookTime);
         mCreator = "";
         mDifficulty = Difficulty.NONE;
-        mImageUri = null;
+        mImageBitmap = null;
         mCategory = Category.OTHER;
     }
 
@@ -138,18 +138,18 @@ public class Recipe {
      * @param creator   Name of creator of current recipe
      * @param difficulty    Level of difficulty for current recipe
      * @param cookTime  Time it takes to make the recipe in minutes
-     * @param imageUri Image file of recipe
+     * @param imageBitmap Bitmap of Recipe image
      * @param category  Category of the recipe
      */
     public Recipe(String title, ArrayList<String> ingredients, ArrayList<String> directions,
-                  String creator, Difficulty difficulty, int cookTime, Uri imageUri, Category category) {
+                  String creator, Difficulty difficulty, int cookTime, Bitmap imageBitmap, Category category) {
         this.setTitle(title);
         this.setIngredients(ingredients);
         this.setDirections(directions);
         this.setCookTime(cookTime);
         this.setCreator(creator);
         this.setDifficulty(difficulty);
-        this.setImageUri(imageUri);
+        this.setImageBitmap(imageBitmap);
         this.setCategory(category);
     }
 
@@ -275,19 +275,19 @@ public class Recipe {
     }
 
     /**
-     * Method that returns the value of mImageUri
-     * @return  Image Uri for the recipe
+     * Method that returns the value of mImageBitmap
+     * @return  Image Bitmap for the recipe
      */
-    public Uri getImageUri(){
-        return mImageUri;
+    public Bitmap getImageBitmap(){
+        return mImageBitmap;
     }
 
     /**
-     * Method that sets the image file of the recipe
-     * @param newImageUri  New image Uri
+     * Method that sets the image Bitmap of the recipe
+     * @param newImageBitmap  New image bitmap
      */
-    public void setImageUri(Uri newImageUri){
-        mImageUri = newImageUri;
+    public void setImageBitmap(Bitmap newImageBitmap){
+        mImageBitmap = newImageBitmap;
     }
 
     /**

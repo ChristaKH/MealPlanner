@@ -131,9 +131,9 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
 
             cardCookTimeTextView.setText(String.valueOf(recipe.getCookTime()) + " minutes");
 /*
-            if(recipe.getImageUri() != null){
+            if(recipe.getImageBitmap() != null){
                 // @TODO: Add in code to allow display of image when uri is given
-                //cardRecipeImageView.setImageBitmap(recipe.getImageUri());
+                //cardRecipeImageView.setImageBitmap(recipe.getImageBitmap());
             } */
             // Change the text view based on the enum representing difficulty
             switch(recipe.getDifficulty()){
