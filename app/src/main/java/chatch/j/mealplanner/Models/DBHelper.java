@@ -5,8 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +24,7 @@ public class DBHelper extends SQLiteOpenHelper {
     //TASK 1: DEFINE THE DATABASE VERSION, NAME AND TABLE NAME
     public static final String DATABASE_NAME = "MealPlanner";
     private static final String DATABASE_TABLE = "Recipes";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     //TASK 2: DEFINE THE FIELDS (COLUMN NAMES) FOR THE TABLE
     private static final String KEY_FIELD_ID = "_id";
@@ -31,7 +34,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String FIELD_CREATOR = "creator_name";
     private static final String FIELD_COOK_TIME = "cook_time";
     private static final String FIELD_DIFFICULTY = "difficulty";
-    private static final String FIELD_IMAGE_URI = "image_uri";
+    private static final String FIELD_IMAGE_BITMAP = "image_bitmap";
     private static final String FIELD_CATEGORY = "category";
 
     public DBHelper(Context context){
@@ -49,7 +52,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 + FIELD_CREATOR + " TEXT, "
                 + FIELD_COOK_TIME + " INTEGER, "
                 + FIELD_DIFFICULTY + " TEXT, "
-                + FIELD_IMAGE_URI + " TEXT, "
+                + FIELD_IMAGE_BITMAP + " BLOB, "
                 + FIELD_CATEGORY +  " TEXT " +  ")";
         database.execSQL (table);
     }
@@ -109,8 +112,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 break;
         }
 
-        //ADD KEY-VALUE PAIR INFORMATION FOR THE RECIPE IMAGE URI
-        values.put(FIELD_IMAGE_URI, recipe.getImageBitmap().toString());
+        //ADD KEY-VALUE PAIR INFORMATION FOR THE RECIPE IMAGE BITMAP
+        values.put(FIELD_IMAGE_BITMAP, getBitmapAsByteArray(recipe.getImageBitmap()));
 
         // ADD KEY-VALUE PAIR INFORMATION FOR THE RECIPE CATEGORY
         switch(recipe.getCategory()){
@@ -150,7 +153,7 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor cursor = database.query(
                 DATABASE_TABLE,
                 // DONE: add ingredients and directions into the query
-                new String[]{KEY_FIELD_ID, FIELD_RECIPE_TITLE, FIELD_INGREDIENTS, FIELD_DIRECTIONS, FIELD_CREATOR, FIELD_COOK_TIME, FIELD_DIFFICULTY, FIELD_IMAGE_URI, FIELD_CATEGORY},
+                new String[]{KEY_FIELD_ID, FIELD_RECIPE_TITLE, FIELD_INGREDIENTS, FIELD_DIRECTIONS, FIELD_CREATOR, FIELD_COOK_TIME, FIELD_DIFFICULTY, FIELD_IMAGE_BITMAP, FIELD_CATEGORY},
                 null,
                 null,
                 null, null, null, null );
@@ -185,7 +188,7 @@ public class DBHelper extends SQLiteOpenHelper {
                     recipe.setDifficulty(Recipe.Difficulty.NONE);
                 }
 
-                recipe.setImageBitmap(Uri.parse(cursor.getString(7)));
+                recipe.setImageBitmap(getBitmapFromBytes(cursor.getBlob(7)));
 
                 String category = cursor.getString(8);
                 if(category.equalsIgnoreCase("MEAL")){
@@ -282,7 +285,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 break;
         }
 
-        values.put(FIELD_IMAGE_URI, recipe.getImageBitmap().toString());
+        values.put(FIELD_IMAGE_BITMAP, getBitmapAsByteArray(recipe.getImageBitmap()));
 
         db.update(DATABASE_TABLE, values, KEY_FIELD_ID + " = ?",
                 new String[]{String.valueOf(recipe.getId())});
@@ -299,7 +302,7 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.query(
                 DATABASE_TABLE,
-                new String[]{KEY_FIELD_ID, FIELD_RECIPE_TITLE, FIELD_INGREDIENTS, FIELD_DIRECTIONS, FIELD_CREATOR, FIELD_COOK_TIME, FIELD_DIFFICULTY, FIELD_IMAGE_URI, FIELD_CATEGORY},
+                new String[]{KEY_FIELD_ID, FIELD_RECIPE_TITLE, FIELD_INGREDIENTS, FIELD_DIRECTIONS, FIELD_CREATOR, FIELD_COOK_TIME, FIELD_DIFFICULTY, FIELD_IMAGE_BITMAP, FIELD_CATEGORY},
                 KEY_FIELD_ID + "=?",
                 new String[]{String.valueOf(id)},
                 null, null, null, null );
@@ -334,7 +337,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 recipe.setDifficulty(Recipe.Difficulty.NONE);
             }
 
-            recipe.setImageBitmap(Uri.parse(cursor.getString(7)));
+            recipe.setImageBitmap(getBitmapFromBytes(cursor.getBlob(7)));
 
             String category = cursor.getString(8);
             if(category.equalsIgnoreCase("MEAL")){
@@ -390,5 +393,26 @@ public class DBHelper extends SQLiteOpenHelper {
             array.add(arr[i]);
         }
         return array;
+    }
+
+    /**
+     * This method prepares a Bitmap image to be put into the SQLite table by converting
+     * a Bitmap image into a series of bytes
+     * @param bitmap    Bitmap of the specific image
+     * @return  Array of bytes from the converted image.
+     */
+    public static byte[] getBitmapAsByteArray(Bitmap bitmap) {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
+        return outputStream.toByteArray();
+    }
+
+    /**
+     * This method takes an array of bytes and translates it to its Bitmap image
+     * @param imageBytes
+     * @return  Bitmap value of the entered bytes
+     */
+    public static Bitmap getBitmapFromBytes(byte[] imageBytes){
+        return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
     }
 }
