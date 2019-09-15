@@ -6,3 +6,5 @@ as unnecessary eating out through careful meal planning.
 
 
 Carrot icon made by Smashicons from https://www.flaticon.com/
+
+![Progress Map](/MealPlanner.png)
