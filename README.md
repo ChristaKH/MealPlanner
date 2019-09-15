@@ -9,6 +9,11 @@ This is the first Activity that the user sees and acts as kind of a loading scre
 
 ![SplashActivity](/Images/SplashActivity.PNG)
 
+## LoginActivity
+This activity allows the user to either sign up or log in using an email and password. The password must be at least 6 characters in length and the emails must not have been used previously. The accounts created through this activity are stored in the database. If a user forgets to enter an email, enters an invalid email (no '@' character or not '.' character), or enters a password that is not long enough an error message will appear for the user. If the user successfully logs in or signs up it will be indicated using a short toast and will then transition into the MainActivity.
+
+![LoginActivity](/Images/LoginActivity.png)
+
 Carrot icon made by Smashicons from https://www.flaticon.com/
 
 ![Progress Map](/Images/MealPlanner.png)
