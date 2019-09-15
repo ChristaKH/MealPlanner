@@ -9,4 +9,4 @@ This is the first Activity that the user sees and acts as kind of a loading scre
 
 Carrot icon made by Smashicons from https://www.flaticon.com/
 
-![Progress Map](/MealPlanner.png)
+![Progress Map](/Images/MealPlanner.png)
