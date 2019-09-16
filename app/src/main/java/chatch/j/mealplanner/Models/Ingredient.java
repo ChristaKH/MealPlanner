@@ -57,8 +57,24 @@ public class Ingredient{
         return mAmount;
     }
 
+    /**
+     * Mutator method that sets the value of the instance variable mType
+     * to a new value (newType). This represents the measurement that is used
+     * to measure out this ingredient.
+     * @param newType   Measurement type used to measure out an ingredient
+     */
     public void setType(Type newType){
+        mType = newType;
+    }
 
+    /**
+     * Accessor method that returns the measurement type that is used to describe the
+     * amount of this ingredient that is needed (mType). This is represented as an enum
+     * since there are only a few specific options that it could be.
+     * @return
+     */
+    public Type getType(){
+        return mType;
     }
 
     public void setName(String newName){
