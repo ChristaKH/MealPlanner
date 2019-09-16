@@ -77,7 +77,21 @@ public class Ingredient{
         return mType;
     }
 
+    /**
+     * Mutator method that sets the value of the instance variable mName
+     * to a new value (newName). The value of newName is first set to all
+     * uppercase before it is set as the new value.
+     * @param newName   New name for the ingredient
+     */
     public void setName(String newName){
+        mName = newName.toUpperCase();
+    }
 
+    /**
+     * Accessor method that returns the name of the ingredient
+     * @return  mName
+     */
+    public String getName(){
+        return mName;
     }
 }
