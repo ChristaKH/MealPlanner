@@ -102,7 +102,7 @@ public class AddIngredientRecyclerViewAdapter extends RecyclerView.Adapter<AddIn
     public class AddIngredientViewHolder extends RecyclerView.ViewHolder {
 
         // Important components of single_ingredient_layout.xml
-        private TextView ingredientAmountTextView;
+        private TextView ingredientAmountEditText;
         private TextView measurementTypeTextView;
         private TextView ingredientNameTextView;
         private Button removeButton;
@@ -111,7 +111,7 @@ public class AddIngredientRecyclerViewAdapter extends RecyclerView.Adapter<AddIn
             super(itemView);
 
             // Connect to xml components
-            ingredientAmountTextView = itemView.findViewById(R.id.ingredientAmountTextView);
+            ingredientAmountEditText = itemView.findViewById(R.id.ingredientAmountEditText);
             measurementTypeTextView = itemView.findViewById(R.id.measurementTypeTextView);
             ingredientNameTextView = itemView.findViewById(R.id.ingredientNameTextView);
             removeButton = itemView.findViewById(R.id.removeButton);
@@ -126,7 +126,7 @@ public class AddIngredientRecyclerViewAdapter extends RecyclerView.Adapter<AddIn
             // button is clicked
 
             // Set the ingredient amount
-            ingredientAmountTextView.setText(String.valueOf(ingredient.getAmount()));
+            ingredientAmountEditText.setText(String.valueOf(ingredient.getAmount()));
 
             // Set the measurement type that is displayed
             switch(ingredient.getType()){
