@@ -34,8 +34,27 @@ public class Ingredient{
         this.setName(name);
     }
 
+    /**
+     * Mutator method that sets the value of the instance variable mAmount
+     * to the new amount given if it is greater than 0. If not, it is set to
+     * the default value of 0.
+     * @param newAmount Amount of an ingredient required
+     */
     public void setAmount(int newAmount){
+        if(newAmount > 0){
+            mAmount = newAmount;
+        } else{
+            mAmount = 0;
+        }
+    }
 
+    /**
+     * Accessor method that returns the value of mAmount, also known
+     * as the amount of a single ingredient needed.
+     * @return  mAmount
+     */
+    public int getAmount(){
+        return mAmount;
     }
 
     public void setType(Type newType){
