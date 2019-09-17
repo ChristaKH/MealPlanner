@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -44,9 +45,10 @@ public class AddIngredientsFragment extends Fragment {
     private Button previousButton;
     private Button nextButton;
     private Spinner measurementTypeSpinner;
+    private TextView ingredientErrorTextView;
 
-    private int amount;
-    private String type;
+    private String amount;
+    private String type = "";
     private String name;
     private Ingredient ingredient;
     private ArrayList<Ingredient> ingredients;
@@ -81,6 +83,7 @@ public class AddIngredientsFragment extends Fragment {
         previousButton = view.findViewById(R.id.previousButton);
         nextButton = view.findViewById(R.id.nextButton);
         measurementTypeSpinner = view.findViewById(R.id.measurementTypeSpinner);
+        ingredientErrorTextView = view.findViewById(R.id.ingredientErrorTextView);
 
         // Set up the spinner with the proper values
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, measurements);
@@ -150,6 +153,12 @@ public class AddIngredientsFragment extends Fragment {
         // prepare for new ingredient by reinitializing the ingredient object,
         // empty all fields for the user,
         // and make any error messages invisible
+        addIngredientButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addButtonClicked();
+            }
+        });
 
         // If the previous button is clicked, return to the AddRecipeBulkFragment
         previousButton.setOnClickListener(new View.OnClickListener() {
@@ -200,5 +209,32 @@ public class AddIngredientsFragment extends Fragment {
     public interface OnAddIngredientsInteractionListener {
         void previousButtonClicked();
         void nextButtonClicked();
+    }
+
+    /**
+     * This method is called when the add button is clicked.
+     * If the add button is clicked, check to see that all values were filled out, if not, display error message
+     * If all values are filled out, form an Ingredient object using the given values, add it to the ArrayList of ingredients,
+     * update RecyclerView with new ingredient, prepare for new ingredient by reinitializing the ingredient object,
+     * empty all fields for the user, and make any error messages invisible
+     */
+    private void addButtonClicked(){
+        // Retrieve all values entered by the user
+        amount = ingredientAmountEditText.getText().toString();
+        name = ingredientNameEditText.getText().toString();
+
+        if(amount.equalsIgnoreCase("")){
+            // If no amount is entered, display error message
+            ingredientErrorTextView.setText("Amount of ingredient is missing");
+            ingredientErrorTextView.setVisibility(View.VISIBLE);
+        } else if(type.equalsIgnoreCase("")){
+            // If no measurement type was chosen, display error message
+            ingredientErrorTextView.setText("Measurement type not chosen");
+            ingredientErrorTextView.setVisibility(View.VISIBLE);
+        } else if(name.equalsIgnoreCase("")){
+            // If no ingredient name is entered, display error message
+            ingredientErrorTextView.setText("Ingredient name is missing");
+            ingredientErrorTextView.setVisibility(View.VISIBLE);
+        }
     }
 }
