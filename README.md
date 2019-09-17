@@ -22,6 +22,8 @@ This activity is the first thing that the user sees once they are logged in. Thi
 ## NewRecipeActivity
 This activity is used for the user to store new recipes into the app. The activity uses three different fragments to achieve this goal: AddRecipeBulkFragment, AddIngredientsFragment, AddDirectionsFragment. The AddRecipeBulkFragment is the first to be view and takes in most of the information which includes the new recipe's name, its creator, the cook time required for the recipe, the recipe difficulty, and the category that the recipe falls into (meal, dessert, drink, other). The second fragment, AddIngredientsFragment, lets the user input the ingredients the recipe may require as well as how much of each ingredient. Once the ingredient is added it is then added to a list (RecyclerView) that the user can use to view or remove the ingredients that were already added. The final fragment, AddDirectionsFragment, allows the user to input the steps required to make the recipe as well as upload a photo to represent the recipe. The design of the last fragment is still being decided.
 
+![NewRecipeActivity/AddRecipeBulkFragment](/Images/AddRecipeBulkFragment.PNG)
+
 Carrot icon made by Smashicons from https://www.flaticon.com/
 
 ![Progress Map](/Images/MealPlanner.png)
