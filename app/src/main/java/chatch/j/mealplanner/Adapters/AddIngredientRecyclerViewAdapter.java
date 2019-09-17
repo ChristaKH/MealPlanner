@@ -105,7 +105,7 @@ public class AddIngredientRecyclerViewAdapter extends RecyclerView.Adapter<AddIn
         private TextView ingredientAmountEditText;
         private TextView measurementTypeTextView;
         private TextView ingredientNameTextView;
-        private Button removeButton;
+        private TextView removeTextView;
 
         public AddIngredientViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -114,7 +114,7 @@ public class AddIngredientRecyclerViewAdapter extends RecyclerView.Adapter<AddIn
             ingredientAmountEditText = itemView.findViewById(R.id.ingredientAmountEditText);
             measurementTypeTextView = itemView.findViewById(R.id.measurementTypeTextView);
             ingredientNameTextView = itemView.findViewById(R.id.ingredientNameTextView);
-            removeButton = itemView.findViewById(R.id.removeButton);
+            removeTextView = itemView.findViewById(R.id.removeTextView);
         }
 
         /**
@@ -161,7 +161,7 @@ public class AddIngredientRecyclerViewAdapter extends RecyclerView.Adapter<AddIn
 
             // Give the remove button a listener that removes this instance of the
             // single ingredient layout
-            removeButton.setOnClickListener(new View.OnClickListener() {
+            removeTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     // Remove ingredient from our ArrayList
