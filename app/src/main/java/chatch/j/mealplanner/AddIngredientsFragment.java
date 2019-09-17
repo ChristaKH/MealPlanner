@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import chatch.j.mealplanner.Adapters.AddIngredientRecyclerViewAdapter;
 import chatch.j.mealplanner.Models.Ingredient;
 
 /**
@@ -52,6 +54,8 @@ public class AddIngredientsFragment extends Fragment {
     private String name;
     private Ingredient ingredient;
     private ArrayList<Ingredient> ingredients;
+    private AddIngredientRecyclerViewAdapter recyclerViewAdapter;
+    private RecyclerView.LayoutManager layoutManagerRV;
 
     private OnAddIngredientsInteractionListener mListener;
 
@@ -66,6 +70,8 @@ public class AddIngredientsFragment extends Fragment {
 
         ingredient = new Ingredient();
         ingredients = new ArrayList<Ingredient>();
+        recyclerViewAdapter = new AddIngredientRecyclerViewAdapter(ingredients);
+        layoutManagerRV = new LinearLayoutManager(getContext());
 
         measurements = new ArrayList<String>();
         for(int i = 0; i < meas.length; i++){
@@ -89,6 +95,11 @@ public class AddIngredientsFragment extends Fragment {
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, measurements);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         measurementTypeSpinner.setAdapter(dataAdapter);
+
+        // Set up the RecyclerView with a LayoutManager and adapter
+        ingredientsRecyclerView.setLayoutManager(layoutManagerRV);
+        ingredientsRecyclerView.setAdapter(recyclerViewAdapter);
+        ingredientsRecyclerView.setHasFixedSize(true);
 
         // Set the onClickListener for the spinner
         measurementTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -235,6 +246,23 @@ public class AddIngredientsFragment extends Fragment {
             // If no ingredient name is entered, display error message
             ingredientErrorTextView.setText("Ingredient name is missing");
             ingredientErrorTextView.setVisibility(View.VISIBLE);
+        } else{
+            ingredientErrorTextView.setVisibility(View.INVISIBLE);
+
+            // use values to finish creating the ingredient object and add it to the array list
+            // @TODO: fix the issue for if the user enters a fraction for the amount
+            ingredient.setAmount(Integer.parseInt(amount));
+            ingredient.setName(name);
+            ingredients.add(ingredient);
+
+            // Update RecyclerView with new information
+            recyclerViewAdapter.notifyDataSetChanged();
+
+            // Prepare for a fresh start so the user can possibly enter a new ingredient
+            ingredient = new Ingredient();
+            type = "";
+            ingredientAmountEditText.setText("");
+            ingredientNameEditText.setText("");
         }
     }
 }
