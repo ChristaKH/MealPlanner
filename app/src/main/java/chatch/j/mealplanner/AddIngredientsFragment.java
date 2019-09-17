@@ -33,7 +33,7 @@ import chatch.j.mealplanner.Models.Ingredient;
  */
 public class AddIngredientsFragment extends Fragment {
 
-    private String[] meas = {"--", "TSP", "TBSP", "CUP", "QT", "OZ", "LB","GAL", "PT"};
+    private String[] meas = {"   ", "TSP", "TBSP", "CUP", "QT", "OZ", "LB","GAL", "PT"};
 
     //Components of the xml
     private ArrayList<String> measurements;
@@ -45,7 +45,11 @@ public class AddIngredientsFragment extends Fragment {
     private Button nextButton;
     private Spinner measurementTypeSpinner;
 
+    private int amount;
+    private String type;
+    private String name;
     private Ingredient ingredient;
+    private ArrayList<Ingredient> ingredients;
 
     private OnAddIngredientsInteractionListener mListener;
 
@@ -58,12 +62,13 @@ public class AddIngredientsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        ingredient = new Ingredient();
+        ingredients = new ArrayList<Ingredient>();
+
         measurements = new ArrayList<String>();
         for(int i = 0; i < meas.length; i++){
             measurements.add(meas[i]);
         }
-
-        ingredient = new Ingredient();
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_ingredients, container, false);
@@ -87,8 +92,47 @@ public class AddIngredientsFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String spinnerValue = adapterView.getItemAtPosition(i).toString();
-                // @TODO: set the type of the ingredient based on spinner value
-                measurementTypeSpinner.setVisibility(View.VISIBLE);
+
+                // {"   ", "TSP", "TBSP", "CUP", "QT", "OZ", "LB","GAL", "PT"}
+                // Set the ingredient measurement type based on the selected spinner value
+                switch(spinnerValue){
+                    case "   ":
+                        ingredient.setType(Ingredient.Type.WHOLE);
+                        type = meas[0];
+                        break;
+                    case "TSP":
+                        ingredient.setType(Ingredient.Type.TSP);
+                        type = meas[1];
+                        break;
+                    case "TBSP":
+                        ingredient.setType(Ingredient.Type.TBSP);
+                        type = meas[2];
+                        break;
+                    case "CUP":
+                        ingredient.setType(Ingredient.Type.CUP);
+                        type = meas[3];
+                        break;
+                    case "QT":
+                        ingredient.setType(Ingredient.Type.QT);
+                        type = meas[4];
+                        break;
+                    case "OZ":
+                        ingredient.setType(Ingredient.Type.QT);
+                        type = meas[5];
+                        break;
+                    case "LB":
+                        ingredient.setType(Ingredient.Type.LB);
+                        type = meas[6];
+                        break;
+                    case "GAL":
+                        ingredient.setType(Ingredient.Type.GAL);
+                        type = meas[7];
+                        break;
+                    case "PT":
+                        ingredient.setType(Ingredient.Type.PT);
+                        type = meas[8];
+                        break;
+                }
             }
 
             @Override
@@ -96,6 +140,16 @@ public class AddIngredientsFragment extends Fragment {
 
             }
         });
+
+        // If the add button is clicked,
+        // Check to see that all values were filled out, if not, display error message
+        // If all values are filled out,
+        // form an Ingredient object using the given values,
+        // add it to the ArrayList of ingredients,
+        // update RecyclerView with new ingredient,
+        // prepare for new ingredient by reinitializing the ingredient object,
+        // empty all fields for the user,
+        // and make any error messages invisible
 
         // If the previous button is clicked, return to the AddRecipeBulkFragment
         previousButton.setOnClickListener(new View.OnClickListener() {
