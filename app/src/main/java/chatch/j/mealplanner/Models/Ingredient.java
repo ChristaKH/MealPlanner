@@ -10,7 +10,7 @@ public class Ingredient{
     private Type mType;
     private String mName;
 
-    public enum Type {WHOLE, TSP,TBSP, CUP, QT, LB, GAL, PT}
+    public enum Type {WHOLE, TSP,TBSP, CUP, QT, OZ, LB, GAL, PT}
 
     /**
      * Empty constructor that sets the default values for the class's attributes

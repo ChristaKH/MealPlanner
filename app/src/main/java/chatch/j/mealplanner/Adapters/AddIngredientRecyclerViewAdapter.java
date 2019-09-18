@@ -128,6 +128,9 @@ public class AddIngredientRecyclerViewAdapter extends RecyclerView.Adapter<AddIn
             // Set the ingredient amount
             ingredientAmountEditText.setText(String.valueOf(ingredient.getAmount()));
 
+            removeTextView.setText("X");
+            removeTextView.setClickable(true);
+
             // Set the measurement type that is displayed
             switch(ingredient.getType()){
                 case TSP:

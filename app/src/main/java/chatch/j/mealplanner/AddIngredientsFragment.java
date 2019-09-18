@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -106,47 +107,58 @@ public class AddIngredientsFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String spinnerValue = adapterView.getItemAtPosition(i).toString();
+                String message = " measurement was selected";
 
-                // {"   ", "TSP", "TBSP", "CUP", "QT", "OZ", "LB","GAL", "PT"}
                 // Set the ingredient measurement type based on the selected spinner value
                 switch(spinnerValue){
                     case "   ":
                         ingredient.setType(Ingredient.Type.WHOLE);
+                        message += "___";
                         type = meas[0];
                         break;
                     case "TSP":
                         ingredient.setType(Ingredient.Type.TSP);
+                        message += "TSP";
                         type = meas[1];
                         break;
                     case "TBSP":
                         ingredient.setType(Ingredient.Type.TBSP);
+                        message += "TBSP";
                         type = meas[2];
                         break;
                     case "CUP":
                         ingredient.setType(Ingredient.Type.CUP);
+                        message += "CUP";
                         type = meas[3];
                         break;
                     case "QT":
                         ingredient.setType(Ingredient.Type.QT);
+                        message += "QT";
                         type = meas[4];
                         break;
                     case "OZ":
-                        ingredient.setType(Ingredient.Type.QT);
+                        ingredient.setType(Ingredient.Type.OZ);
+                        message += "OZ";
                         type = meas[5];
                         break;
                     case "LB":
                         ingredient.setType(Ingredient.Type.LB);
+                        message += "LB";
                         type = meas[6];
                         break;
                     case "GAL":
                         ingredient.setType(Ingredient.Type.GAL);
+                        message += "GAL";
                         type = meas[7];
                         break;
                     case "PT":
                         ingredient.setType(Ingredient.Type.PT);
+                        message += "PT";
                         type = meas[8];
                         break;
                 }
+
+                Toast.makeText(adapterView.getContext(), message, Toast.LENGTH_SHORT).show();
             }
 
             @Override

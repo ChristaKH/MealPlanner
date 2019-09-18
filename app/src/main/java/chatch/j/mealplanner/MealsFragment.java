@@ -80,7 +80,7 @@ public class MealsFragment extends Fragment {
 
         adapter.notifyDataSetChanged();
 
-        // prepareTestData();
+        prepareTestData();
 
         return view;
     }
@@ -96,5 +96,11 @@ public class MealsFragment extends Fragment {
             meals.add(temp);
         }
         adapter.notifyDataSetChanged();
+        // If there are MEAL recipes display message to indicate that
+        if(meals.size() == 0){
+            noMealsTextView.setVisibility(View.VISIBLE);
+        } else{
+            noMealsTextView.setVisibility(View.INVISIBLE);
+        }
     }
 }
